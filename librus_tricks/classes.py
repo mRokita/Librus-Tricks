@@ -44,7 +44,7 @@ class SynergiaGenericClass:
         """
 
         self._session = session
-        self.uid = int(uid)
+        self.uid = uid
         self.objects = _RemoteObjectsUIDManager(self._session, self)
         self._json_resource = resource
 
@@ -417,14 +417,7 @@ class SynergiaAttendanceType(SynergiaGenericClass):
 
 class SynergiaAttendance(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
-        if isinstance(resource, dict):
-            if isinstance(resource['Id'], str):
-                if 't' in resource['Id']:
-                    resource['Id'] = int(resource['Id'][1:])
-                    uid = resource['Id']
-
         super().__init__(uid, resource, session)
-
         self.add_date = datetime.strptime(self._json_resource['AddDate'], '%Y-%m-%d %H:%M:%S')
         self.date = datetime.strptime(self._json_resource['Date'], '%Y-%m-%d').date()
         self.lesson_no = self._json_resource['LessonNo']
