@@ -36,7 +36,7 @@ class DumbCache(CacheBase):
 class AlchemyCache(CacheBase):
     Base = declarative_base()
 
-    def __init__(self, engine_uri='sqlite:///cache.sqlite'):
+    def __init__(self, engine_uri='sqlite:///:memory:'):
         engine = create_engine(engine_uri, connect_args={'check_same_thread': False}, poolclass=StaticPool)
 
         Session = sessionmaker(bind=engine)

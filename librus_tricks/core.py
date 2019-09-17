@@ -137,7 +137,7 @@ class SynergiaClient:
 
     # API query part
 
-    def return_objects(self, *path, cls, extraction_key=None, lifetime=timedelta(minutes=1)):
+    def return_objects(self, *path, cls, extraction_key=None, lifetime=timedelta(seconds=10)):
         """
 
         :param path:
