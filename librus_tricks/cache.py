@@ -49,6 +49,7 @@ class AlchemyCache(CacheBase):
         __tablename__ = 'uri_cache'
 
         uri = Column(String, primary_key=True)
+        owner = Column(String)
         response = Column(JSON)
         last_load = Column(DateTime)
 
@@ -76,18 +77,18 @@ class AlchemyCache(CacheBase):
             return None
         return cls.assembly(response.resource, self.syn_session)
 
-    def add_query(self, uri, response):
+    def add_query(self, uri, response, user_id):
         self.session.add(
-            self.APIQueryCache(uri=uri, response=response, last_load=datetime.now())
+            self.APIQueryCache(uri=uri, response=response, last_load=datetime.now(), owner=user_id)
         )
         self.session.commit()
 
-    def get_query(self, uri):
+    def get_query(self, uri, user_id):
         """
 
         :rtype: AlchemyCache.APIQueryCache
         """
-        return self.session.query(self.APIQueryCache).filter_by(uri=uri).first()
+        return self.session.query(self.APIQueryCache).filter_by(uri=uri, owner=user_id).first()
 
     def del_query(self, uri):
         self.session.query(self.APIQueryCache).filter_by(uri=uri).delete()

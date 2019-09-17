@@ -66,7 +66,6 @@ class SynergiaClient:
         response = self.session.get(
             path_str, headers=self.__auth_headers, params=request_params
         )
-        print(path_str)
 
         if response.status_code >= 400:
             raise {
@@ -102,11 +101,11 @@ class SynergiaClient:
 
     def get_cached_response(self, *path, http_params=None, max_lifetime=timedelta(hours=1)):
         uri = self.assembly_path(*path, prefix=self.__api_url)
-        response_cached = self.cache.get_query(uri)
+        response_cached = self.cache.get_query(uri, self.user.uid)
 
         if response_cached is None:
             http_response = self.get(*path, request_params=http_params)
-            self.cache.add_query(uri, http_response)
+            self.cache.add_query(uri, http_response, self.user.uid)
             return http_response
 
         age = datetime.now() - response_cached.last_load
@@ -114,7 +113,7 @@ class SynergiaClient:
         if age > max_lifetime:
             http_response = self.get(*path, request_params=http_params)
             self.cache.del_query(uri)
-            self.cache.add_query(uri, http_response)
+            self.cache.add_query(uri, http_response, self.user.uid)
             return http_response
         return response_cached.response
 
@@ -186,6 +185,19 @@ class SynergiaClient:
             ids_computed = self.assembly_path(*attendances, sep=',', suffix=attendances[-1])[1:]
             return self.return_objects('Attendances', ids_computed, cls=SynergiaGrade, extraction_key='Attendances')
 
+    @property
+    def illegal_absences(self):
+        def is_absence(k):
+            if k.type.uid == '1':
+                return True
+            else:
+                return False
+        return tuple(filter(is_absence, self.attendances()))
+
+    @property
+    def all_absences(self):
+        return tuple(filter(lambda k: k.type.is_presence_kind == False, self.attendances()))
+
     def exams(self, *exams):
         """
 
@@ -222,6 +234,9 @@ class SynergiaClient:
         monday = tools.get_actual_monday(for_date).isoformat()
         r = self.get('Timetables', request_params={'weekStart': monday})
         return SynergiaTimetable.assembly(r['Timetable'], self)
+
+    def timetable_day(self, for_date: datetime):
+        return self.timetable(for_date)[for_date.date()]
 
     @property
     def today_timetable(self):

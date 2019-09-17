@@ -1,4 +1,4 @@
-from datetime import datetime, date, time
+from datetime import datetime, date, time, timedelta
 
 
 def _try_to_extract(payload, extraction_key, false_return=None):
@@ -58,7 +58,7 @@ class SynergiaGenericClass:
         return self
 
     @classmethod
-    def create(cls, uid=None, path=('',), session=None, extraction_key=None):
+    def create(cls, uid=None, path=('',), session=None, extraction_key=None, expire=timedelta(seconds=1)):
         """
 
         :param uid:
@@ -70,7 +70,7 @@ class SynergiaGenericClass:
         if uid is None or session is None:
             raise Exception()  # TODO: specify exception
 
-        response = session.get_cached_response(*path, uid)
+        response = session.get_cached_response(*path, uid, max_lifetime=expire)
 
         if extraction_key is None:
             extraction_key = SynergiaGenericClass.auto_extract(response)
@@ -96,8 +96,8 @@ class SynergiaTeacher(SynergiaGenericClass):
         self.last_name = self._json_resource['LastName']
 
     @classmethod
-    def create(cls, uid=None, path=('Users',), session=None, extraction_key='User'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('Users',), session=None, extraction_key='User', expire=timedelta(days=31)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     def __repr__(self):
@@ -178,8 +178,8 @@ class SynergiaSubject(SynergiaGenericClass):
         self.short_name = self._json_resource['Short']
 
     @classmethod
-    def create(cls, uid=None, path=('Subjects',), session=None, extraction_key='Subject'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('Subjects',), session=None, extraction_key='Subject', expire=timedelta(days=31)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     def __repr__(self):
@@ -208,8 +208,8 @@ class SynergiaLesson(SynergiaGenericClass):
         )
 
     @classmethod
-    def create(cls, uid=None, path=('Lessons',), session=None, extraction_key='Lesson'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('Lessons',), session=None, extraction_key='Lesson', expire=timedelta(minutes=5)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     @property
@@ -236,8 +236,8 @@ class SynergiaGradeCategory(SynergiaGenericClass):
             )
 
     @classmethod
-    def create(cls, uid=None, path=('Grades', 'Categories'), session=None, extraction_key='Category'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('Grades', 'Categories'), session=None, extraction_key='Category', expire=timedelta(days=31)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     @property
@@ -289,8 +289,8 @@ class SynergiaBaseTextGrade(SynergiaGenericClass):
         )
 
     @classmethod
-    def create(cls, uid=None, path=('BaseTextGrades',), session=None, extraction_key='BaseTextGrades'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('BaseTextGrades',), session=None, extraction_key='BaseTextGrades', expire=timedelta(minutes=5)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     @property
@@ -407,8 +407,8 @@ class SynergiaAttendanceType(SynergiaGenericClass):
         self.short_name = self._json_resource['Short']
 
     @classmethod
-    def create(cls, uid=None, path=('Attendances', 'Types'), session=None, extraction_key='Type'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('Attendances', 'Types'), session=None, extraction_key='Type', expire=timedelta(days=31)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     def __repr__(self):
@@ -430,8 +430,8 @@ class SynergiaAttendance(SynergiaGenericClass):
         )
 
     @classmethod
-    def create(cls, uid=None, path=('Attendances',), session=None, extraction_key='Attendance'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('Attendances',), session=None, extraction_key='Attendance', expire=timedelta(minutes=10)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     @property
@@ -461,8 +461,8 @@ class SynergiaExamCategory(SynergiaGenericClass):
         self.objects.set_object('color', self._json_resource['Color']['Id'], SynergiaColor)
 
     @classmethod
-    def create(cls, uid=None, path=('HomeWorks', 'Categories'), session=None, extraction_key='Category'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('HomeWorks', 'Categories'), session=None, extraction_key='Category', expire=timedelta(days=31)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     @property
@@ -520,8 +520,8 @@ class SynergiaExam(SynergiaGenericClass):
             self.__subject_present = False
 
     @classmethod
-    def create(cls, uid=None, path=('HomeWorks',), session=None, extraction_key='HomeWork'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('HomeWorks',), session=None, extraction_key='HomeWork', expire=timedelta(days=3)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     def __repr__(self):
@@ -563,8 +563,8 @@ class SynergiaColor(SynergiaGenericClass):
         self.hex_rgb = self._json_resource['RGB']
 
     @classmethod
-    def create(cls, uid=None, path=('Colors',), session=None, extraction_key='Color'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('Colors',), session=None, extraction_key='Color', expire=timedelta(days=31)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     def __repr__(self):
@@ -635,8 +635,8 @@ class SynergiaSchoolFreeDays(SynergiaGenericClass):
         self.name = self._json_payload['Name']  # TODO: Dodać Units
 
     @classmethod
-    def create(cls, uid=None, path=('',), session=None, extraction_key=None):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('',), session=None, extraction_key=None, expire=timedelta(minutes=5)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
     # TODO: Wymagany debug oraz test
 
@@ -668,8 +668,8 @@ class SynergiaTimetableEntry(SynergiaGenericClass):
                          datetime.fromisoformat(resource['DateTo']).date()
 
     @classmethod
-    def create(cls, uid=None, path=('TimetableEntries',), session=None, extraction_key='TimetableEntry'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('TimetableEntries',), session=None, extraction_key='TimetableEntry', expire=timedelta(seconds=15)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
 
@@ -724,7 +724,7 @@ class SynergiaTimetable(SynergiaGenericClass):
         return self
 
     @classmethod
-    def create(cls, uid=None, path=('Timetables',), session=None, extraction_key='Timetable', week=None):
+    def create(cls, uid=None, path=('Timetables',), session=None, extraction_key='Timetable', week=None, expire=timedelta(seconds=15)):
         response = session.get_cached_response(*path)
 
         if extraction_key is None:
@@ -782,8 +782,8 @@ class SynergiaNativeMessage(SynergiaGenericClass):
     #     return self.objects.assembly('sender')
 
     @classmethod
-    def create(cls, uid=None, path=('Messages',), session=None, extraction_key='Message'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('Messages',), session=None, extraction_key='Message', expire=timedelta(days=31)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
 
@@ -799,8 +799,8 @@ class SynergiaNews(SynergiaGenericClass):
         self.ends = datetime.strptime(self._json_resource['EndDate'], '%Y-%m-%d')
 
     @classmethod
-    def create(cls, uid=None, path=('SchoolNotices',), session=None, extraction_key='SchoolNotices'):
-        self = super().create(uid, path, session, extraction_key)
+    def create(cls, uid=None, path=('SchoolNotices',), session=None, extraction_key='SchoolNotices', expire=timedelta(days=31)):
+        self = super().create(uid, path, session, extraction_key, expire)
         return self
 
     def __repr__(self):
