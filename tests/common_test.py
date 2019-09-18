@@ -5,6 +5,7 @@ sys.path.extend(['./'])
 
 from librus_tricks import create_session, cache
 
+
 def ensure_session():
     if 'session' not in globals():
         global EMAIL
@@ -14,9 +15,10 @@ def ensure_session():
         PASSWORD = os.environ['librus_password']
         session = create_session(EMAIL, PASSWORD, cache=cache.AlchemyCache(engine_uri='sqlite:///:memory:'))
 
+
 def test_auth():
     ensure_session()
-    return session.user.is_revalidation_required(use_query=True)
+    return session.user.is_valid
 
 
 def test_attendance():
@@ -58,9 +60,11 @@ def test_subjects():
     ensure_session()
     return session.subjects()
 
+
 def test_school():
     ensure_session()
     return session.school
+
 
 def test_lucky():
     ensure_session()
