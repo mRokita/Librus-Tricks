@@ -4,8 +4,7 @@ from datetime import datetime, date, time, timedelta
 def _try_to_extract(payload, extraction_key, false_return=None):
     if extraction_key in payload.keys():
         return payload[extraction_key]
-    else:
-        return false_return
+    return false_return
 
 
 class _RemoteObjectsUIDManager:
@@ -84,6 +83,7 @@ class SynergiaGenericClass:
         for key in payload.keys():
             if key not in ('Resources', 'Url'):
                 return key
+        return
 
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.uid} at {hex(id(self))}>'
@@ -490,10 +490,9 @@ class SynergiaExam(SynergiaGenericClass):
             """
             if 'VirtualClass' in exam_payload.keys():
                 return {'Id': exam_payload['VirtualClass']['Id'], 'type': SynergiaVirtualClass}
-            elif 'Class' in exam_payload.keys():
+            if 'Class' in exam_payload.keys():
                 return {'Id': exam_payload['Class']['Id'], 'type': SynergiaGlobalClass}
-            else:
-                raise AttributeError('Wrong object type')
+            raise AttributeError('Wrong object type')
 
         self.add_date = datetime.strptime(self._json_resource['AddDate'], '%Y-%m-%d %H:%M:%S')
         self.content = self._json_resource['Content']

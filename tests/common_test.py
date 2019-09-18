@@ -3,12 +3,12 @@ import sys
 
 sys.path.extend(['./'])
 
-email = os.environ['librus_email']
-password = os.environ['librus_password']
+EMAIL = os.environ['librus_email']
+PASSWORD = os.environ['librus_password']
 
-from librus_tricks import exceptions, create_session, cache
+from librus_tricks import create_session, cache
 
-session = create_session(email, password, cache=cache.AlchemyCache(engine_uri='sqlite:///:memory:'))
+session = create_session(EMAIL, PASSWORD, cache=cache.AlchemyCache(engine_uri='sqlite:///:memory:'))
 
 
 def test_auth():

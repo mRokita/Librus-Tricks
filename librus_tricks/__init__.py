@@ -3,7 +3,7 @@ from librus_tricks.auth import authorizer
 from librus_tricks.classes import *
 from librus_tricks.core import SynergiaClient
 
-name = 'librus_tricks'
+NAME = 'librus_tricks'
 __title__ = 'librus_tricks'
 __author__ = 'Backdoorek'
 __version__ = '0.7.0'

@@ -109,7 +109,7 @@ class SynergiaClient:
 
         if age > max_lifetime:
             http_response = self.get(*path, request_params=http_params)
-            self.cache.del_query(uri)
+            self.cache.del_query(uri, self.user.uid)
             self.cache.add_query(uri, http_response, self.user.uid)
             return http_response
         return response_cached.response
