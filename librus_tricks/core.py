@@ -48,6 +48,17 @@ class SynergiaClient:
 
     # HTTP part
 
+    @staticmethod
+    def dispatch_http_code(response: requests.Response):
+        if response.status_code >= 400:
+            raise {
+                500: Exception('Server error'),
+                404: exceptions.SynergiaNotFound(response.url),
+                403: exceptions.SynergiaForbidden(response.json()),
+                401: exceptions.SynergiaAccessDenied(response.json()),
+                400: exceptions.SynergiaInvalidRequest(response.json()),
+            }[response.status_code]
+
     def get(self, *path, request_params=None):
         """
         Zwraca json'a przekonwertowany na dict'a po podaniu prawidłowego węzła
@@ -67,14 +78,7 @@ class SynergiaClient:
             path_str, headers=self.__auth_headers, params=request_params
         )
 
-        if response.status_code >= 400:
-            raise {
-                500: Exception('Server error'),
-                404: exceptions.SynergiaNotFound(path_str),
-                403: exceptions.SynergiaForbidden(response.json()),
-                401: exceptions.SynergiaAccessDenied(response.json()),
-                400: exceptions.SynergiaInvalidRequest(response.json()),
-            }[response.status_code]
+        self.dispatch_http_code(response)
 
         return response.json()
 
@@ -86,14 +90,7 @@ class SynergiaClient:
             path_str, headers=self.__auth_headers, params=request_params
         )
 
-        if response.status_code >= 400:
-            raise {
-                500: Exception('Server error'),
-                404: exceptions.SynergiaNotFound(response.json()),
-                403: exceptions.SynergiaForbidden(response.json()),
-                401: exceptions.SynergiaAccessDenied(response.json()),
-                400: exceptions.SynergiaInvalidRequest(response.json()),
-            }[response.status_code]
+        self.dispatch_http_code(response)
 
         return response.json()
 
@@ -192,6 +189,7 @@ class SynergiaClient:
                 return True
             else:
                 return False
+
         return tuple(filter(is_absence, self.attendances()))
 
     @property
