@@ -18,7 +18,9 @@ def ensure_session():
 
 def test_auth():
     ensure_session()
-    return session.user.is_valid
+    if not session.user.is_valid:
+        session.user.revalidate_user()
+    assert session.user.is_valid is True
 
 
 def test_attendance():
