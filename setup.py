@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="librus_tricks",
-    python_requires='>3.6.0',
+    python_requires='>3.7.0',
     version=__version__,
     author="Krystian Postek",
     author_email="krystian@postek.eu",
@@ -22,7 +22,6 @@ setuptools.setup(
         'examples': ['colorama', 'matplotlib', 'PrettyTable']
     },
     classifiers=[
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: Implementation :: CPython",
