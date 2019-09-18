@@ -41,3 +41,7 @@ def test_messages():
 
 def test_colors():
     return session.colors()
+
+
+def test_subjects():
+    return session.subjects()

@@ -23,3 +23,10 @@ def test_attedance():
     att = session.attendances()
     types = [x.type for x in att]
     return att, types
+
+
+def test_timetable():
+    tt = session.today_timetable
+    subjects = []
+    for l in tt:
+        subjects.append(l.subject)
