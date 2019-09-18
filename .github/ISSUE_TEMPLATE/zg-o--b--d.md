@@ -34,8 +34,8 @@ Opisz czego się spodziewałeś wykonując daną rzecz
 *O ile się da*
 
 ## Środowisko
-- OS: (np. Ubuntu 19.04)
-- Wersja pythona: (np. 3.7.4)
+  - OS: (np. Ubuntu 19.04)
+  - Wersja pythona: (np. 3.7.4)
 
 ### Inne rzeczy
 Tu możesz napisać rzeczy, które nie miały zastosowania powyżej
