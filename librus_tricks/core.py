@@ -133,7 +133,7 @@ class SynergiaClient:
 
     # API query part
 
-    def return_objects(self, *path, cls, extraction_key=None, lifetime=timedelta(seconds=10)):
+    def return_objects(self, *path, cls, extraction_key=None, lifetime=timedelta(seconds=10), bypass_cache=False):
         """
 
         :param path:
@@ -142,7 +142,10 @@ class SynergiaClient:
         :param lifetime:
         :return:
         """
-        raw = self.get_cached_response(*path, max_lifetime=lifetime)
+        if bypass_cache:
+            raw = self.get(*path)
+        else:
+            raw = self.get_cached_response(*path, max_lifetime=lifetime)
 
         if extraction_key is None:
             extraction_key = SynergiaGenericClass.auto_extract(raw)
