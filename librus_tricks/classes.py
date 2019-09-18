@@ -579,6 +579,10 @@ class SynergiaClassroom(SynergiaGenericClass):
         self.name = self._json_resource['Name']
         self.symbol = self._json_resource['Symbol']
 
+    @classmethod
+    def create(cls, uid=None, path=('Classrooms',), session=None, extraction_key=None, expire=timedelta(days=31)):
+        return super().create(uid, path, session, extraction_key, expire)
+
     def __repr__(self):
         return f'<SynergiaClassroom {self.symbol}>'
 
@@ -690,9 +694,26 @@ class SynergiaTimetableEvent:
             'teacher', resource['Teacher']['Id'], SynergiaTeacher
         )
 
+        try:
+            self.objects.set_object(
+                'classroom', resource['Classroom']['Id'], SynergiaTimetable
+            )
+        except KeyError:
+            self.objects.set_object(
+                'classroom', resource['OrgClassroom']['Id'], SynergiaTimetable
+            )
+
     @property
     def subject(self):
         return self.objects.assembly('subject')
+
+    @property
+    def teacher(self):
+        return self.objects.assembly('teacher')
+
+    @property
+    def classroom(self):
+        return self.objects.assembly('classroom')
 
     def __repr__(self):
         return f'<SynergiaTimetableEvent {self.preloaded["subject_title"]} {self.start} {self.end} with {self.preloaded["teacher"]}>'
@@ -701,10 +722,21 @@ class SynergiaTimetableEvent:
         return self.preloaded["subject_title"]
 
 
+class SynergiaTimetableDay:
+    def __init__(self, lessons):
+        self.lessons = tuple(lessons)
+        if self.lessons.__len__() != 0:
+            self.day_start = self.lessons[0].start
+            self.day_end = self.lessons[-1].end
+        else:
+            self.day_start = None
+            self.day_end = None
+
+
 class SynergiaTimetable(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
-        self.lessons = self.convert_parsed_timetable(
+        self.days = self.convert_parsed_timetable(
             self.parse_timetable(resource)
         )
 
@@ -714,7 +746,7 @@ class SynergiaTimetable(SynergiaGenericClass):
 
         :rtype: list of SynergiaTimetableEvent
         """
-        return self.lessons[datetime.now().date()]
+        return self.days[datetime.now().date()]
 
     @classmethod
     def assembly(cls, resource, session):
@@ -750,16 +782,20 @@ class SynergiaTimetable(SynergiaGenericClass):
             for event_index in range(len(timetable[day])):
                 if timetable[day][event_index].keys().__len__() != 0:
                     timetable[day][event_index] = SynergiaTimetableEvent(timetable[day][event_index], self._session)
+
+        for day in timetable.keys():
+            timetable[day] = SynergiaTimetableDay(timetable[day])
+
         return timetable
 
     def __repr__(self):
-        return f'<{self.__class__.__name__} for {self.lessons.keys()}>'
+        return f'<{self.__class__.__name__} for {self.days.keys()}>'
 
     def __str__(self):
         o_str = ''
-        for d in self.lessons.keys():
+        for d in self.days.keys():
             o_str += f'{d}\n'
-            for e in self.lessons[d]:
+            for e in self.days[d]:
                 if e != {}:
                     o_str += f'  {e.__str__()}\n'
         return o_str

@@ -244,18 +244,18 @@ class SynergiaClient:
         """
 
         :return:
-        :rtype: list of librus_tricks.classes.SynergiaTimetableEvent
+        :rtype: list of librus_tricks.classes.SynergiaTimetableDay
         """
-        return self.timetable().lessons[datetime.now().date()]
+        return self.timetable().days[datetime.now().date()]
 
     @property
     def tomorrow_timetable(self):
         """
 
         :return:
-        :rtype: list of librus_tricks.classes.SynergiaTimetableEvent
+        :rtype: list of librus_tricks.classes.SynergiaTimetableDay
         """
-        return self.timetable(datetime.now() + timedelta(days=1)).lessons[(datetime.now() + timedelta(days=1)).date()]
+        return self.timetable(datetime.now() + timedelta(days=1)).days[(datetime.now() + timedelta(days=1)).date()]
 
     def messages(self, *messages):
         """
