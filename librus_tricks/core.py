@@ -278,8 +278,8 @@ class SynergiaClient:
         :rtype: tuple of librus_tricks.classes.SynergiaSubject
         """
         if subject.__len__() == 0:
-            return self.return_objects('Subjects', cls=SynergiaNativeMessage, extraction_key='Subjects')
+            return self.return_objects('Subjects', cls=SynergiaSubject, extraction_key='Subjects')
         else:
             ids_computed = self.assembly_path(*subject, sep=',', suffix=subject[-1])[1:]
-            return self.return_objects('Subjects', ids_computed, cls=SynergiaNativeMessage, extraction_key='Subjects')
+            return self.return_objects('Subjects', ids_computed, cls=SynergiaSubject, extraction_key='Subjects')
 
