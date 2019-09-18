@@ -802,3 +802,13 @@ class SynergiaNews(SynergiaGenericClass):
 
     def __repr__(self):
         return f'<SynergiaNews {self.topic}>'
+
+class SynergiaSchool(SynergiaGenericClass):
+    def __init__(self, uid, resource, session):
+        super().__init__(uid, resource, session)
+        self.name = resource['Name']
+        self.location = f'{resource["Town"]} {resource["Street"]} {resource["BuildingNumber"]}'
+
+    @classmethod
+    def create(cls, uid=None, path=('Schools',), session=None, extraction_key='School', expire=timedelta(seconds=1)):
+        return super().create(uid, path, session, extraction_key, expire)

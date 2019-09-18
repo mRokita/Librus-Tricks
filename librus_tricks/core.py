@@ -286,3 +286,7 @@ class SynergiaClient:
             ids_computed = self.assembly_path(*subject, sep=',', suffix=subject[-1])[1:]
             return self.return_objects('Subjects', ids_computed, cls=SynergiaSubject, extraction_key='Subjects')
 
+    @property
+    def school(self):
+        return self.return_objects('Schools', cls=SynergiaSchool, extraction_key='School')
+        
