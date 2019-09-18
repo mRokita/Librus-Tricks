@@ -228,6 +228,23 @@ class SynergiaClient:
             ids_computed = self.assembly_path(*grades, sep=',', suffix=grades[-1])[1:]
             return self.return_objects('Grades', ids_computed, cls=SynergiaGrade, extraction_key='Grades')
 
+    @property
+    def grades_categorized(self):
+        grades_categorized = {}
+        for subject in self.subjects():
+            grades_categorized[subject.name] = []
+
+        for grade in self.grades():
+            grades_categorized[grade.subject.name].append(
+                grade
+            )
+
+        for s in grades_categorized.copy().keys():
+            if grades_categorized[s].__len__() == 0:
+                del(grades_categorized[s])
+
+        return grades_categorized
+
     def attendances(self, *attendances):
         """
         Zwraca daną listę obiektów frekwencji.

@@ -6,11 +6,12 @@ from librus_tricks.core import SynergiaClient
 NAME = 'librus_tricks'
 __title__ = 'librus_tricks'
 __author__ = 'Backdoorek'
-__version__ = '0.7.0'
+__version__ = '0.7.1'
+
 
 def create_session(email, password, fetch_first=True, **kwargs):
     """
-    Używaj tego tylko kiedy hasło do Portal Librus jest takie samo jako do Synergii
+    Używaj tego tylko kiedy hasło do Portal Librus jest takie samo jako do Synergii.
 
     :param email: str
     :param password: str
