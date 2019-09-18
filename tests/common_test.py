@@ -61,3 +61,7 @@ def test_subjects():
 def test_school():
     ensure_session()
     return session.school
+
+def test_lucky():
+    ensure_session()
+    return session.lucky_number

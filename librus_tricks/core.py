@@ -292,4 +292,7 @@ class SynergiaClient:
     @property
     def school(self):
         return self.return_objects('Schools', cls=SynergiaSchool, extraction_key='School')
-        
+
+    @property
+    def lucky_number(self):
+        return self.get('LuckyNumbers')['LuckyNumber']['LuckyNumber']
