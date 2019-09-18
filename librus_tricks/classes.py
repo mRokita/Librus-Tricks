@@ -743,8 +743,6 @@ class SynergiaTimetable(SynergiaGenericClass):
             for period in resource[day]:
                 if period.__len__() != 0:
                     root[day_date].append(period[0])
-                else:
-                    root[day_date].append({})
         return root
 
     def convert_parsed_timetable(self, timetable):

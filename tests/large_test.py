@@ -11,7 +11,7 @@ from librus_tricks import create_session, cache
 session = create_session(EMAIL, PASSWORD, cache=cache.AlchemyCache(engine_uri='sqlite:///:memory:'))
 
 
-def test_grade():
+def test_grades():
     grades = session.grades()
     teachers = [x.teacher for x in grades]
     subjects = [x.subject for x in grades]
@@ -19,7 +19,7 @@ def test_grade():
     return teachers, subjects, cats
 
 
-def test_attedance():
+def test_attendances():
     att = session.attendances()
     types = [x.type for x in att]
     return att, types
