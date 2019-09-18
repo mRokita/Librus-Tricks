@@ -9,23 +9,23 @@ import sqlite3
 
 
 class CacheBase:
-    def add_object(self, *args, **kwargs):
+    def add_object(self, uid, cls, resource):
         pass
 
-    def get_object(self, *args, **kwargs):
-        raise Exception('Not implemented')
+    def get_object(self, uid, cls):
+        raise NotImplementedError('get_object require implementation')
 
-    def del_object(self, *args, **kwargs):
-        raise Exception('Not implemented')
+    def del_object(self, uid):
+        raise NotImplementedError('del_object require implementation')
 
-    def add_query(self, *args, **kwargs):
+    def add_query(self, uri, response, user_id):
         pass
 
-    def get_query(self, *args, **kwargs):
-        raise Exception('Not implemented')
+    def get_query(self, uri, user_id):
+        raise NotImplementedError('get_query require implementation')
 
-    def del_query(self, *args, **kwargs):
-        raise Exception('Not implemented')
+    def del_query(self, uri, user_id):
+        raise NotImplementedError('del_query require implementation')
 
 
 class DumbCache(CacheBase):
@@ -90,8 +90,8 @@ class AlchemyCache(CacheBase):
         """
         return self.session.query(self.APIQueryCache).filter_by(uri=uri, owner=user_id).first()
 
-    def del_query(self, uri):
-        self.session.query(self.APIQueryCache).filter_by(uri=uri).delete()
+    def del_query(self, uri, user_id):
+        self.session.query(self.APIQueryCache).filter_by(uri=uri, owner=user_id).delete()
         self.session.commit()
 
     def del_object(self, uid):
