@@ -97,8 +97,7 @@ class SynergiaTeacher(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('Users',), session=None, extraction_key='User', expire=timedelta(days=31)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.name} {self.last_name}>'
@@ -179,8 +178,7 @@ class SynergiaSubject(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('Subjects',), session=None, extraction_key='Subject', expire=timedelta(days=31)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.name}>'
@@ -209,8 +207,7 @@ class SynergiaLesson(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('Lessons',), session=None, extraction_key='Lesson', expire=timedelta(minutes=5)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     @property
     def teacher(self) -> SynergiaTeacher:
@@ -237,8 +234,7 @@ class SynergiaGradeCategory(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('Grades', 'Categories'), session=None, extraction_key='Category', expire=timedelta(days=31)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     @property
     def teacher(self) -> SynergiaTeacher:
@@ -290,8 +286,7 @@ class SynergiaBaseTextGrade(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('BaseTextGrades',), session=None, extraction_key='BaseTextGrades', expire=timedelta(minutes=5)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     @property
     def teacher(self) -> SynergiaTeacher:
@@ -408,8 +403,7 @@ class SynergiaAttendanceType(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('Attendances', 'Types'), session=None, extraction_key='Type', expire=timedelta(days=31)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.short_name}>'
@@ -431,8 +425,7 @@ class SynergiaAttendance(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('Attendances',), session=None, extraction_key='Attendance', expire=timedelta(minutes=10)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     @property
     def teacher(self) -> SynergiaTeacher:
@@ -462,8 +455,7 @@ class SynergiaExamCategory(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('HomeWorks', 'Categories'), session=None, extraction_key='Category', expire=timedelta(days=31)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     @property
     def color(self):
@@ -520,8 +512,7 @@ class SynergiaExam(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('HomeWorks',), session=None, extraction_key='HomeWork', expire=timedelta(days=3)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     def __repr__(self):
         return f'<{self.__class__.__name__} ' \
@@ -563,8 +554,7 @@ class SynergiaColor(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('Colors',), session=None, extraction_key='Color', expire=timedelta(days=31)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.hex_rgb}>'
@@ -639,29 +629,10 @@ class SynergiaSchoolFreeDays(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('',), session=None, extraction_key=None, expire=timedelta(minutes=5)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
     # TODO: Wymagany debug oraz test
 
     # TODO: Dodać __repr__()
-
-
-class SynergiaSchool(SynergiaGenericClass):
-    def __init__(self, uid, resource, session):
-        super().__init__(uid, resource, session)
-        self.name = self._json_resource['Name']
-        self.school_location = {
-            'street': self._json_resource['Street'],
-            'street_no': self._json_resource['BuildingNumber'],
-            'state': self._json_resource['State'],
-            'town': self._json_resource['Town']
-        }
-
-    def __repr__(self):
-        return f'<SynergiaSchool {self.name}>'
-
-    def __str__(self):
-        return self.name
 
 
 class SynergiaTimetableEntry(SynergiaGenericClass):
@@ -672,8 +643,7 @@ class SynergiaTimetableEntry(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('TimetableEntries',), session=None, extraction_key='TimetableEntry', expire=timedelta(seconds=15)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
 
 class SynergiaTimetableEvent:
@@ -816,8 +786,7 @@ class SynergiaNativeMessage(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('Messages',), session=None, extraction_key='Message', expire=timedelta(days=31)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
 
 class SynergiaNews(SynergiaGenericClass):
@@ -833,8 +802,7 @@ class SynergiaNews(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('SchoolNotices',), session=None, extraction_key='SchoolNotices', expire=timedelta(days=31)):
-        self = super().create(uid, path, session, extraction_key, expire)
-        return self
+        return super().create(uid, path, session, extraction_key, expire)
 
     def __repr__(self):
         return f'<SynergiaNews {self.topic}>'
@@ -848,3 +816,6 @@ class SynergiaSchool(SynergiaGenericClass):
     @classmethod
     def create(cls, uid=None, path=('Schools',), session=None, extraction_key='School', expire=timedelta(seconds=1)):
         return super().create(uid, path, session, extraction_key, expire)
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__} {self.name}>'
