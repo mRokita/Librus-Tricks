@@ -53,7 +53,7 @@ class SynergiaUser:
         )
         self.token = new_token.json()['accessToken']
 
-    def is_revalidation_required(self, use_clock=True, use_query=False):
+    def check_is_expired(self, use_clock=True, use_query=True):
         clock_resp = None
         query_resp = None
 
@@ -70,6 +70,10 @@ class SynergiaUser:
                 query_resp = True
 
         return clock_resp, query_resp
+
+    @property
+    def is_valid(self):
+        return self.check_is_expired(use_clock=False)[1]
 
 
 def authorizer(email, password):
