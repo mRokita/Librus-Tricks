@@ -724,7 +724,7 @@ class SynergiaTimetable(SynergiaGenericClass):
         return self
 
     @classmethod
-    def create(cls, uid=None, path=('Timetables',), session=None, extraction_key='Timetable', week=None, expire=timedelta(seconds=15)):
+    def create(cls, uid=None, path=('Timetables',), session=None, extraction_key='Timetable', expire=timedelta(seconds=15)):
         response = session.get_cached_response(*path)
 
         if extraction_key is None:
