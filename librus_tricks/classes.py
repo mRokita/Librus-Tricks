@@ -10,6 +10,7 @@ def _try_to_extract(payload, extraction_key, false_return=None):
 class _RemoteObjectsUIDManager:
     def __init__(self, session, parent):
         """
+        Zarządza w kulturalny sposób id obiektów, które zostaną pobrane.
 
         :param librus_tricks.core.SynergiaClient session:
         """
@@ -18,21 +19,42 @@ class _RemoteObjectsUIDManager:
         self.__parent = parent
 
     def set_object(self, attr, uid, cls):
+        """
+        Zapisuje dane przyszłego obiektu.
+
+        :param str attr: Nazwa przyszłego property
+        :param int uid: Id obiektu
+        :param cls: Klasa obiektu
+        :return:
+        """
         self.__storage[attr] = uid, cls
         # self.__parent.__setattr__(attr, cls.create(uid=uid, session=self.__session))
         return self
 
     def assembly(self, attr):
+        """
+        Pobiera wcześniej zapisany obiekt.
+
+        :param str attr: Nazwa property
+        :return:
+        """
         uid, cls = self.__storage[attr]
         return cls.create(uid=uid, session=self._session)
 
     def return_id(self, attr):
+        """
+        Zwraca id obiektu.
+
+        :param str attr: Nazwa property
+        :rtype: int
+        """
         return self.__storage[attr][0]
 
 
 class SynergiaGenericClass:
     def __init__(self, uid, resource, session):
         """
+        Klasa macierzysta dla obiektów dziennika Synergia.
 
         :param str uid: Id żądanego obiektu
         :param librus_tricks.core.SynergiaClient session: Obiekt sesji
@@ -53,17 +75,25 @@ class SynergiaGenericClass:
 
     @classmethod
     def assembly(cls, resource, session):
+        """
+        Umożliwia stworzenie obiektu posiadając dict i obiekt sesji.
+
+        :param dict resource: Gotowe dane do stworzenia obiektu
+        :param librus_tricks.core.SynergiaClient session: Obiekt sesji
+        :return: Nowy obiekt
+        """
         self = cls(resource['Id'], resource, session)
         return self
 
     @classmethod
     def create(cls, uid=None, path=('',), session=None, extraction_key=None, expire=timedelta(seconds=1)):
         """
+        Pobiera i składa nowy obiekt.
 
-        :param uid:
-        :param path:
-        :param librus_tricks.core.SynergiaClient session:
-        :param extraction_key:
+        :param int uid: Id obiektu
+        :param tuple of str path: Niezłożona ścieżka API
+        :param librus_tricks.core.SynergiaClient session: Obiekt sesji
+        :param str extraction_key: Klucz do wyciągnięcia danych
         :return:
         """
         if uid is None or session is None:
@@ -80,6 +110,13 @@ class SynergiaGenericClass:
 
     @staticmethod
     def auto_extract(payload):
+        """
+        Próbuje autoamtycznie wydobyć klucz.
+
+        :param dict payload:
+        :return:
+        :rtype: str
+        """
         for key in payload.keys():
             if key not in ('Resources', 'Url'):
                 return key

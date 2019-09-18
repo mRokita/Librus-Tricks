@@ -13,12 +13,13 @@ class SynergiaClient:
     def __init__(self, user, api_url='https://api.librus.pl/2.0', user_agent='LibrusMobileApp',
                  cache=cache_lib.AlchemyCache(), synergia_user_passwd=None):
         """
+        Tworzy sesję z API Synergii.
 
-        :param user:
-        :param api_url:
-        :param user_agent:
-        :param cache:
-        :param synergia_user_passwd:
+        :param librus_tricks.auth.SynergiaUser user: Użytkownik sesji
+        :param str api_url: Bazowy url api, zmieniaj jeżeli chcesz używać proxy typu beeceptor
+        :param str user_agent: User-agent klienta http, domyślnie się podszywa pod aplikację
+        :param librus_tricks.cache.CacheBase cache: Obiekt, który zarządza cache
+        :param str synergia_user_passwd: Hasło do dziennika Synergia
         """
         self.user = user
         self.session = requests.session()
@@ -42,6 +43,16 @@ class SynergiaClient:
 
     @staticmethod
     def assembly_path(*elements, prefix='', suffix='', sep='/'):
+        """
+        Składa str w jednego str, przydatne przy tworzeniu url.
+
+        :param str elements: Elementy do stworzenia str
+        :param str prefix: Początek str
+        :param str suffix: Koniec str
+        :param str sep: str wstawiany pomiędzy elementy
+        :return: Złożony str
+        :rtype: str
+        """
         for el in elements:
             prefix += sep + str(el)
         return prefix + suffix
@@ -50,6 +61,15 @@ class SynergiaClient:
 
     @staticmethod
     def dispatch_http_code(response: requests.Response):
+        """
+        Sprawdza czy serwer zgłasza błąd poprzez podanie kodu http, w przypadku błędu, rzuca wyjątkiem.
+
+        :param requests.Response response:
+        :raises librus_tricks.exceptions.SynergiaNotFound: 404
+        :raises librus_tricks.exceptions.SynergiaForbidden: 403
+        :raises librus_tricks.exceptions.SynergiaAccessDenied: 401
+        :raises librus_tricks.exceptions.SynergiaInvalidRequest: 401
+        """
         if response.status_code >= 400:
             raise {
                 500: Exception('Server error'),
@@ -61,15 +81,16 @@ class SynergiaClient:
 
     def get(self, *path, request_params=None):
         """
-        Zwraca json'a przekonwertowany na dict'a po podaniu prawidłowego węzła
+        Zwraca json'a przekonwertowany na dict'a po podaniu prawidłowego url.
 
         przykład: ``session.get('Grades', '42690')``
 
         :param path: Ścieżka zawierająca węzeł API
         :type path: str
+        :param request_params: dict zawierający kwargs dla zapytania http
+        :type request_params: dict
         :return: json przekonwertowany na dict'a
         :rtype: dict
-        :raise librus_tricks.exceptions.SynergiaEndpointNotFound: nie zaleziono określonego węzła
         """
         if request_params is None:
             request_params = dict()
@@ -83,6 +104,16 @@ class SynergiaClient:
         return response.json()
 
     def post(self, *path, request_params=None):
+        """
+        Pozwala na dokonanie zapytania http POST.
+
+        :param path: Ścieżka zawierająca węzeł API
+        :type path: str
+        :param request_params: dict zawierający kwargs dla zapytania http
+        :type request_params: dict
+        :return: json przekonwertowany na dict'a
+        :rtype: dict
+        """
         if request_params is None:
             request_params = dict()
         path_str = self.assembly_path(*path, prefix=self.__api_url)
@@ -97,6 +128,16 @@ class SynergiaClient:
     # Cache
 
     def get_cached_response(self, *path, http_params=None, max_lifetime=timedelta(hours=1)):
+        """
+        Wykonuje zapytanie http GET z poprzednim sprawdzeniem cache.
+
+        :param path: Niezłożona ścieżka do węzła API
+        :param request_params: dict zawierający kwargs dla zapytania http
+        :type request_params: dict
+        :param timedelta max_lifetime: Maksymalny czas ważności cache dla tego zapytania http
+        :return: dict zawierający odpowiedź zapytania
+        :rtype: dict
+        """
         uri = self.assembly_path(*path, prefix=self.__api_url)
         response_cached = self.cache.get_query(uri, self.user.uid)
 
@@ -115,6 +156,14 @@ class SynergiaClient:
         return response_cached.response
 
     def get_cached_object(self, uid, cls, max_lifetime=timedelta(hours=1)):
+        """
+        Pobiera dany obiekt z poprzednim sprawdzeniem cache. Nie używane domyślnie w bibliotece.
+
+        :param str uid: Id żądanego obiektu
+        :param cls: Klasa żądanego obiektu
+        :param timedelta max_lifetime: Maksymalny czas ważności cache dla tego obiektu
+        :return: Żądany obiekt
+        """
         requested_object = self.cache.get_object(uid, cls)
 
         if requested_object is None:
@@ -135,12 +184,16 @@ class SynergiaClient:
 
     def return_objects(self, *path, cls, extraction_key=None, lifetime=timedelta(seconds=10), bypass_cache=False):
         """
+        Zwraca listę obiektów lub obiekt, wygenerowaną z danych danej ścieżki API.
 
-        :param path:
-        :param cls:
-        :param extraction_key:
-        :param lifetime:
+        :param str path: Niezłożona ścieżka do węzła API
+        :param cls: Klasa żądanych obiektów
+        :param str extraction_key: Klucz do wyjęcia danych, pozostawienie tego parametru na None powoduje
+            automatyczną próbę zczytania danych
+        :param timedelta lifetime: Maksymalny czas ważności cache dla tego zapytania http
+        :param bool bypass_cache: Ustawienie tego parametru na True powoduje ignorowanie mechanizmu cache
         :return:
+        :rtype: list of SynergiaGenericClass
         """
         if bypass_cache:
             raw = self.get(*path)
@@ -166,7 +219,7 @@ class SynergiaClient:
         """
         Zwraca daną listę ocen.
 
-        :return: krotka z ocenami
+        :param int grades: Id ocen
         :rtype: tuple of librus_tricks.classes.SynergiaGrade
         """
         if grades.__len__() == 0:
@@ -177,9 +230,9 @@ class SynergiaClient:
 
     def attendances(self, *attendances):
         """
+        Zwraca daną listę obiektów frekwencji.
 
-        :param attendances:
-        :return:
+        :param int attendances: Id obecności
         :rtype: tuple of librus_tricks.classes.SynergiaAttendance
         """
         if attendances.__len__() == 0:
@@ -190,6 +243,11 @@ class SynergiaClient:
 
     @property
     def illegal_absences(self):
+        """
+        Zwraca wszystkie nieusprawiedliwione nieobecności.
+
+        :rtype: tuple of librus_tricks.classes.SynergiaAttendance
+        """
         def is_absence(k):
             if k.type.uid == '1':
                 return True
@@ -200,13 +258,18 @@ class SynergiaClient:
 
     @property
     def all_absences(self):
+        """
+        Zwraca wszystkie nieobecności.
+
+        :rtype: tuple of librus_tricks.classes.SynergiaAttendance
+        """
         return tuple(filter(lambda k: k.type.is_presence_kind == False, self.attendances()))
 
     def exams(self, *exams):
         """
+        Zwraca dane sprawdziany, kartkówki etc.
 
-        :param exams:
-        :return:
+        :param int exams: Id egzaminów
         :rtype: tuple of librus_tricks.classes.SynergiaExam
         """
         if exams.__len__() == 0:
@@ -217,9 +280,9 @@ class SynergiaClient:
 
     def colors(self, *colors):
         """
+        Zwraca dane kolory z dziennika.
 
-        :param exams:
-        :return:
+        :param int colors: Id kolorów
         :rtype: tuple of librus_tricks.classes.SynergiaColors
         """
         if colors.__len__() == 0:
@@ -230,9 +293,9 @@ class SynergiaClient:
 
     def timetable(self, for_date=datetime.now()):
         """
+        Zwraca dict'a którego kluczami są obiekty date.
 
-        :param for_date:
-        :return:
+        :param datetime.datetime for_date: Data dnia, który ma być w planie lekcji
         :rtype: dict[datetime.date, librus_tricks.classes.SynergiaTimetableDay]
         """
         monday = tools.get_actual_monday(for_date).isoformat()
@@ -245,8 +308,8 @@ class SynergiaClient:
     @property
     def today_timetable(self):
         """
+        Zwraca dzisiejszy plan lekcji.
 
-        :return:
         :rtype: list of librus_tricks.classes.SynergiaTimetableDay
         """
         return self.timetable().days[datetime.now().date()]
@@ -254,18 +317,18 @@ class SynergiaClient:
     @property
     def tomorrow_timetable(self):
         """
+        Zwraca jutrzejszy plan lekcji.
 
-        :return:
         :rtype: list of librus_tricks.classes.SynergiaTimetableDay
         """
         return self.timetable(datetime.now() + timedelta(days=1)).days[(datetime.now() + timedelta(days=1)).date()]
 
     def messages(self, *messages):
         """
+        Zwraca natywne wiadomości, wymaga mobilnych dodatków.
 
-        :param exams:
-        :return:
-        :rtype: tuple of librus_tricks.classes.SynergiaColors
+        :param messages:
+        :rtype: tuple of librus_tricks.classes.SynergiaMessages
         """
         if messages.__len__() == 0:
             return self.return_objects('Messages', cls=SynergiaNativeMessage, extraction_key='Messages')
@@ -278,9 +341,9 @@ class SynergiaClient:
 
     def subjects(self, *subject):
         """
+        Zwraca dane przedmioty.
 
-        :param exams:
-        :return:
+        :param int subject:
         :rtype: tuple of librus_tricks.classes.SynergiaSubject
         """
         if subject.__len__() == 0:
@@ -291,8 +354,18 @@ class SynergiaClient:
 
     @property
     def school(self):
+        """
+        Zwraca informacje o twojej szkole.
+
+        :rtype: librus_tricks.classes.SynergiaSchool
+        """
         return self.return_objects('Schools', cls=SynergiaSchool, extraction_key='School')
 
     @property
     def lucky_number(self):
+        """
+        Zwraca szczęśliwy numerek.
+
+        :rtype: int
+        """
         return self.get('LuckyNumbers')['LuckyNumber']['LuckyNumber']
