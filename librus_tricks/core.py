@@ -30,7 +30,7 @@ class SynergiaClient:
             raise exceptions.InvalidCacheManager(f'{cache} can not be a cache object!')
 
         if synergia_user_passwd:
-            self.message_reader = MessageReader(self.user.login, synergia_user_passwd, cache_backend=self.cache)
+            self.message_reader = MessageReader(self.user.login, synergia_user_passwd)
         else:
             self.message_reader = None
 
