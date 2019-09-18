@@ -152,12 +152,15 @@ class SynergiaClient:
 
         raw = raw[extraction_key]
 
-        stack = []
+        if isinstance(raw, list):
+            stack = []
+            for stored_payload in raw:
+                stack.append(cls.assembly(stored_payload, self))
+            return tuple(stack)
+        if isinstance(raw, dict):
+            return cls.assembly(raw, self)
 
-        for stored_payload in raw:
-            stack.append(cls.assembly(stored_payload, self))
-
-        return tuple(stack)
+        return None
 
     def grades(self, *grades):
         """
@@ -230,7 +233,7 @@ class SynergiaClient:
 
         :param for_date:
         :return:
-        :rtype: Dict[datetime.date, List[librus_tricks.classes.SynergiaTimetableEvent]]
+        :rtype: dict[datetime.date, librus_tricks.classes.SynergiaTimetableDay]
         """
         monday = tools.get_actual_monday(for_date).isoformat()
         r = self.get('Timetables', request_params={'weekStart': monday})
