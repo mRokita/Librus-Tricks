@@ -29,8 +29,11 @@ class CacheBase:
 
 
 class DumbCache(CacheBase):
-    def sync(self, oid, cls, session):
-        return cls(oid, session)
+    def get_object(self, uid, cls):
+        return
+
+    def get_query(self, uri, user_id):
+        return
 
 
 class AlchemyCache(CacheBase):
