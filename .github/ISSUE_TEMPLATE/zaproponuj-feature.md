@@ -12,5 +12,5 @@ assignees: ''
 ## Przedstaw działanie
 
 ## Czy chcesz pomóc przy implementacji
- - [x] No oczywiście
- - [ ] Może innym razem (NIEPOTRZEBNE USUŃ)
+- [x] No oczywiście
+- [ ] Może innym razem (NIEPOTRZEBNE USUŃ)
