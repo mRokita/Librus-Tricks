@@ -12,16 +12,15 @@ jobs:
           - 3.7
           - 3.8-dev
     steps:
-     - name: Install dependencies
+     - name: Install deps
        run: |
-         python -m pip install --upgrade pip
          pip install sqlalchemy requests colorama beautifulsoup4
-         pip install pytest
      - name: Do pytest
        env:
          librus_email: ${{ secrets.librus_email }}
          librus_passwrod: ${{ secrets.librus_password }}
        run: |
+         pip install pytest
          pytest
   test-win:
     name: pytest (Windows)
@@ -31,15 +30,14 @@ jobs:
         python-version:
           - 3.7
           - 3.8-dev
-      steps:
-        - name: Install dependencies
-          run: |
-            python -m pip install --upgrade pip
-            pip install sqlalchemy requests colorama beautifulsoup4
-            pip install pytest
-        - name: Do pytest
-          env:
-            librus_email: ${{ secrets.librus_email }}
-            librus_passwrod: ${{ secrets.librus_password }}
-          run: |
-            pytest
+    steps:
+      - name: Install deps
+        run: |
+          pip install sqlalchemy requests colorama beautifulsoup4
+      - name: Do pytest
+        env:
+          librus_email: ${{ secrets.librus_email }}
+          librus_passwrod: ${{ secrets.librus_password }}
+        run: |
+          pip install pytest
+          pytest
