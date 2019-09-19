@@ -3,12 +3,9 @@ name: Test commit
 on: push
 
 jobs:
-  test:
-    name: pytest
-    runs-on:
-      - ubuntu-latest
-      - windows-latest
-      - macOS-latest
+  test-ubuntu:
+    name: pytest (Ubuntu)
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         - 3.7
@@ -24,3 +21,21 @@ jobs:
        run: |
          pip install pytest
          pytest
+  test-win:
+    name: pytest (Windows)
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        - 3.7
+        - 3.8-dev
+    steps:
+      - name: Install deps
+        run: |
+          pip install sqlalchemy requests colorama beautifulsoup4
+      - name: Do pytest
+        env:
+          librus_email: ${{ secrets.librus_email }}
+          librus_passwrod: ${{ secrets.librus_password }}
+        run: |
+          pip install pytest
+          pytest
