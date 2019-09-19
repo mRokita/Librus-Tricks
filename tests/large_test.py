@@ -34,7 +34,7 @@ def test_attendances():
 
 def test_timetable():
     ensure_session()
-    tt = session.today_timetable.lessons
+    timetable = session.today_timetable.lessons
     subjects = []
-    for l in tt:
-        subjects.append(l.subject)
+    for lesson in timetable:
+        subjects.append(lesson.subject)

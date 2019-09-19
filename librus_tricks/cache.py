@@ -1,11 +1,9 @@
-from sqlalchemy import create_engine, String, JSON, Column, DateTime, Integer, MetaData
+from datetime import datetime
+
+from sqlalchemy import create_engine, String, JSON, Column, DateTime, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from datetime import datetime
 from sqlalchemy.pool import StaticPool
-import json
-import logging
-import sqlite3
 
 
 class CacheBase:

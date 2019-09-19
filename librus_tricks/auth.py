@@ -97,8 +97,7 @@ def authorizer(email, password):
     if login_response_redirection.status_code != 200:
         if login_response_redirection.status_code == 403:
             raise LibrusInvalidPasswordError(login_response_redirection.text)
-        else:
-            raise LibrusLoginError(login_response_redirection.text)
+        raise LibrusLoginError(login_response_redirection.text)
 
     redirection_addr = login_response_redirection.json()['redirect']
     redirection_response = auth_session.get(redirection_addr, allow_redirects=False)

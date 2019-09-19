@@ -1,10 +1,11 @@
+from datetime import timedelta
+
 import requests
 
 from librus_tricks import cache as cache_lib
 from librus_tricks import exceptions, tools
 from librus_tricks.classes import *
 from librus_tricks.messages import MessageReader
-from datetime import timedelta
 
 
 class SynergiaClient:
@@ -53,8 +54,8 @@ class SynergiaClient:
         :return: Złożony str
         :rtype: str
         """
-        for el in elements:
-            prefix += sep + str(el)
+        for element in elements:
+            prefix += sep + str(element)
         return prefix + suffix
 
     # HTTP part
@@ -224,9 +225,8 @@ class SynergiaClient:
         """
         if grades.__len__() == 0:
             return self.return_objects('Grades', cls=SynergiaGrade, extraction_key='Grades')
-        else:
-            ids_computed = self.assembly_path(*grades, sep=',', suffix=grades[-1])[1:]
-            return self.return_objects('Grades', ids_computed, cls=SynergiaGrade, extraction_key='Grades')
+        ids_computed = self.assembly_path(*grades, sep=',', suffix=grades[-1])[1:]
+        return self.return_objects('Grades', ids_computed, cls=SynergiaGrade, extraction_key='Grades')
 
     @property
     def grades_categorized(self):
@@ -239,9 +239,9 @@ class SynergiaClient:
                 grade
             )
 
-        for s in grades_categorized.copy().keys():
-            if grades_categorized[s].__len__() == 0:
-                del(grades_categorized[s])
+        for subjects in grades_categorized.copy().keys():
+            if grades_categorized[subjects].__len__() == 0:
+                del(grades_categorized[subjects])
 
         return grades_categorized
 
@@ -254,9 +254,8 @@ class SynergiaClient:
         """
         if attendances.__len__() == 0:
             return self.return_objects('Attendances', cls=SynergiaAttendance, extraction_key='Attendances')
-        else:
-            ids_computed = self.assembly_path(*attendances, sep=',', suffix=attendances[-1])[1:]
-            return self.return_objects('Attendances', ids_computed, cls=SynergiaGrade, extraction_key='Attendances')
+        ids_computed = self.assembly_path(*attendances, sep=',', suffix=attendances[-1])[1:]
+        return self.return_objects('Attendances', ids_computed, cls=SynergiaGrade, extraction_key='Attendances')
 
     @property
     def illegal_absences(self):
@@ -291,9 +290,8 @@ class SynergiaClient:
         """
         if exams.__len__() == 0:
             return self.return_objects('HomeWorks', cls=SynergiaExam, extraction_key='HomeWorks')
-        else:
-            ids_computed = self.assembly_path(*exams, sep=',', suffix=exams[-1])[1:]
-            return self.return_objects('HomeWorks', ids_computed, cls=SynergiaExam, extraction_key='HomeWorks')
+        ids_computed = self.assembly_path(*exams, sep=',', suffix=exams[-1])[1:]
+        return self.return_objects('HomeWorks', ids_computed, cls=SynergiaExam, extraction_key='HomeWorks')
 
     def colors(self, *colors):
         """
@@ -304,9 +302,8 @@ class SynergiaClient:
         """
         if colors.__len__() == 0:
             return self.return_objects('Colors', cls=SynergiaColor, extraction_key='Colors')
-        else:
-            ids_computed = self.assembly_path(*colors, sep=',', suffix=colors[-1])
-            return self.return_objects('Colors', ids_computed, cls=SynergiaColor, extraction_key='Colors')
+        ids_computed = self.assembly_path(*colors, sep=',', suffix=colors[-1])
+        return self.return_objects('Colors', ids_computed, cls=SynergiaColor, extraction_key='Colors')
 
     def timetable(self, for_date=datetime.now()):
         """
@@ -316,8 +313,8 @@ class SynergiaClient:
         :rtype: dict[datetime.date, librus_tricks.classes.SynergiaTimetableDay]
         """
         monday = tools.get_actual_monday(for_date).isoformat()
-        r = self.get('Timetables', request_params={'weekStart': monday})
-        return SynergiaTimetable.assembly(r['Timetable'], self)
+        rosseta = self.get('Timetables', request_params={'weekStart': monday})
+        return SynergiaTimetable.assembly(rosseta['Timetable'], self)
 
     def timetable_day(self, for_date: datetime):
         return self.timetable(for_date)[for_date.date()]
@@ -349,9 +346,8 @@ class SynergiaClient:
         """
         if messages.__len__() == 0:
             return self.return_objects('Messages', cls=SynergiaNativeMessage, extraction_key='Messages')
-        else:
-            ids_computed = self.assembly_path(*messages, sep=',', suffix=messages[-1])[1:]
-            return self.return_objects('Messages', ids_computed, cls=SynergiaNativeMessage, extraction_key='Messages')
+        ids_computed = self.assembly_path(*messages, sep=',', suffix=messages[-1])[1:]
+        return self.return_objects('Messages', ids_computed, cls=SynergiaNativeMessage, extraction_key='Messages')
 
     def news_feed(self):
         return self.return_objects('SchoolNotices', cls=SynergiaNews, extraction_key='SchoolNotices')
@@ -365,9 +361,8 @@ class SynergiaClient:
         """
         if subject.__len__() == 0:
             return self.return_objects('Subjects', cls=SynergiaSubject, extraction_key='Subjects')
-        else:
-            ids_computed = self.assembly_path(*subject, sep=',', suffix=subject[-1])[1:]
-            return self.return_objects('Subjects', ids_computed, cls=SynergiaSubject, extraction_key='Subjects')
+        ids_computed = self.assembly_path(*subject, sep=',', suffix=subject[-1])[1:]
+        return self.return_objects('Subjects', ids_computed, cls=SynergiaSubject, extraction_key='Subjects')
 
     @property
     def school(self):

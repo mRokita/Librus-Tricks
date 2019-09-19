@@ -111,7 +111,7 @@ class SynergiaGenericClass:
     @staticmethod
     def auto_extract(payload):
         """
-        Próbuje autoamtycznie wydobyć klucz.
+        Próbuje automatycznie wydobyć klucz.
 
         :param dict payload:
         :return:
@@ -121,6 +121,9 @@ class SynergiaGenericClass:
             if key not in ('Resources', 'Url'):
                 return key
         return
+
+    def export_resource(self):
+        return self._json_resource.copy()
 
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.uid} at {hex(id(self))}>'
@@ -800,11 +803,11 @@ class SynergiaTimetable(SynergiaGenericClass):
 
     def __str__(self):
         o_str = ''
-        for d in self.days.keys():
-            o_str += f'{d}\n'
-            for e in self.days[d]:
-                if e != {}:
-                    o_str += f'  {e.__str__()}\n'
+        for day_key in self.days.keys():
+            o_str += f'{day_key}\n'
+            for event in self.days[day_key]:
+                if event != {}:
+                    o_str += f'  {event.__str__()}\n'
         return o_str
 
 
