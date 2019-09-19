@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        - '3.7'
-        - '3.8-dev'
+        python-version:
+          - 3.7
+          - 3.8-dev
     steps:
      - name: Install deps
        run: |
@@ -26,8 +27,9 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        - '3.7'
-        - '3.8-dev'
+        python-version:
+          - 3.7
+          - 3.8-dev
     steps:
       - name: Install deps
         run: |
