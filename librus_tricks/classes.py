@@ -31,6 +31,10 @@ class _RemoteObjectsUIDManager:
         # self.__parent.__setattr__(attr, cls.create(uid=uid, session=self.__session))
         return self
 
+    def set_value(self, attr, val):
+        self.__storage[attr] = val
+        return self
+
     def assembly(self, attr):
         """
         Pobiera wcześniej zapisany obiekt.
