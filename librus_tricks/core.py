@@ -381,3 +381,30 @@ class SynergiaClient:
         :rtype: int
         """
         return self.get('LuckyNumbers')['LuckyNumber']['LuckyNumber']
+
+    def teacher_free_days(self, *days_ids, only_future=True):
+        """
+        Zwraca dane przedmioty.
+
+        :param int subject:
+        :rtype: tuple of librus_tricks.classes.SynergiaTeacherFreeDays
+        """
+        if days_ids.__len__() == 0:
+            days =  self.return_objects('Calendars', 'TeacherFreeDays', cls=SynergiaTeacherFreeDays)
+        else:
+            ids_computed = self.assembly_path(*days_ids, sep=',', suffix=days_ids[-1])[1:]
+            days =  self.return_objects('Calendars', 'TeacherFreeDays', ids_computed, cls=SynergiaTeacherFreeDays)
+
+        def is_future(d):
+            """
+
+            :type d: librus_tricks.classes.SynergiaTeacherFreeDays
+            :return:
+            """
+            if d.ends > datetime.now().date():
+                return True
+            return False
+
+        if only_future:
+            return tuple(filter(is_future, days))
+        return days
