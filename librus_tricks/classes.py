@@ -708,14 +708,24 @@ class SynergiaTimetableEvent:
             'teacher', resource['Teacher']['Id'], SynergiaTeacher
         )
 
-        try:
+        self.__set_classroom(resource)
+
+    def __set_classroom(self, resource):
+        """
+
+        :param dict resource:
+        :return:
+        """
+        if 'Classroom' in resource.keys():
             self.objects.set_object(
                 'classroom', resource['Classroom']['Id'], SynergiaTimetable
             )
-        except KeyError:
+        elif 'OrgClassroom' in resource.keys():
             self.objects.set_object(
                 'classroom', resource['OrgClassroom']['Id'], SynergiaTimetable
             )
+        else:
+            self.objects.set_value('classroom', None)
 
     @property
     def subject(self):
