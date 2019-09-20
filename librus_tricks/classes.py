@@ -634,12 +634,10 @@ class SynergiaTeacherFreeDays(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
 
-        self.starts = datetime.strptime(self._json_resource['DateFrom'], '%Y-%m-%d').date()
-        self.ends = datetime.strptime(self._json_resource['DateTo'], '%Y-%m-%d').date()
+        self.starts = datetime.fromisoformat(self._json_resource['DateFrom']).date()
+        self.ends = datetime.fromisoformat(self._json_resource['DateTo']).date()
         self.objects.set_object(
             'teacher', self._json_resource['Teacher']['Id'], SynergiaTeacher
-        ).set_object(
-            'type', self._json_resource['Type']['Id'], SynergiaTeacherFreeDaysTypes
         )
 
     @property
@@ -650,16 +648,8 @@ class SynergiaTeacherFreeDays(SynergiaGenericClass):
         """
         return self.objects.assembly('teacher')
 
-    @property
-    def type(self):
-        """
-
-        :rtype: SynergiaTeacherFreeDaysTypes
-        """
-        return self.objects.assembly('type')
-
     def __repr__(self):
-        return f'<SynergiaTeacherFreeDays {self.starts.isoformat()}-{self.ends.isoformat()} for {self.teacher.__repr__()}>'
+        return f'<SynergiaTeacherFreeDays {self.starts.isoformat()} - {self.ends.isoformat()} ({(self.ends-self.starts).days} days) for {self.objects.return_id("teacher")}>'
 
 
 class SynergiaSchoolFreeDays(SynergiaGenericClass):
@@ -672,11 +662,12 @@ class SynergiaSchoolFreeDays(SynergiaGenericClass):
         self.name = self._json_payload['Name']  # TODO: Dodać Units
 
     @classmethod
-    def create(cls, uid=None, path=('',), session=None, extraction_key=None, expire=timedelta(minutes=5)):
+    def create(cls, uid=None, path=('Calendars', 'TeacherFreeDays'), session=None, extraction_key=None, expire=timedelta(minutes=5)):
         return super().create(uid, path, session, extraction_key, expire)
     # TODO: Wymagany debug oraz test
 
-    # TODO: Dodać __repr__()
+    def __repr__(self):
+        return f'<{self.__class__.__name__} {self.starts.isoformat()} - {self.ends.isoformat()}>'
 
 
 class SynergiaTimetableEntry(SynergiaGenericClass):

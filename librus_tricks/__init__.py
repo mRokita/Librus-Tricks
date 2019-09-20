@@ -3,10 +3,10 @@ from librus_tricks.auth import authorizer
 from librus_tricks.classes import *
 from librus_tricks.core import SynergiaClient
 
-NAME = 'librus_tricks'
+__name__ = 'librus_tricks'
 __title__ = 'librus_tricks'
 __author__ = 'Backdoorek'
-__version__ = '0.7.1'
+__version__ = '0.7.2'
 
 
 def create_session(email, password, fetch_first=True, **kwargs):
