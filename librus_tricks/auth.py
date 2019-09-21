@@ -86,6 +86,7 @@ def authorizer(email, password):
     :rtype: list of librus_tricks.auth.SynergiaUser
     """
     auth_session = requests.session()
+    auth_session.headers.update({'User-Agent': 'LibrusMobileApp'})
     site = auth_session.get(LIBRUSLOGINURL)
     soup = BeautifulSoup(site.text, 'html.parser')
     csrf = soup.find('meta', attrs={'name': 'csrf-token'})['content']
