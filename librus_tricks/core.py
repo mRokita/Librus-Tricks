@@ -378,7 +378,7 @@ class SynergiaClient:
         """
         Zwraca dane przedmioty.
 
-        :param int subject:
+        :param int days_ids: Id zwolnień
         :rtype: tuple[librus_tricks.classes.SynergiaTeacherFreeDays]
         """
         if days_ids.__len__() == 0:
