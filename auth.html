@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Uwierzytelnienie &#8212; Librus-Tricks 0.7.2 - dokumentacja</title>
+    <link rel="stylesheet" href="_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Indeks" href="genindex.html" />
+    <link rel="search" title="Szukaj" href="search.html" />
+    <link rel="next" title="core.py" href="core.html" />
+    <link rel="prev" title="Dokumentacja Librus Tricks" href="index.html" />
+     
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+    
+    
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="core.html" title="core.py"
+             accesskey="N">dalej</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Dokumentacja Librus Tricks"
+             accesskey="P">wstecz</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Librus-Tricks 0.7.2 - dokumentacja</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-librus_tricks.auth">
+<span id="uwierzytelnienie"></span><h1>Uwierzytelnienie<a class="headerlink" href="#module-librus_tricks.auth" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<dl class="class">
+<dt id="librus_tricks.auth.SynergiaUser">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.auth.</code><code class="sig-name descname">SynergiaUser</code><span class="sig-paren">(</span><em class="sig-param">user_dict</em>, <em class="sig-param">root_token</em>, <em class="sig-param">revalidation_token</em>, <em class="sig-param">exp_in</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="method">
+<dt id="librus_tricks.auth.SynergiaUser.is_revalidation_required">
+<code class="sig-name descname">is_revalidation_required</code><span class="sig-paren">(</span><em class="sig-param">use_clock=True</em>, <em class="sig-param">use_query=False</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.is_revalidation_required" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.auth.SynergiaUser.revalidate_root">
+<code class="sig-name descname">revalidate_root</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.revalidate_root" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.auth.SynergiaUser.revalidate_user">
+<code class="sig-name descname">revalidate_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.revalidate_user" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="librus_tricks.auth.authorizer">
+<code class="sig-prename descclassname">librus_tricks.auth.</code><code class="sig-name descname">authorizer</code><span class="sig-paren">(</span><em class="sig-param">email</em>, <em class="sig-param">password</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.authorizer" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Zwraca listę użytkowników dostępnych dla danego konta Librus Portal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email</strong> (<em>str</em>) – </p></li>
+<li><p><strong>password</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>list of librus_tricks.auth.SynergiaUser</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="poprzedni rozdział">Dokumentacja Librus Tricks</a></li>
+      <li>Next: <a href="core.html" title="następny rozdział"><code class="docutils literal notranslate"><span class="pre">core.py</span></code></a></li>
+  </ul></li>
+</ul>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/auth.rst.txt"
+            rel="nofollow">Pokaż źródło</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Szybkie wyszukiwanie</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Szukaj" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+    
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Krystian Postek.
+      Utworzone przy pomocy <a href="http://sphinx-doc.org/">Sphinx</a>'a 2.2.0.
+    </div>
+    
+
+  </body>
+</html>

@@ -1,0 +1,1553 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>classes.py &#8212; Librus-Tricks 0.7.2 - dokumentacja</title>
+    <link rel="stylesheet" href="_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Indeks" href="genindex.html" />
+    <link rel="search" title="Szukaj" href="search.html" />
+    <link rel="prev" title="core.py" href="core.html" />
+     
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+    
+    
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="core.html" title="core.py"
+             accesskey="P">wstecz</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Librus-Tricks 0.7.2 - dokumentacja</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-librus_tricks.classes">
+<span id="classes-py"></span><h1><code class="docutils literal notranslate"><span class="pre">classes.py</span></code><a class="headerlink" href="#module-librus_tricks.classes" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<dl class="function">
+<dt id="librus_tricks.classes._try_to_extract">
+<code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">_try_to_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em>, <em class="sig-param">extraction_key</em>, <em class="sig-param">false_return=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes._try_to_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes._RemoteObjectsUIDManager">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">_RemoteObjectsUIDManager</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">parent</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes._RemoteObjectsUIDManager" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="librus_tricks.classes._RemoteObjectsUIDManager.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">parent</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes._RemoteObjectsUIDManager.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes._RemoteObjectsUIDManager.set_object">
+<code class="sig-name descname">set_object</code><span class="sig-paren">(</span><em class="sig-param">attr</em>, <em class="sig-param">uid</em>, <em class="sig-param">cls</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes._RemoteObjectsUIDManager.set_object" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes._RemoteObjectsUIDManager.assembly">
+<code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">attr</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes._RemoteObjectsUIDManager.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes._RemoteObjectsUIDManager.return_id">
+<code class="sig-name descname">return_id</code><span class="sig-paren">(</span><em class="sig-param">attr</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes._RemoteObjectsUIDManager.return_id" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaGenericClass">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaGenericClass</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGenericClass" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGenericClass.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGenericClass.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGenericClass.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGenericClass.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGenericClass.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGenericClass.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGenericClass.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGenericClass.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaTeacher">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaTeacher</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacher.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacher.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacher.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Users'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='User'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacher.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacher.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacher.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacher.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacher.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaStudent">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaStudent</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaStudent" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaTeacher" title="librus_tricks.classes.SynergiaTeacher"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaTeacher</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaStudent.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaStudent.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaStudent.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaStudent.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaStudent.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaStudent.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaStudent.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Users'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='User'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaStudent.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaGlobalClass">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaGlobalClass</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGlobalClass" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<p>Klasa reprezentująca klasę (np. 1C)</p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGlobalClass.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGlobalClass.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Tworzy obiekt reprezentujący klasę (jako zbiór uczniów)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – id klasy</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – obiekt sesji z API Synergii</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – dane z json’a</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGlobalClass.tutor">
+<em class="property">property </em><code class="sig-name descname">tutor</code><a class="headerlink" href="#librus_tricks.classes.SynergiaGlobalClass.tutor" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGlobalClass.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGlobalClass.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGlobalClass.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGlobalClass.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGlobalClass.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGlobalClass.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaVirtualClass">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaVirtualClass</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaVirtualClass" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaVirtualClass.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaVirtualClass.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Tworzy obiekt reprezentujący grupę uczniów</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – id klasy</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – obiekt sesji z API Synergii</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – dane z json’a</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaVirtualClass.teacher">
+<em class="property">property </em><code class="sig-name descname">teacher</code><a class="headerlink" href="#librus_tricks.classes.SynergiaVirtualClass.teacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaVirtualClass.subject">
+<em class="property">property </em><code class="sig-name descname">subject</code><a class="headerlink" href="#librus_tricks.classes.SynergiaVirtualClass.subject" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaVirtualClass.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaVirtualClass.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaVirtualClass.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaVirtualClass.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaVirtualClass.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaVirtualClass.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaSubject">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaSubject</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSubject" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSubject.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSubject.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSubject.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Subjects'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='Subject'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSubject.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSubject.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSubject.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSubject.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSubject.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaLesson">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaLesson</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaLesson" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaLesson.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaLesson.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasa reprezentująca jednostkową lekcję</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaLesson.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Lessons'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='Lesson'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaLesson.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaLesson.teacher">
+<em class="property">property </em><code class="sig-name descname">teacher</code><a class="headerlink" href="#librus_tricks.classes.SynergiaLesson.teacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaLesson.subject">
+<em class="property">property </em><code class="sig-name descname">subject</code><a class="headerlink" href="#librus_tricks.classes.SynergiaLesson.subject" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaLesson.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaLesson.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaLesson.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaLesson.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaGradeCategory">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaGradeCategory</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeCategory" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeCategory.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeCategory.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeCategory.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Grades'</em>, <em class="sig-param">'Categories')</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='Category'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeCategory.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeCategory.teacher">
+<em class="property">property </em><code class="sig-name descname">teacher</code><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeCategory.teacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeCategory.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeCategory.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeCategory.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeCategory.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaGradeComment">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaGradeComment</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeComment" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeComment.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeComment.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeComment.teacher">
+<em class="property">property </em><code class="sig-name descname">teacher</code><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeComment.teacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeComment.grade_bind">
+<em class="property">property </em><code class="sig-name descname">grade_bind</code><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeComment.grade_bind" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeComment.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeComment.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeComment.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeComment.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGradeComment.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGradeComment.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaBaseTextGrade">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaBaseTextGrade</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaBaseTextGrade" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaBaseTextGrade.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaBaseTextGrade.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaBaseTextGrade.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('BaseTextGrades'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='BaseTextGrades'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaBaseTextGrade.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaBaseTextGrade.teacher">
+<em class="property">property </em><code class="sig-name descname">teacher</code><a class="headerlink" href="#librus_tricks.classes.SynergiaBaseTextGrade.teacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaBaseTextGrade.subject">
+<em class="property">property </em><code class="sig-name descname">subject</code><a class="headerlink" href="#librus_tricks.classes.SynergiaBaseTextGrade.subject" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaBaseTextGrade.student">
+<em class="property">property </em><code class="sig-name descname">student</code><a class="headerlink" href="#librus_tricks.classes.SynergiaBaseTextGrade.student" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaBaseTextGrade.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaBaseTextGrade.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaBaseTextGrade.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaBaseTextGrade.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaGrade">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaGrade</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGrade.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGrade.teacher">
+<em class="property">property </em><code class="sig-name descname">teacher</code><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade.teacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGrade.subject">
+<em class="property">property </em><code class="sig-name descname">subject</code><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade.subject" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGrade.category">
+<em class="property">property </em><code class="sig-name descname">category</code><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade.category" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGrade.comments">
+<em class="property">property </em><code class="sig-name descname">comments</code><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade.comments" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>list of SynergiaGradeComment</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGrade.real_value">
+<em class="property">property </em><code class="sig-name descname">real_value</code><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade.real_value" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGrade.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGrade.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaGrade.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaGrade.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaAttendanceType">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaAttendanceType</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendanceType" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendanceType.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendanceType.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendanceType.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Attendances'</em>, <em class="sig-param">'Types')</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='Type'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendanceType.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendanceType.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendanceType.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendanceType.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendanceType.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaAttendance">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaAttendance</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendance" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendance.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendance.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendance.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Attendances'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='Attendance'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendance.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendance.teacher">
+<em class="property">property </em><code class="sig-name descname">teacher</code><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendance.teacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendance.student">
+<em class="property">property </em><code class="sig-name descname">student</code><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendance.student" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendance.type">
+<em class="property">property </em><code class="sig-name descname">type</code><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendance.type" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendance.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendance.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaAttendance.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaAttendance.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaExamCategory">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaExamCategory</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExamCategory" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExamCategory.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExamCategory.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExamCategory.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('HomeWorks'</em>, <em class="sig-param">'Categories')</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='Category'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExamCategory.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExamCategory.color">
+<em class="property">property </em><code class="sig-name descname">color</code><a class="headerlink" href="#librus_tricks.classes.SynergiaExamCategory.color" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#librus_tricks.classes.SynergiaColor" title="librus_tricks.classes.SynergiaColor">SynergiaColor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExamCategory.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExamCategory.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExamCategory.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExamCategory.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaExam">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaExam</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExam" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExam.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExam.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExam.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('HomeWorks'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='HomeWork'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExam.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExam.teacher">
+<em class="property">property </em><code class="sig-name descname">teacher</code><a class="headerlink" href="#librus_tricks.classes.SynergiaExam.teacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExam.subject">
+<em class="property">property </em><code class="sig-name descname">subject</code><a class="headerlink" href="#librus_tricks.classes.SynergiaExam.subject" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExam.category">
+<em class="property">property </em><code class="sig-name descname">category</code><a class="headerlink" href="#librus_tricks.classes.SynergiaExam.category" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExam.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExam.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaExam.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaExam.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaColor">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaColor</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaColor" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaColor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaColor.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaColor.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Colors'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='Color'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaColor.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaColor.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaColor.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaColor.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaColor.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaClassroom">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaClassroom</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaClassroom" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaClassroom.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaClassroom.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaClassroom.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaClassroom.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaClassroom.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaClassroom.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaClassroom.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaClassroom.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDaysTypes">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaTeacherFreeDaysTypes</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDaysTypes" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDaysTypes.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDaysTypes.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDaysTypes.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDaysTypes.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDaysTypes.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDaysTypes.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDaysTypes.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDaysTypes.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDays">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaTeacherFreeDays</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDays" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDays.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDays.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDays.teacher">
+<em class="property">property </em><code class="sig-name descname">teacher</code><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDays.teacher" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#librus_tricks.classes.SynergiaTeacher" title="librus_tricks.classes.SynergiaTeacher">SynergiaTeacher</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDays.type">
+<em class="property">property </em><code class="sig-name descname">type</code><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDays.type" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#librus_tricks.classes.SynergiaTeacherFreeDaysTypes" title="librus_tricks.classes.SynergiaTeacherFreeDaysTypes">SynergiaTeacherFreeDaysTypes</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDays.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDays.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDays.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDays.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTeacherFreeDays.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTeacherFreeDays.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaSchoolFreeDays">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaSchoolFreeDays</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em>, <em class="sig-param">from_origin=False</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchoolFreeDays" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSchoolFreeDays.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em>, <em class="sig-param">from_origin=False</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchoolFreeDays.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSchoolFreeDays.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchoolFreeDays.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSchoolFreeDays.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchoolFreeDays.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSchoolFreeDays.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchoolFreeDays.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaSchool">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaSchool</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchool" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSchool.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchool.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSchool.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchool.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSchool.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchool.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaSchool.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=(''</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaSchool.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaTimetableEntry">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaTimetableEntry</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetableEntry" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetableEntry.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetableEntry.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetableEntry.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('TimetableEntries'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='TimetableEntry'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetableEntry.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetableEntry.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetableEntry.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetableEntry.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetableEntry.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaTimetableEvent">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaTimetableEvent</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetableEvent" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetableEvent.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetableEvent.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetableEvent.subject">
+<em class="property">property </em><code class="sig-name descname">subject</code><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetableEvent.subject" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaTimetable">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaTimetable</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetable" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetable.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetable.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetable.today_timetable">
+<em class="property">property </em><code class="sig-name descname">today_timetable</code><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetable.today_timetable" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>list of SynergiaTimetableEvent</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetable.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetable.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetable.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Timetables'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='Timetable'</em>, <em class="sig-param">week=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetable.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetable.parse_timetable">
+<em class="property">static </em><code class="sig-name descname">parse_timetable</code><span class="sig-paren">(</span><em class="sig-param">resource</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetable.parse_timetable" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetable.convert_parsed_timetable">
+<code class="sig-name descname">convert_parsed_timetable</code><span class="sig-paren">(</span><em class="sig-param">timetable</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetable.convert_parsed_timetable" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaTimetable.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaTimetable.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaNativeMessage">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaNativeMessage</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNativeMessage" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaNativeMessage.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNativeMessage.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaNativeMessage.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('Messages'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='Message'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNativeMessage.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaNativeMessage.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNativeMessage.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaNativeMessage.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNativeMessage.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="librus_tricks.classes.SynergiaNews">
+<em class="property">class </em><code class="sig-prename descclassname">librus_tricks.classes.</code><code class="sig-name descname">SynergiaNews</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNews" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasy bazowe: <a class="reference internal" href="#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">librus_tricks.classes.SynergiaGenericClass</span></code></a></p>
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaNews.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNews.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – Obiekt sesji</p></li>
+<li><p><strong>resource</strong> (<em>dict</em>) – ścieżka do źródła danych</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – str zawierający klucz do wyjęcia danych</p></li>
+<li><p><strong>resource</strong> – dict zawierający gotowe dane (np. załadowane z cache)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaNews.assembly">
+<em class="property">classmethod </em><code class="sig-name descname">assembly</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNews.assembly" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaNews.auto_extract">
+<em class="property">static </em><code class="sig-name descname">auto_extract</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNews.auto_extract" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.classes.SynergiaNews.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">uid=None</em>, <em class="sig-param">path=('SchoolNotices'</em>, <em class="sig-param">)</em>, <em class="sig-param">session=None</em>, <em class="sig-param">extraction_key='SchoolNotices'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.classes.SynergiaNews.create" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> – </p></li>
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>session</strong> (<a class="reference internal" href="core.html#librus_tricks.core.SynergiaClient" title="librus_tricks.core.SynergiaClient"><em>librus_tricks.core.SynergiaClient</em></a>) – </p></li>
+<li><p><strong>extraction_key</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="core.html" title="poprzedni rozdział"><code class="docutils literal notranslate"><span class="pre">core.py</span></code></a></li>
+  </ul></li>
+</ul>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/classes.rst.txt"
+            rel="nofollow">Pokaż źródło</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Szybkie wyszukiwanie</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Szukaj" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+    
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Krystian Postek.
+      Utworzone przy pomocy <a href="http://sphinx-doc.org/">Sphinx</a>'a 2.2.0.
+    </div>
+    
+
+  </body>
+</html>
