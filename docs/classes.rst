@@ -1,5 +1,5 @@
-Klasy
-*************
+``classes.py``
+***************
 
 .. automodule:: librus_tricks.classes
     :members:

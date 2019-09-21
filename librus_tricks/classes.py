@@ -14,7 +14,7 @@ class _RemoteObjectsUIDManager:
     def __init__(self, session, parent):
         """
 
-        :param librus_tricks.core.SynergiaClient session:
+        :param librus_tricks.core.SynergiaClient session: Obiekt sesji
         """
         self.__storage = dict()
         self._session = session
@@ -27,7 +27,6 @@ class _RemoteObjectsUIDManager:
         :param str attr: Nazwa przyszłego property
         :param int uid: Id obiektu
         :param cls: Klasa obiektu
-        :return:
         """
         self.__storage[attr] = uid, cls
         # self.__parent.__setattr__(attr, cls.create(uid=uid, session=self.__session))
@@ -35,10 +34,10 @@ class _RemoteObjectsUIDManager:
 
     def set_value(self, attr, val):
         """
+        Ustawia obiekt.
 
         :param str attr: Nazwa obiektu
         :param val: Obiekt
-        :return:
         """
         self.__storage[attr] = val
         return self
@@ -66,7 +65,7 @@ class _RemoteObjectsUIDManager:
 
 class SynergiaGenericClass:
     """
-
+    Klasa macierzysta dla obiektów dziennika Synergia.
     """
     def __init__(self, uid, resource, session):
         """
@@ -129,7 +128,7 @@ class SynergiaGenericClass:
         Próbuje automatycznie wydobyć klucz.
 
         :param dict payload:
-        :return:
+        :return: Wydobyty klucz
         :rtype: str
         """
         for key in payload.keys():

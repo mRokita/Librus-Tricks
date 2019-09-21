@@ -83,9 +83,7 @@ class SynergiaClient:
 
     def get(self, *path, request_params=None):
         """
-        Zwraca json'a przekonwertowany na dict'a po podaniu prawidłowego url.
-
-        przykład: ``session.get('Grades', '42690')``
+        Wykonuje odpowiednio spreparowane zapytanie http GET.
 
         :param path: Ścieżka zawierająca węzeł API
         :type path: str
@@ -194,8 +192,8 @@ class SynergiaClient:
             automatyczną próbę zczytania danych
         :param timedelta lifetime: Maksymalny czas ważności cache dla tego zapytania http
         :param bool bypass_cache: Ustawienie tego parametru na True powoduje ignorowanie mechanizmu cache
-        :return:
-        :rtype: list of SynergiaGenericClass
+        :return: Lista żądanych obiektów
+        :rtype: list[SynergiaGenericClass]
         """
         if bypass_cache:
             raw = self.get(*path)
@@ -219,10 +217,9 @@ class SynergiaClient:
 
     def grades(self, *grades):
         """
-        Zwraca daną listę ocen.
-
         :param int grades: Id ocen
-        :rtype: tuple of librus_tricks.classes.SynergiaGrade
+        :rtype: tuple[librus_tricks.classes.SynergiaGrade]
+        :return: krotka z wszystkimi/wybranymi ocenami
         """
         if grades.__len__() == 0:
             return self.return_objects('Grades', cls=SynergiaGrade, extraction_key='Grades')
@@ -248,10 +245,9 @@ class SynergiaClient:
 
     def attendances(self, *attendances):
         """
-        Zwraca daną listę obiektów frekwencji.
-
         :param int attendances: Id obecności
-        :rtype: tuple of librus_tricks.classes.SynergiaAttendance
+        :rtype: tuple[librus_tricks.classes.SynergiaAttendance]
+        :return: krotka z wszystkimi/wybranymi obecnościami
         """
         if attendances.__len__() == 0:
             return self.return_objects('Attendances', cls=SynergiaAttendance, extraction_key='Attendances')
@@ -261,9 +257,8 @@ class SynergiaClient:
     @property
     def illegal_absences(self):
         """
-        Zwraca wszystkie nieusprawiedliwione nieobecności.
-
-        :rtype: tuple of librus_tricks.classes.SynergiaAttendance
+        :rtype: tuple[librus_tricks.classes.SynergiaAttendance]
+        :return: krotka z nieusprawiedliwionymi nieobecnościami
         """
         def is_absence(k):
             if k.type.uid == '1':
@@ -276,18 +271,16 @@ class SynergiaClient:
     @property
     def all_absences(self):
         """
-        Zwraca wszystkie nieobecności.
-
-        :rtype: tuple of librus_tricks.classes.SynergiaAttendance
+        :rtype: tuple[librus_tricks.classes.SynergiaAttendance]
+        :return: krotka z wszystkimi nieobecnościami
         """
         return tuple(filter(lambda k: k.type.is_presence_kind == False, self.attendances()))
 
     def exams(self, *exams):
         """
-        Zwraca dane sprawdziany, kartkówki etc.
-
         :param int exams: Id egzaminów
-        :rtype: tuple of librus_tricks.classes.SynergiaExam
+        :rtype: tuple[librus_tricks.classes.SynergiaExam]
+        :return: krotka z wszystkimi egzaminami
         """
         if exams.__len__() == 0:
             return self.return_objects('HomeWorks', cls=SynergiaExam, extraction_key='HomeWorks')
@@ -296,10 +289,8 @@ class SynergiaClient:
 
     def colors(self, *colors):
         """
-        Zwraca dane kolory z dziennika.
-
         :param int colors: Id kolorów
-        :rtype: tuple of librus_tricks.classes.SynergiaColors
+        :rtype: tuple[librus_tricks.classes.SynergiaColors]
         """
         if colors.__len__() == 0:
             return self.return_objects('Colors', cls=SynergiaColor, extraction_key='Colors')
@@ -308,42 +299,45 @@ class SynergiaClient:
 
     def timetable(self, for_date=datetime.now()):
         """
-        Zwraca dict'a którego kluczami są obiekty date.
+        Plan lekcji na cały tydzień.
 
         :param datetime.datetime for_date: Data dnia, który ma być w planie lekcji
-        :rtype: dict[datetime.date, librus_tricks.classes.SynergiaTimetableDay]
+        :rtype: librus_tricks.classes.SynergiaTimetable
+        :return: obiekt tygodniowego planu lekcji
         """
         monday = tools.get_actual_monday(for_date).isoformat()
         rosseta = self.get('Timetables', request_params={'weekStart': monday})
         return SynergiaTimetable.assembly(rosseta['Timetable'], self)
 
     def timetable_day(self, for_date: datetime):
-        return self.timetable(for_date)[for_date.date()]
+        return self.timetable(for_date).days[for_date.date()]
 
     @property
     def today_timetable(self):
         """
-        Zwraca dzisiejszy plan lekcji.
+        Plan lekcji na dzisiejszy dzień.
 
-        :rtype: list of librus_tricks.classes.SynergiaTimetableDay
+        :rtype: list[librus_tricks.classes.SynergiaTimetableDay]
+        :return: Plan lekcji na dziś
         """
         return self.timetable().days[datetime.now().date()]
 
     @property
     def tomorrow_timetable(self):
         """
-        Zwraca jutrzejszy plan lekcji.
+        Plan lekcji na kolejny dzień.
 
-        :rtype: list of librus_tricks.classes.SynergiaTimetableDay
+        :rtype: list[librus_tricks.classes.SynergiaTimetableDay]
+        :return: Plan lekcji na jutro
         """
         return self.timetable(datetime.now() + timedelta(days=1)).days[(datetime.now() + timedelta(days=1)).date()]
 
     def messages(self, *messages):
         """
-        Zwraca natywne wiadomości, wymaga mobilnych dodatków.
+        Wymaga mobilnych dodatków.
 
-        :param messages:
-        :rtype: tuple of librus_tricks.classes.SynergiaMessages
+        :param int messages: Id wiadomości
+        :rtype: tuple[librus_tricks.classes.SynergiaMessages]
         """
         if messages.__len__() == 0:
             return self.return_objects('Messages', cls=SynergiaNativeMessage, extraction_key='Messages')
@@ -355,10 +349,9 @@ class SynergiaClient:
 
     def subjects(self, *subject):
         """
-        Zwraca dane przedmioty.
-
-        :param int subject:
-        :rtype: tuple of librus_tricks.classes.SynergiaSubject
+        :return: Wszystkie/wybrane przedmioty lekcyjne
+        :param int subject: Id przedmiotów
+        :rtype: tuple[librus_tricks.classes.SynergiaSubject]
         """
         if subject.__len__() == 0:
             return self.return_objects('Subjects', cls=SynergiaSubject, extraction_key='Subjects')
@@ -368,8 +361,7 @@ class SynergiaClient:
     @property
     def school(self):
         """
-        Zwraca informacje o twojej szkole.
-
+        :return: Obiekt z informacjami o twojej szkole
         :rtype: librus_tricks.classes.SynergiaSchool
         """
         return self.return_objects('Schools', cls=SynergiaSchool, extraction_key='School')
@@ -377,8 +369,7 @@ class SynergiaClient:
     @property
     def lucky_number(self):
         """
-        Zwraca szczęśliwy numerek.
-
+        :return: Szczęśliwy numerek
         :rtype: int
         """
         return self.get('LuckyNumbers')['LuckyNumber']['LuckyNumber']
@@ -388,7 +379,7 @@ class SynergiaClient:
         Zwraca dane przedmioty.
 
         :param int subject:
-        :rtype: tuple of librus_tricks.classes.SynergiaTeacherFreeDays
+        :rtype: tuple[librus_tricks.classes.SynergiaTeacherFreeDays]
         """
         if days_ids.__len__() == 0:
             days =  self.return_objects('Calendars', 'TeacherFreeDays', cls=SynergiaTeacherFreeDays)

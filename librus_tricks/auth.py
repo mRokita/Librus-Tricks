@@ -16,6 +16,9 @@ LIBRUSLOGINURL = f'https://portal.librus.pl/oauth2/authorize?client_id={CLIENTID
 
 
 class SynergiaUser:
+    """
+    Obiekt zawierający dane do tworzenia sesji
+    """
     def __init__(self, user_dict, root_token, revalidation_token, exp_in):
         self.token = user_dict['accessToken']
         self.refresh_token = revalidation_token
@@ -33,6 +36,9 @@ class SynergiaUser:
         return f'{self.name} {self.last_name}'
 
     def revalidate_root(self):
+        """
+        Aktualizuje token do Portalu Librus.
+        """
         auth_session = requests.session()
         new_tokens = auth_session.post(
             OAUTHURL,
@@ -46,6 +52,9 @@ class SynergiaUser:
         self.refresh_token = new_tokens.json()['refresh_token']
 
     def revalidate_user(self):
+        """
+        Aktualizuje token dostępu do Synergii, który wygasa po 24h.
+        """
         auth_session = requests.session()
         new_token = auth_session.get(
             FRESHURL.format(login=self.login),
@@ -54,6 +63,12 @@ class SynergiaUser:
         self.token = new_token.json()['accessToken']
 
     def check_is_expired(self, use_clock=True, use_query=True):
+        """
+        :param bool use_clock: Sprawdza na podstawie czasu
+        :param bool use_query: Sprawdza poprzez zapytanie http GET na ``/Me``
+        :return: krotka z wynikami
+        :rtype: tuple[bool]
+        """
         clock_resp = None
         query_resp = None
 
@@ -73,6 +88,12 @@ class SynergiaUser:
 
     @property
     def is_valid(self):
+        """
+        Umożliwia sprawdzenie czy konto ma jeszcze aktualny token.
+
+        :return: ``False`` - trzeba wyrobić nowy token
+        :rtype: bool
+        """
         return self.check_is_expired(use_clock=False)[1]
 
 
@@ -80,10 +101,10 @@ def authorizer(email, password):
     """
     Zwraca listę użytkowników dostępnych dla danego konta Librus Portal
 
-    :param str email:
-    :param str password:
-    :return:
-    :rtype: list of librus_tricks.auth.SynergiaUser
+    :param str email: Email do Portalu Librus
+    :param str password: Hasło do Portalu Librus
+    :return: Listę z użytkownikami połączonymi do konta Librus Synergia
+    :rtype: list[librus_tricks.auth.SynergiaUser]
     """
     auth_session = requests.session()
     auth_session.headers.update({'User-Agent': 'LibrusMobileApp'})
