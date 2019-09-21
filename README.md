@@ -17,6 +17,8 @@ Fast and powerful Synergia Librus API wrapper
  - Use features from `Mobilne Dodatki` or their spare solutions
  - `__repr__` and `__str__` are pretty human readable
 
+## [Docs are here](http://librustricks.kpostek.pl/)
+
 ## Install
 ```text
 # Windows
