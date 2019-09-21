@@ -8,9 +8,11 @@ def _try_to_extract(payload, extraction_key, false_return=None):
 
 
 class _RemoteObjectsUIDManager:
+    """
+    Menadżer obiektów, które dopiero zostaną uwtorzone.
+    """
     def __init__(self, session, parent):
         """
-        Zarządza w kulturalny sposób id obiektów, które zostaną pobrane.
 
         :param librus_tricks.core.SynergiaClient session:
         """
@@ -32,6 +34,12 @@ class _RemoteObjectsUIDManager:
         return self
 
     def set_value(self, attr, val):
+        """
+
+        :param str attr: Nazwa obiektu
+        :param val: Obiekt
+        :return:
+        """
         self.__storage[attr] = val
         return self
 
@@ -40,7 +48,7 @@ class _RemoteObjectsUIDManager:
         Pobiera wcześniej zapisany obiekt.
 
         :param str attr: Nazwa property
-        :return:
+        :return: Żądany obiekt
         """
         uid, cls = self.__storage[attr]
         return cls.create(uid=uid, session=self._session)
@@ -51,14 +59,17 @@ class _RemoteObjectsUIDManager:
 
         :param str attr: Nazwa property
         :rtype: int
+        :return: Id obiektu
         """
         return self.__storage[attr][0]
 
 
 class SynergiaGenericClass:
+    """
+
+    """
     def __init__(self, uid, resource, session):
         """
-        Klasa macierzysta dla obiektów dziennika Synergia.
 
         :param str uid: Id żądanego obiektu
         :param librus_tricks.core.SynergiaClient session: Obiekt sesji
@@ -98,7 +109,7 @@ class SynergiaGenericClass:
         :param tuple of str path: Niezłożona ścieżka API
         :param librus_tricks.core.SynergiaClient session: Obiekt sesji
         :param str extraction_key: Klucz do wyciągnięcia danych
-        :return:
+        :return: Pobrany obiekt
         """
         if uid is None or session is None:
             raise Exception()  # TODO: specify exception
