@@ -36,7 +36,8 @@ class SynergiaClient:
         else:
             self.message_reader = None
 
-        self.__auth_headers = {'Authorization': f'Bearer {user.token}', 'User-Agent': user_agent}
+        self.session.headers.update({'User-Agent': user_agent})
+        self.__auth_headers = {'Authorization': f'Bearer {user.token}'}
         self.__api_url = api_url
 
     def __repr__(self):

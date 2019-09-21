@@ -97,7 +97,9 @@ def authorizer(email, password):
 
     if login_response_redirection.status_code != 200:
         if login_response_redirection.status_code == 403:
-            raise LibrusInvalidPasswordError(login_response_redirection.text)
+            if 'g-recaptcha-response' in login_response_redirection.json()['errors']:
+                raise CaptchaRequired(login_response_redirection.json())
+            raise LibrusInvalidPasswordError(login_response_redirection.json())
         raise LibrusLoginError(login_response_redirection.text)
 
     redirection_addr = login_response_redirection.json()['redirect']

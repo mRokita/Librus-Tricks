@@ -36,3 +36,7 @@ class SynergiaForbidden(Exception):
 
 class InvalidCacheManager(Exception):
     pass
+
+
+class CaptchaRequired(Exception):
+    pass
