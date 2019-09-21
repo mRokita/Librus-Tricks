@@ -54,7 +54,8 @@
 <dl class="class">
 <dt id="librus_tricks.auth.SynergiaUser">
 <em class="property">class </em><code class="sig-prename descclassname">librus_tricks.auth.</code><code class="sig-name descname">SynergiaUser</code><span class="sig-paren">(</span><em class="sig-param">user_dict</em>, <em class="sig-param">root_token</em>, <em class="sig-param">revalidation_token</em>, <em class="sig-param">exp_in</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd><dl class="method">
+<dd><p>Obiekt zawierający dane do tworzenia sesji</p>
+<dl class="method">
 <dt id="librus_tricks.auth.SynergiaUser.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">user_dict</em>, <em class="sig-param">root_token</em>, <em class="sig-param">revalidation_token</em>, <em class="sig-param">exp_in</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.__init__" title="Stały odnośnik do tej definicji">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
@@ -63,17 +64,47 @@
 <dl class="method">
 <dt id="librus_tricks.auth.SynergiaUser.revalidate_root">
 <code class="sig-name descname">revalidate_root</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.revalidate_root" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Aktualizuje token do Portalu Librus.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="librus_tricks.auth.SynergiaUser.revalidate_user">
 <code class="sig-name descname">revalidate_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.revalidate_user" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Aktualizuje token dostępu do Synergii, który wygasa po 24h.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="librus_tricks.auth.SynergiaUser.is_revalidation_required">
-<code class="sig-name descname">is_revalidation_required</code><span class="sig-paren">(</span><em class="sig-param">use_clock=True</em>, <em class="sig-param">use_query=False</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.is_revalidation_required" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd></dd></dl>
+<dt id="librus_tricks.auth.SynergiaUser.check_is_expired">
+<code class="sig-name descname">check_is_expired</code><span class="sig-paren">(</span><em class="sig-param">use_clock=True</em>, <em class="sig-param">use_query=True</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.check_is_expired" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>use_clock</strong> (<em>bool</em>) – Sprawdza na podstawie czasu</p></li>
+<li><p><strong>use_query</strong> (<em>bool</em>) – Sprawdza poprzez zapytanie http GET na <code class="docutils literal notranslate"><span class="pre">/Me</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p>krotka z wynikami</p>
+</dd>
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>tuple[bool]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.auth.SynergiaUser.is_valid">
+<em class="property">property </em><code class="sig-name descname">is_valid</code><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.is_valid" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Umożliwia sprawdzenie czy konto ma jeszcze aktualny token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Zwraca</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code> - trzeba wyrobić nowy token</p>
+</dd>
+<dt class="field-even">Typ zwracany</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -84,15 +115,15 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>email</strong> (<em>str</em>) – </p></li>
-<li><p><strong>password</strong> (<em>str</em>) – </p></li>
+<li><p><strong>email</strong> (<em>str</em>) – Email do Portalu Librus</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Hasło do Portalu Librus</p></li>
 </ul>
 </dd>
 <dt class="field-even">Zwraca</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Listę z użytkownikami połączonymi do konta Librus Synergia</p>
 </dd>
 <dt class="field-odd">Typ zwracany</dt>
-<dd class="field-odd"><p>list of librus_tricks.auth.SynergiaUser</p>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#librus_tricks.auth.SynergiaUser" title="librus_tricks.auth.SynergiaUser">librus_tricks.auth.SynergiaUser</a>]</p>
 </dd>
 </dl>
 </dd></dl>

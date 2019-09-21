@@ -49,6 +49,7 @@
  <a href="#_"><strong>_</strong></a>
  | <a href="#A"><strong>A</strong></a>
  | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
@@ -114,6 +115,8 @@
 </li>
         <li><a href="classes.html#librus_tricks.classes.SynergiaTimetable.__init__">(librus_tricks.classes.SynergiaTimetable metoda)</a>
 </li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaTimetableDay.__init__">(librus_tricks.classes.SynergiaTimetableDay metoda)</a>
+</li>
         <li><a href="classes.html#librus_tricks.classes.SynergiaTimetableEntry.__init__">(librus_tricks.classes.SynergiaTimetableEntry metoda)</a>
 </li>
         <li><a href="classes.html#librus_tricks.classes.SynergiaTimetableEvent.__init__">(librus_tricks.classes.SynergiaTimetableEvent metoda)</a>
@@ -125,6 +128,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="classes.html#librus_tricks.classes._RemoteObjectsUIDManager">_RemoteObjectsUIDManager (klasa w module librus_tricks.classes)</a>
 </li>
+      <li><a href="classes.html#librus_tricks.classes.SynergiaTimetableEvent._SynergiaTimetableEvent__set_classroom">_SynergiaTimetableEvent__set_classroom() (librus_tricks.classes.SynergiaTimetableEvent metoda)</a>
+</li>
       <li><a href="classes.html#librus_tricks.classes._try_to_extract">_try_to_extract() (w module librus_tricks.classes)</a>
 </li>
   </ul></td>
@@ -133,6 +138,8 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.all_absences">all_absences() (librus_tricks.core.SynergiaClient property)</a>
+</li>
       <li><a href="classes.html#librus_tricks.classes._RemoteObjectsUIDManager.assembly">assembly() (librus_tricks.classes._RemoteObjectsUIDManager metoda)</a>
 
       <ul>
@@ -189,6 +196,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.assembly_path">assembly_path() (librus_tricks.core.SynergiaClient metoda statyczna)</a>
+</li>
       <li><a href="core.html#librus_tricks.core.SynergiaClient.attendances">attendances() (librus_tricks.core.SynergiaClient metoda)</a>
 </li>
       <li><a href="auth.html#librus_tricks.auth.authorizer">authorizer() (w module librus_tricks.auth)</a>
@@ -257,6 +266,10 @@
         <li><a href="classes.html#librus_tricks.classes.SynergiaGrade.category">(librus_tricks.classes.SynergiaGrade property)</a>
 </li>
       </ul></li>
+      <li><a href="auth.html#librus_tricks.auth.SynergiaUser.check_is_expired">check_is_expired() (librus_tricks.auth.SynergiaUser metoda)</a>
+</li>
+      <li><a href="classes.html#librus_tricks.classes.SynergiaTimetableEvent.classroom">classroom() (librus_tricks.classes.SynergiaTimetableEvent property)</a>
+</li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaExamCategory.color">color() (librus_tricks.classes.SynergiaExamCategory property)</a>
 </li>
       <li><a href="core.html#librus_tricks.core.SynergiaClient.colors">colors() (librus_tricks.core.SynergiaClient metoda)</a>
@@ -320,11 +333,71 @@
   </ul></td>
 </tr></table>
 
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.dispatch_http_code">dispatch_http_code() (librus_tricks.core.SynergiaClient metoda statyczna)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core.html#librus_tricks.core.SynergiaClient.exams">exams() (librus_tricks.core.SynergiaClient metoda)</a>
 </li>
+      <li><a href="classes.html#librus_tricks.classes.SynergiaAttendance.export_resource">export_resource() (librus_tricks.classes.SynergiaAttendance metoda)</a>
+
+      <ul>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaAttendanceType.export_resource">(librus_tricks.classes.SynergiaAttendanceType metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaBaseTextGrade.export_resource">(librus_tricks.classes.SynergiaBaseTextGrade metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaClassroom.export_resource">(librus_tricks.classes.SynergiaClassroom metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaColor.export_resource">(librus_tricks.classes.SynergiaColor metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaExam.export_resource">(librus_tricks.classes.SynergiaExam metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaExamCategory.export_resource">(librus_tricks.classes.SynergiaExamCategory metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaGenericClass.export_resource">(librus_tricks.classes.SynergiaGenericClass metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaGlobalClass.export_resource">(librus_tricks.classes.SynergiaGlobalClass metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaGrade.export_resource">(librus_tricks.classes.SynergiaGrade metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaGradeCategory.export_resource">(librus_tricks.classes.SynergiaGradeCategory metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaGradeComment.export_resource">(librus_tricks.classes.SynergiaGradeComment metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaLesson.export_resource">(librus_tricks.classes.SynergiaLesson metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaNativeMessage.export_resource">(librus_tricks.classes.SynergiaNativeMessage metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaNews.export_resource">(librus_tricks.classes.SynergiaNews metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaSchool.export_resource">(librus_tricks.classes.SynergiaSchool metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaSchoolFreeDays.export_resource">(librus_tricks.classes.SynergiaSchoolFreeDays metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaStudent.export_resource">(librus_tricks.classes.SynergiaStudent metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaSubject.export_resource">(librus_tricks.classes.SynergiaSubject metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaTeacher.export_resource">(librus_tricks.classes.SynergiaTeacher metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaTeacherFreeDays.export_resource">(librus_tricks.classes.SynergiaTeacherFreeDays metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaTeacherFreeDaysTypes.export_resource">(librus_tricks.classes.SynergiaTeacherFreeDaysTypes metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaTimetable.export_resource">(librus_tricks.classes.SynergiaTimetable metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaTimetableEntry.export_resource">(librus_tricks.classes.SynergiaTimetableEntry metoda)</a>
+</li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaVirtualClass.export_resource">(librus_tricks.classes.SynergiaVirtualClass metoda)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -333,8 +406,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core.html#librus_tricks.core.SynergiaClient.get">get() (librus_tricks.core.SynergiaClient metoda)</a>
 </li>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.get_cached_object">get_cached_object() (librus_tricks.core.SynergiaClient metoda)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.get_cached_response">get_cached_response() (librus_tricks.core.SynergiaClient metoda)</a>
+</li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaGradeComment.grade_bind">grade_bind() (librus_tricks.classes.SynergiaGradeComment property)</a>
 </li>
       <li><a href="core.html#librus_tricks.core.SynergiaClient.grades">grades() (librus_tricks.core.SynergiaClient metoda)</a>
@@ -345,7 +422,11 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="auth.html#librus_tricks.auth.SynergiaUser.is_revalidation_required">is_revalidation_required() (librus_tricks.auth.SynergiaUser metoda)</a>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.illegal_absences">illegal_absences() (librus_tricks.core.SynergiaClient property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="auth.html#librus_tricks.auth.SynergiaUser.is_valid">is_valid() (librus_tricks.auth.SynergiaUser property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -355,11 +436,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="auth.html#module-librus_tricks.auth">librus_tricks.auth (moduł)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="classes.html#module-librus_tricks.classes">librus_tricks.classes (moduł)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core.html#module-librus_tricks.core">librus_tricks.core (moduł)</a>
+</li>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.lucky_number">lucky_number() (librus_tricks.core.SynergiaClient property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -376,6 +459,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="classes.html#librus_tricks.classes.SynergiaTimetable.parse_timetable">parse_timetable() (librus_tricks.classes.SynergiaTimetable metoda statyczna)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.post">post() (librus_tricks.core.SynergiaClient metoda)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -401,7 +488,11 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.school">school() (librus_tricks.core.SynergiaClient property)</a>
+</li>
       <li><a href="classes.html#librus_tricks.classes._RemoteObjectsUIDManager.set_object">set_object() (librus_tricks.classes._RemoteObjectsUIDManager metoda)</a>
+</li>
+      <li><a href="classes.html#librus_tricks.classes._RemoteObjectsUIDManager.set_value">set_value() (librus_tricks.classes._RemoteObjectsUIDManager metoda)</a>
 </li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaAttendance.student">student() (librus_tricks.classes.SynergiaAttendance property)</a>
 
@@ -423,6 +514,8 @@
         <li><a href="classes.html#librus_tricks.classes.SynergiaVirtualClass.subject">(librus_tricks.classes.SynergiaVirtualClass property)</a>
 </li>
       </ul></li>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.subjects">subjects() (librus_tricks.core.SynergiaClient metoda)</a>
+</li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaAttendance">SynergiaAttendance (klasa w module librus_tricks.classes)</a>
 </li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaAttendanceType">SynergiaAttendanceType (klasa w module librus_tricks.classes)</a>
@@ -439,10 +532,10 @@
 </li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaExamCategory">SynergiaExamCategory (klasa w module librus_tricks.classes)</a>
 </li>
-      <li><a href="classes.html#librus_tricks.classes.SynergiaGenericClass">SynergiaGenericClass (klasa w module librus_tricks.classes)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes.html#librus_tricks.classes.SynergiaGenericClass">SynergiaGenericClass (klasa w module librus_tricks.classes)</a>
+</li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaGlobalClass">SynergiaGlobalClass (klasa w module librus_tricks.classes)</a>
 </li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaGrade">SynergiaGrade (klasa w module librus_tricks.classes)</a>
@@ -472,6 +565,8 @@
       <li><a href="classes.html#librus_tricks.classes.SynergiaTeacherFreeDaysTypes">SynergiaTeacherFreeDaysTypes (klasa w module librus_tricks.classes)</a>
 </li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaTimetable">SynergiaTimetable (klasa w module librus_tricks.classes)</a>
+</li>
+      <li><a href="classes.html#librus_tricks.classes.SynergiaTimetableDay">SynergiaTimetableDay (klasa w module librus_tricks.classes)</a>
 </li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaTimetableEntry">SynergiaTimetableEntry (klasa w module librus_tricks.classes)</a>
 </li>
@@ -504,11 +599,15 @@
 </li>
         <li><a href="classes.html#librus_tricks.classes.SynergiaTeacherFreeDays.teacher">(librus_tricks.classes.SynergiaTeacherFreeDays property)</a>
 </li>
+        <li><a href="classes.html#librus_tricks.classes.SynergiaTimetableEvent.teacher">(librus_tricks.classes.SynergiaTimetableEvent property)</a>
+</li>
         <li><a href="classes.html#librus_tricks.classes.SynergiaVirtualClass.teacher">(librus_tricks.classes.SynergiaVirtualClass property)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core.html#librus_tricks.core.SynergiaClient.teacher_free_days">teacher_free_days() (librus_tricks.core.SynergiaClient metoda)</a>
+</li>
       <li><a href="core.html#librus_tricks.core.SynergiaClient.timetable">timetable() (librus_tricks.core.SynergiaClient metoda)</a>
 </li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaTimetable.today_timetable">today_timetable() (librus_tricks.classes.SynergiaTimetable property)</a>
@@ -522,11 +621,7 @@
       <li><a href="classes.html#librus_tricks.classes.SynergiaGlobalClass.tutor">tutor() (librus_tricks.classes.SynergiaGlobalClass property)</a>
 </li>
       <li><a href="classes.html#librus_tricks.classes.SynergiaAttendance.type">type() (librus_tricks.classes.SynergiaAttendance property)</a>
-
-      <ul>
-        <li><a href="classes.html#librus_tricks.classes.SynergiaTeacherFreeDays.type">(librus_tricks.classes.SynergiaTeacherFreeDays property)</a>
 </li>
-      </ul></li>
   </ul></td>
 </tr></table>
 

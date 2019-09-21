@@ -56,17 +56,39 @@
 <em class="property">class </em><code class="sig-prename descclassname">librus_tricks.core.</code><code class="sig-name descname">SynergiaClient</code><span class="sig-paren">(</span><em class="sig-param">user</em>, <em class="sig-param">api_url='https://api.librus.pl/2.0'</em>, <em class="sig-param">user_agent='LibrusMobileApp'</em>, <em class="sig-param">cache=&lt;librus_tricks.cache.AlchemyCache object&gt;</em>, <em class="sig-param">synergia_user_passwd=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient" title="Stały odnośnik do tej definicji">¶</a></dt>
 <dd><p>Sesja z API Synergii</p>
 <dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.assembly_path">
+<em class="property">static </em><code class="sig-name descname">assembly_path</code><span class="sig-paren">(</span><em class="sig-param">*elements</em>, <em class="sig-param">prefix=''</em>, <em class="sig-param">suffix=''</em>, <em class="sig-param">sep='/'</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.assembly_path" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Składa str w jednego str, przydatne przy tworzeniu url.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elements</strong> (<em>str</em>) – Elementy do stworzenia str</p></li>
+<li><p><strong>prefix</strong> (<em>str</em>) – Początek str</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – Koniec str</p></li>
+<li><p><strong>sep</strong> (<em>str</em>) – str wstawiany pomiędzy elementy</p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p>Złożony str</p>
+</dd>
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.attendances">
 <code class="sig-name descname">attendances</code><span class="sig-paren">(</span><em class="sig-param">*attendances</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.attendances" title="Stały odnośnik do tej definicji">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
-<dd class="field-odd"><p><strong>attendances</strong> – </p>
+<dd class="field-odd"><p><strong>attendances</strong> (<em>int</em>) – Id obecności</p>
 </dd>
-<dt class="field-even">Zwraca</dt>
-<dd class="field-even"><p></p>
+<dt class="field-even">Typ zwracany</dt>
+<dd class="field-even"><p>tuple[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaAttendance" title="librus_tricks.classes.SynergiaAttendance">librus_tricks.classes.SynergiaAttendance</a>]</p>
 </dd>
-<dt class="field-odd">Typ zwracany</dt>
-<dd class="field-odd"><p>tuple of librus_tricks.classes.SynergiaAttendance</p>
+<dt class="field-odd">Zwraca</dt>
+<dd class="field-odd"><p>krotka z wszystkimi/wybranymi obecnościami</p>
 </dd>
 </dl>
 </dd></dl>
@@ -76,13 +98,29 @@
 <code class="sig-name descname">colors</code><span class="sig-paren">(</span><em class="sig-param">*colors</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.colors" title="Stały odnośnik do tej definicji">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
-<dd class="field-odd"><p><strong>exams</strong> – </p>
+<dd class="field-odd"><p><strong>colors</strong> (<em>int</em>) – Id kolorów</p>
 </dd>
-<dt class="field-even">Zwraca</dt>
-<dd class="field-even"><p></p>
+<dt class="field-even">Typ zwracany</dt>
+<dd class="field-even"><p>tuple[librus_tricks.classes.SynergiaColors]</p>
 </dd>
-<dt class="field-odd">Typ zwracany</dt>
-<dd class="field-odd"><p>tuple of librus_tricks.classes.SynergiaColors</p>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.dispatch_http_code">
+<em class="property">static </em><code class="sig-name descname">dispatch_http_code</code><span class="sig-paren">(</span><em class="sig-param">response: requests.models.Response</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.dispatch_http_code" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Sprawdza czy serwer zgłasza błąd poprzez podanie kodu http, w przypadku błędu, rzuca wyjątkiem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><p><strong>response</strong> (<em>requests.Response</em>) – </p>
+</dd>
+<dt class="field-even">Wyrzuca</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>librus_tricks.exceptions.SynergiaNotFound</strong> – 404</p></li>
+<li><p><strong>librus_tricks.exceptions.SynergiaForbidden</strong> – 403</p></li>
+<li><p><strong>librus_tricks.exceptions.SynergiaAccessDenied</strong> – 401</p></li>
+<li><p><strong>librus_tricks.exceptions.SynergiaInvalidRequest</strong> – 401</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -92,13 +130,13 @@
 <code class="sig-name descname">exams</code><span class="sig-paren">(</span><em class="sig-param">*exams</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.exams" title="Stały odnośnik do tej definicji">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
-<dd class="field-odd"><p><strong>exams</strong> – </p>
+<dd class="field-odd"><p><strong>exams</strong> (<em>int</em>) – Id egzaminów</p>
 </dd>
-<dt class="field-even">Zwraca</dt>
-<dd class="field-even"><p></p>
+<dt class="field-even">Typ zwracany</dt>
+<dd class="field-even"><p>tuple[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaExam" title="librus_tricks.classes.SynergiaExam">librus_tricks.classes.SynergiaExam</a>]</p>
 </dd>
-<dt class="field-odd">Typ zwracany</dt>
-<dd class="field-odd"><p>tuple of librus_tricks.classes.SynergiaExam</p>
+<dt class="field-odd">Zwraca</dt>
+<dd class="field-odd"><p>krotka z wszystkimi egzaminami</p>
 </dd>
 </dl>
 </dd></dl>
@@ -106,11 +144,13 @@
 <dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.get">
 <code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">*path</em>, <em class="sig-param">request_params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.get" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd><p>Zwraca json’a przekonwertowany na dict’a po podaniu prawidłowego węzła</p>
-<p>przykład: <code class="docutils literal notranslate"><span class="pre">session.get('Grades',</span> <span class="pre">'42690')</span></code></p>
+<dd><p>Wykonuje odpowiednio spreparowane zapytanie http GET.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Ścieżka zawierająca węzeł API</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Ścieżka zawierająca węzeł API</p></li>
+<li><p><strong>request_params</strong> (<em>dict</em>) – dict zawierający kwargs dla zapytania http</p></li>
+</ul>
 </dd>
 <dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>json przekonwertowany na dict’a</p>
@@ -118,8 +158,44 @@
 <dt class="field-odd">Typ zwracany</dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
-<dt class="field-even">Wyrzuca</dt>
-<dd class="field-even"><p><strong>librus_tricks.exceptions.SynergiaEndpointNotFound</strong> – nie zaleziono określonego węzła</p>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.get_cached_object">
+<code class="sig-name descname">get_cached_object</code><span class="sig-paren">(</span><em class="sig-param">uid</em>, <em class="sig-param">cls</em>, <em class="sig-param">max_lifetime=datetime.timedelta(seconds=3600)</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.get_cached_object" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Pobiera dany obiekt z poprzednim sprawdzeniem cache. Nie używane domyślnie w bibliotece.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uid</strong> (<em>str</em>) – Id żądanego obiektu</p></li>
+<li><p><strong>cls</strong> – Klasa żądanego obiektu</p></li>
+<li><p><strong>max_lifetime</strong> (<em>timedelta</em>) – Maksymalny czas ważności cache dla tego obiektu</p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p>Żądany obiekt</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.get_cached_response">
+<code class="sig-name descname">get_cached_response</code><span class="sig-paren">(</span><em class="sig-param">*path</em>, <em class="sig-param">http_params=None</em>, <em class="sig-param">max_lifetime=datetime.timedelta(seconds=3600)</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.get_cached_response" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Wykonuje zapytanie http GET z poprzednim sprawdzeniem cache.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – Niezłożona ścieżka do węzła API</p></li>
+<li><p><strong>request_params</strong> (<em>dict</em>) – dict zawierający kwargs dla zapytania http</p></li>
+<li><p><strong>max_lifetime</strong> (<em>timedelta</em>) – Maksymalny czas ważności cache dla tego zapytania http</p></li>
+</ul>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p>dict zawierający odpowiedź zapytania</p>
+</dd>
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -127,13 +203,15 @@
 <dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.grades">
 <code class="sig-name descname">grades</code><span class="sig-paren">(</span><em class="sig-param">*grades</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.grades" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd><p>Zwraca daną listę ocen.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Zwraca</dt>
-<dd class="field-odd"><p>krotka z ocenami</p>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><p><strong>grades</strong> (<em>int</em>) – Id ocen</p>
 </dd>
 <dt class="field-even">Typ zwracany</dt>
-<dd class="field-even"><p>tuple of librus_tricks.classes.SynergiaGrade</p>
+<dd class="field-even"><p>tuple[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaGrade" title="librus_tricks.classes.SynergiaGrade">librus_tricks.classes.SynergiaGrade</a>]</p>
+</dd>
+<dt class="field-odd">Zwraca</dt>
+<dd class="field-odd"><p>krotka z wszystkimi/wybranymi ocenami</p>
 </dd>
 </dl>
 </dd></dl>
@@ -141,49 +219,156 @@
 <dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.messages">
 <code class="sig-name descname">messages</code><span class="sig-paren">(</span><em class="sig-param">*messages</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.messages" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Wymaga mobilnych dodatków.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
-<dd class="field-odd"><p><strong>exams</strong> – </p>
+<dd class="field-odd"><p><strong>messages</strong> (<em>int</em>) – Id wiadomości</p>
+</dd>
+<dt class="field-even">Typ zwracany</dt>
+<dd class="field-even"><p>tuple[librus_tricks.classes.SynergiaMessages]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param">*path</em>, <em class="sig-param">request_params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.post" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Pozwala na dokonanie zapytania http POST.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Ścieżka zawierająca węzeł API</p></li>
+<li><p><strong>request_params</strong> (<em>dict</em>) – dict zawierający kwargs dla zapytania http</p></li>
+</ul>
 </dd>
 <dt class="field-even">Zwraca</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>json przekonwertowany na dict’a</p>
 </dd>
 <dt class="field-odd">Typ zwracany</dt>
-<dd class="field-odd"><p>tuple of librus_tricks.classes.SynergiaColors</p>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.return_objects">
-<code class="sig-name descname">return_objects</code><span class="sig-paren">(</span><em class="sig-param">*path</em>, <em class="sig-param">cls</em>, <em class="sig-param">extraction_key=None</em>, <em class="sig-param">lifetime=datetime.timedelta(seconds=60)</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.return_objects" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd><dl class="field-list simple">
+<code class="sig-name descname">return_objects</code><span class="sig-paren">(</span><em class="sig-param">*path</em>, <em class="sig-param">cls</em>, <em class="sig-param">extraction_key=None</em>, <em class="sig-param">lifetime=datetime.timedelta(seconds=10)</em>, <em class="sig-param">bypass_cache=False</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.return_objects" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Zwraca listę obiektów lub obiekt, wygenerowaną z danych danej ścieżki API.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> – </p></li>
-<li><p><strong>cls</strong> – </p></li>
-<li><p><strong>extraction_key</strong> – </p></li>
-<li><p><strong>lifetime</strong> – </p></li>
+<li><p><strong>path</strong> (<em>str</em>) – Niezłożona ścieżka do węzła API</p></li>
+<li><p><strong>cls</strong> – Klasa żądanych obiektów</p></li>
+<li><p><strong>extraction_key</strong> (<em>str</em>) – Klucz do wyjęcia danych, pozostawienie tego parametru na None powoduje
+automatyczną próbę zczytania danych</p></li>
+<li><p><strong>lifetime</strong> (<em>timedelta</em>) – Maksymalny czas ważności cache dla tego zapytania http</p></li>
+<li><p><strong>bypass_cache</strong> (<em>bool</em>) – Ustawienie tego parametru na True powoduje ignorowanie mechanizmu cache</p></li>
 </ul>
 </dd>
 <dt class="field-even">Zwraca</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Lista żądanych obiektów</p>
+</dd>
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaGenericClass" title="librus_tricks.classes.SynergiaGenericClass">SynergiaGenericClass</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.subjects">
+<code class="sig-name descname">subjects</code><span class="sig-paren">(</span><em class="sig-param">*subject</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.subjects" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Zwraca</dt>
+<dd class="field-odd"><p>Wszystkie/wybrane przedmioty lekcyjne</p>
+</dd>
+<dt class="field-even">Parametry</dt>
+<dd class="field-even"><p><strong>subject</strong> (<em>int</em>) – Id przedmiotów</p>
+</dd>
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>tuple[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaSubject" title="librus_tricks.classes.SynergiaSubject">librus_tricks.classes.SynergiaSubject</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.teacher_free_days">
+<code class="sig-name descname">teacher_free_days</code><span class="sig-paren">(</span><em class="sig-param">*days_ids</em>, <em class="sig-param">only_future=True</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.teacher_free_days" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Zwraca dane przedmioty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parametry</dt>
+<dd class="field-odd"><p><strong>subject</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Typ zwracany</dt>
+<dd class="field-even"><p>tuple[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTeacherFreeDays" title="librus_tricks.classes.SynergiaTeacherFreeDays">librus_tricks.classes.SynergiaTeacherFreeDays</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.timetable">
-<code class="sig-name descname">timetable</code><span class="sig-paren">(</span><em class="sig-param">for_date=datetime.datetime(2019</em>, <em class="sig-param">9</em>, <em class="sig-param">21</em>, <em class="sig-param">13</em>, <em class="sig-param">35</em>, <em class="sig-param">51</em>, <em class="sig-param">912357)</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.timetable" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd><dl class="field-list simple">
+<code class="sig-name descname">timetable</code><span class="sig-paren">(</span><em class="sig-param">for_date=datetime.datetime(2019</em>, <em class="sig-param">9</em>, <em class="sig-param">21</em>, <em class="sig-param">13</em>, <em class="sig-param">55</em>, <em class="sig-param">46</em>, <em class="sig-param">65483)</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.timetable" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Plan lekcji na cały tydzień.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
-<dd class="field-odd"><p><strong>for_date</strong> – </p>
+<dd class="field-odd"><p><strong>for_date</strong> (<em>datetime.datetime</em>) – Data dnia, który ma być w planie lekcji</p>
+</dd>
+<dt class="field-even">Typ zwracany</dt>
+<dd class="field-even"><p><a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTimetable" title="librus_tricks.classes.SynergiaTimetable">librus_tricks.classes.SynergiaTimetable</a></p>
+</dd>
+<dt class="field-odd">Zwraca</dt>
+<dd class="field-odd"><p>obiekt tygodniowego planu lekcji</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.all_absences">
+<em class="property">property </em><code class="sig-name descname">all_absences</code><a class="headerlink" href="#librus_tricks.core.SynergiaClient.all_absences" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>tuple[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaAttendance" title="librus_tricks.classes.SynergiaAttendance">librus_tricks.classes.SynergiaAttendance</a>]</p>
 </dd>
 <dt class="field-even">Zwraca</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>krotka z wszystkimi nieobecnościami</p>
 </dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.illegal_absences">
+<em class="property">property </em><code class="sig-name descname">illegal_absences</code><a class="headerlink" href="#librus_tricks.core.SynergiaClient.illegal_absences" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
 <dt class="field-odd">Typ zwracany</dt>
-<dd class="field-odd"><p>Dict[datetime.date, List[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTimetableEvent" title="librus_tricks.classes.SynergiaTimetableEvent">librus_tricks.classes.SynergiaTimetableEvent</a>]]</p>
+<dd class="field-odd"><p>tuple[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaAttendance" title="librus_tricks.classes.SynergiaAttendance">librus_tricks.classes.SynergiaAttendance</a>]</p>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p>krotka z nieusprawiedliwionymi nieobecnościami</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.lucky_number">
+<em class="property">property </em><code class="sig-name descname">lucky_number</code><a class="headerlink" href="#librus_tricks.core.SynergiaClient.lucky_number" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Zwraca</dt>
+<dd class="field-odd"><p>Szczęśliwy numerek</p>
+</dd>
+<dt class="field-even">Typ zwracany</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.core.SynergiaClient.school">
+<em class="property">property </em><code class="sig-name descname">school</code><a class="headerlink" href="#librus_tricks.core.SynergiaClient.school" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Zwraca</dt>
+<dd class="field-odd"><p>Obiekt z informacjami o twojej szkole</p>
+</dd>
+<dt class="field-even">Typ zwracany</dt>
+<dd class="field-even"><p><a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaSchool" title="librus_tricks.classes.SynergiaSchool">librus_tricks.classes.SynergiaSchool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -191,12 +376,13 @@
 <dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.today_timetable">
 <em class="property">property </em><code class="sig-name descname">today_timetable</code><a class="headerlink" href="#librus_tricks.core.SynergiaClient.today_timetable" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Zwraca</dt>
-<dd class="field-odd"><p></p>
+<dd><p>Plan lekcji na dzisiejszy dzień.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTimetableDay" title="librus_tricks.classes.SynergiaTimetableDay">librus_tricks.classes.SynergiaTimetableDay</a>]</p>
 </dd>
-<dt class="field-even">Typ zwracany</dt>
-<dd class="field-even"><p>list of librus_tricks.classes.SynergiaTimetableEvent</p>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p>Plan lekcji na dziś</p>
 </dd>
 </dl>
 </dd></dl>
@@ -204,12 +390,13 @@
 <dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.tomorrow_timetable">
 <em class="property">property </em><code class="sig-name descname">tomorrow_timetable</code><a class="headerlink" href="#librus_tricks.core.SynergiaClient.tomorrow_timetable" title="Stały odnośnik do tej definicji">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Zwraca</dt>
-<dd class="field-odd"><p></p>
+<dd><p>Plan lekcji na kolejny dzień.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTimetableDay" title="librus_tricks.classes.SynergiaTimetableDay">librus_tricks.classes.SynergiaTimetableDay</a>]</p>
 </dd>
-<dt class="field-even">Typ zwracany</dt>
-<dd class="field-even"><p>list of librus_tricks.classes.SynergiaTimetableEvent</p>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p>Plan lekcji na jutro</p>
 </dd>
 </dl>
 </dd></dl>
