@@ -26,4 +26,4 @@ jobs:
           librus_password: ${{ secrets.librus_password }}
         run: |
           pip3 install pytest
-          pytest
+          python3 -m pytest
