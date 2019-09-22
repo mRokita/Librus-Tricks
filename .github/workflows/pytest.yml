@@ -21,7 +21,9 @@ jobs:
       - name: Install librus-tricks requirements
         run: pip3 install requests beautifulsoup4 SQLAlchemy
       - name: Install librus-tricks
-        run: python3 setup.py
+        run: |
+          ls
+          python3 setup.py
       - name: Test librus-tricks
         env:
           librus_email: ${{ secrets.librus_email }}
