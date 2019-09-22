@@ -5,6 +5,7 @@ on: push
 jobs:
   pytest-job:
     name: Pytest
+    runs-on: ${{ matrix.os }}
     strategy:
       max-parallel: 1
       matrix:
