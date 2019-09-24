@@ -61,8 +61,7 @@ class SynergiaClient:
 
     # HTTP part
 
-    @staticmethod
-    def dispatch_http_code(response: requests.Response):
+    def dispatch_http_code(self, response: requests.Response, callback=None, callback_args=tuple(), callback_kwargs=dict()):
         """
         Sprawdza czy serwer zgłasza błąd poprzez podanie kodu http, w przypadku błędu, rzuca wyjątkiem.
 
@@ -71,7 +70,13 @@ class SynergiaClient:
         :raises librus_tricks.exceptions.SynergiaForbidden: 403
         :raises librus_tricks.exceptions.SynergiaAccessDenied: 401
         :raises librus_tricks.exceptions.SynergiaInvalidRequest: 401
+        :rtype: requests.Response
+        :return: sprawdzona odpowiedź http
         """
+        if response.json().get('Code') == 'TokenIsExpired':
+            self.user.revalidate_user()
+            return callback(*callback_args, **callback_kwargs)
+
         if response.status_code >= 400:
             raise {
                 500: Exception('Server error'),
@@ -80,6 +85,8 @@ class SynergiaClient:
                 401: exceptions.SynergiaAccessDenied(response.json()),
                 400: exceptions.SynergiaInvalidRequest(response.json()),
             }[response.status_code]
+
+        return response
 
     def get(self, *path, request_params=None):
         """
@@ -99,7 +106,7 @@ class SynergiaClient:
             path_str, headers=self.__auth_headers, params=request_params
         )
 
-        self.dispatch_http_code(response)
+        response = self.dispatch_http_code(response, callback=self.get, callback_args=path, callback_kwargs=request_params)
 
         return response.json()
 
@@ -121,7 +128,7 @@ class SynergiaClient:
             path_str, headers=self.__auth_headers, params=request_params
         )
 
-        self.dispatch_http_code(response)
+        response = self.dispatch_http_code(response, callback=self.post, callback_args=path, callback_kwargs=request_params)
 
         return response.json()
 
