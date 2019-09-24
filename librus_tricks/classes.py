@@ -644,8 +644,8 @@ class SynergiaTeacherFreeDays(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
 
-        self.starts = datetime.fromisoformat(self._json_resource['DateFrom']).date()
-        self.ends = datetime.fromisoformat(self._json_resource['DateTo']).date()
+        self.starts = datetime.strptime(self._json_resource['DateFrom'], '%Y-%m-%d').date()
+        self.ends = datetime.strptime(self._json_resource['DateTo'], '%Y-%m-%d').date()
         self.objects.set_object(
             'teacher', self._json_resource['Teacher']['Id'], SynergiaTeacher
         )
@@ -683,8 +683,8 @@ class SynergiaSchoolFreeDays(SynergiaGenericClass):
 class SynergiaTimetableEntry(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
-        self.available = datetime.fromisoformat(resource['DateFrom']).date(), \
-                         datetime.fromisoformat(resource['DateTo']).date()
+        self.available = datetime.strptime(resource['DateFrom'], '%Y-%m-%d').date(), \
+                         datetime.strptime(resource['DateTo'], '%Y-%m-%d').date()
 
     @classmethod
     def create(cls, uid=None, path=('TimetableEntries',), session=None, extraction_key='TimetableEntry', expire=timedelta(seconds=15)):
@@ -694,8 +694,8 @@ class SynergiaTimetableEntry(SynergiaGenericClass):
 class SynergiaTimetableEvent:
     def __init__(self, resource, session):
         self.lesson_no = resource['LessonNo']
-        self.start = time.fromisoformat(resource['HourFrom'])
-        self.end = time.fromisoformat(resource['HourTo'])
+        self.start = datetime.strptime(resource['HourFrom'], '%H:%M').time()
+        self.end = datetime.strptime(resource['HourTo'], '%H:%M').time()
         self.is_cancelled = resource['IsCanceled']
         self.is_sub = resource['IsSubstitutionClass']
         self.preloaded = {
@@ -795,7 +795,7 @@ class SynergiaTimetable(SynergiaGenericClass):
         root = {}
 
         for day in resource.keys():
-            day_date = date.fromisoformat(day)
+            day_date = datetime.strptime(day, '%Y-%m-%d').date()
             root[day_date] = []
             for period in resource[day]:
                 if period.__len__() != 0:

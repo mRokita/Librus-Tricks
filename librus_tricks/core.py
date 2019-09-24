@@ -324,7 +324,7 @@ class SynergiaClient:
         """
         Plan lekcji na dzisiejszy dzień.
 
-        :rtype: list[librus_tricks.classes.SynergiaTimetableDay]
+        :rtype: librus_tricks.classes.SynergiaTimetableDay
         :return: Plan lekcji na dziś
         """
         return self.timetable().days[datetime.now().date()]
@@ -334,7 +334,7 @@ class SynergiaClient:
         """
         Plan lekcji na kolejny dzień.
 
-        :rtype: list[librus_tricks.classes.SynergiaTimetableDay]
+        :rtype: librus_tricks.classes.SynergiaTimetableDay
         :return: Plan lekcji na jutro
         """
         return self.timetable(datetime.now() + timedelta(days=1)).days[(datetime.now() + timedelta(days=1)).date()]
