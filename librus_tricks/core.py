@@ -43,6 +43,9 @@ class SynergiaClient:
     def __repr__(self):
         return f'<Synergia session for {self.user}>'
 
+    def __update_auth_header(self):
+        self.__auth_headers = {'Authorization': f'Bearer {self.user.token}'}
+
     @staticmethod
     def assembly_path(*elements, prefix='', suffix='', sep='/'):
         """
@@ -75,15 +78,16 @@ class SynergiaClient:
         """
         if response.json().get('Code') == 'TokenIsExpired':
             self.user.revalidate_user()
+            self.__update_auth_header()
             return callback(*callback_args, **callback_kwargs)
 
         if response.status_code >= 400:
             raise {
-                500: Exception('Server error'),
+                500: exceptions.SynergiaServerError(response.url, response.json()),
                 404: exceptions.SynergiaNotFound(response.url),
-                403: exceptions.SynergiaForbidden(response.json()),
-                401: exceptions.SynergiaAccessDenied(response.json()),
-                400: exceptions.SynergiaInvalidRequest(response.json()),
+                403: exceptions.SynergiaForbidden(response.url, response.json()),
+                401: exceptions.SynergiaAccessDenied(response.url, response.json()),
+                400: exceptions.SynergiaInvalidRequest(response.url, response.json()),
             }[response.status_code]
 
         return response

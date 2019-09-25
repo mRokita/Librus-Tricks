@@ -40,3 +40,7 @@ class InvalidCacheManager(Exception):
 
 class CaptchaRequired(Exception):
     pass
+
+
+class SynergiaServerError(Exception):
+    pass
