@@ -90,7 +90,7 @@ class SynergiaClient:
                 400: exceptions.SynergiaInvalidRequest(response.url, response.json()),
             }[response.status_code]
 
-        return response
+        return response.json()
 
     def get(self, *path, request_params=None):
         """
@@ -112,7 +112,7 @@ class SynergiaClient:
 
         response = self.dispatch_http_code(response, callback=self.get, callback_args=path, callback_kwargs=request_params)
 
-        return response.json()
+        return response
 
     def post(self, *path, request_params=None):
         """
