@@ -84,10 +84,10 @@ class SynergiaClient:
         if response.status_code >= 400:
             raise {
                 500: exceptions.SynergiaServerError(response.url, response.json()),
-                404: exceptions.SynergiaNotFound(response.url),
+                404: exceptions.SynergiaAPIEndpointNotFound(response.url),
                 403: exceptions.SynergiaForbidden(response.url, response.json()),
                 401: exceptions.SynergiaAccessDenied(response.url, response.json()),
-                400: exceptions.SynergiaInvalidRequest(response.url, response.json()),
+                400: exceptions.SynergiaAPIInvalidRequest(response.url, response.json()),
             }[response.status_code]
 
         return response.json()

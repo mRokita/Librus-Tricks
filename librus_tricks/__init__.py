@@ -16,7 +16,9 @@ def create_session(email, password, fetch_first=True, **kwargs):
     :param email: str
     :param password: str
     :param fetch_first: bool or int
-    :return:
+    :rtype: librus_tricks.core.SynergiaClient
+    :rtype: list[librus_tricks.core.SynergiaClient]
+    :return: obiekt lub listę obiektów z sesjami
     """
     if fetch_first is True:
         user = authorizer(email, password)[0]
