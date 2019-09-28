@@ -96,6 +96,38 @@ class SynergiaUser:
         """
         return self.check_is_expired(use_clock=False)[1]
 
+    def dump_credentials(self, cred_file=None):
+        import json
+        if cred_file is None:
+            cred_file = open(f'{self.login}.json', 'w')
+        json.dump({
+            'user_dict': {
+                'accessToken': self.token,
+                'studentName': f'{self.name} {self.last_name}',
+                'id': self.uid,
+                'login': self.login,
+            },
+            'root_token': self.root_token,
+            'revalidation_token': self.refresh_token,
+            'exp_in': int(self.expires_in.timestamp())
+        }, cred_file)
+
+    def pickle_credentials(self, pickle_file=None):
+        import pickle
+        if pickle_file is None:
+            pickle_file = open(f'{self.login}.pickle', 'wb')
+        pickle.dump(self, pickle_file)
+
+
+def load_pickle(pickle_file):
+    import pickle
+    return pickle.load(pickle_file)
+
+
+def load_cert(cred_file):
+    import json
+    return SynergiaUser(**json.load(cred_file))
+
 
 def authorizer(email, password):
     """
