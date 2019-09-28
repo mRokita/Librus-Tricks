@@ -134,7 +134,7 @@ class SynergiaClient:
 
         response = self.dispatch_http_code(response, callback=self.post, callback_args=path, callback_kwargs=request_params)
 
-        return response.json()
+        return response
 
     # Cache
 
