@@ -52,3 +52,7 @@ class CaptchaRequired(LibrusTricksAuthException):
 
 class SynergiaServerError(LibrusTricksAPIException):
     pass
+
+
+class SessionRequired(LibrusTricksAPIException):
+    pass

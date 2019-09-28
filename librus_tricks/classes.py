@@ -1,4 +1,6 @@
-from datetime import datetime, date, time, timedelta
+from datetime import datetime, timedelta
+
+from librus_tricks.exceptions import SessionRequired
 
 
 def _try_to_extract(payload, extraction_key, false_return=None):
@@ -9,7 +11,7 @@ def _try_to_extract(payload, extraction_key, false_return=None):
 
 class _RemoteObjectsUIDManager:
     """
-    Menadżer obiektów, które dopiero zostaną uwtorzone.
+    Menadżer obiektów, które dopiero zostaną utworzone.
     """
     def __init__(self, session, parent):
         """
@@ -111,7 +113,7 @@ class SynergiaGenericClass:
         :return: Pobrany obiekt
         """
         if uid is None or session is None:
-            raise Exception()  # TODO: specify exception
+            raise SessionRequired()
 
         response = session.get_cached_response(*path, uid, max_lifetime=expire)
 
@@ -527,18 +529,6 @@ class SynergiaExam(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
 
         super().__init__(uid, resource, session)
-
-        def _define_group_and_type(exam_payload):
-            """
-
-            :param dict exam_payload:
-            :return:
-            """
-            if 'VirtualClass' in exam_payload.keys():
-                return {'Id': exam_payload['VirtualClass']['Id'], 'type': SynergiaVirtualClass}
-            if 'Class' in exam_payload.keys():
-                return {'Id': exam_payload['Class']['Id'], 'type': SynergiaGlobalClass}
-            raise AttributeError('Wrong object type')
 
         self.add_date = datetime.strptime(self._json_resource['AddDate'], '%Y-%m-%d %H:%M:%S')
         self.content = self._json_resource['Content']
