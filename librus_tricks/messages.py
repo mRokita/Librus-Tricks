@@ -3,6 +3,23 @@ import requests
 from datetime import datetime
 
 
+class SynergiaXMLMessages:
+    def __init__(self, session):
+        """
+
+        :param librus_tricks.SynergiaClient session:
+        """
+        token = session.post('AutoLoginToken')['Token']
+        self.session_for_flash = requests.session()
+        self.session_for_flash.get(f'https://synergia.librus.pl/loguj/token/{token}/przenies/wiadomosci2')
+
+    def get_messages_list(self):
+        return self.session_for_flash.post(
+            'https://wiadomosci.librus.pl/module/Inbox/action/GetList',
+            data='<service><header/><data><archive>0</archive></data></service>'
+        ).text
+
+
 class SynergiaScrappedMessage:
     def __init__(self, url, parent_web_session, header, author, message_date):
         """
