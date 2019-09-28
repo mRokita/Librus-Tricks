@@ -1,5 +1,5 @@
 from librus_tricks import exceptions
-from librus_tricks.auth import authorizer
+from librus_tricks.auth import authorizer, load_json as __load_json
 from librus_tricks.classes import *
 from librus_tricks.core import SynergiaClient
 
@@ -51,6 +51,24 @@ def use_pickle(file=None, **kwargs):
         user = pickle.load(open(pickles[0], 'rb'))
     else:
         user = pickle.load(file)
+    session = SynergiaClient(user, **kwargs)
+    session.get('Me')
+    return session
+
+
+def use_json(file=None, **kwargs):
+    if file is None:
+        from glob import glob
+        jsons = glob('*.json')
+
+        if jsons.__len__() == 0:
+            raise FileNotFoundError('Nie znaleziono zapisanych sesji')
+        if jsons.__len__() > 1:
+            raise FileExistsError('Zaleziono za dużo zapisanych sesji')
+
+        user = __load_json(open(jsons[0], 'r'))
+    else:
+        user = __load_json(file)
     session = SynergiaClient(user, **kwargs)
     session.get('Me')
     return session

@@ -125,7 +125,7 @@ def load_pickle(pickle_file):
     return pickle.load(pickle_file)
 
 
-def load_cert(cred_file):
+def load_json(cred_file):
     import json
     return SynergiaUser(**json.load(cred_file))
 
