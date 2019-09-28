@@ -19,6 +19,7 @@ class SynergiaUser:
     """
     Obiekt zawierający dane do tworzenia sesji
     """
+
     def __init__(self, user_dict, root_token, revalidation_token, exp_in):
         self.token = user_dict['accessToken']
         self.refresh_token = revalidation_token

@@ -9,7 +9,7 @@ __author__ = 'Backdoorek'
 __version__ = '0.7.4-rc.2'
 
 
-def create_session(email, password, fetch_first=True, **kwargs):
+def create_session(email, password, fetch_first=True, pickle=False, **kwargs):
     """
     Używaj tego tylko kiedy hasło do Portal Librus jest takie samo jako do Synergii.
 
@@ -23,7 +23,6 @@ def create_session(email, password, fetch_first=True, **kwargs):
     if fetch_first is True:
         user = authorizer(email, password)[0]
         session = SynergiaClient(user, synergia_user_passwd=password, **kwargs)
-        return session
     elif fetch_first is False:
         users = authorizer(email, password)
         sessions = [SynergiaClient(user, synergia_user_passwd=password, **kwargs) for user in users]
@@ -31,4 +30,27 @@ def create_session(email, password, fetch_first=True, **kwargs):
     else:
         user = authorizer(email, password)[fetch_first]
         session = SynergiaClient(user, synergia_user_passwd=password, **kwargs)
-        return session
+
+    if pickle:
+        user.pickle_credentials()
+
+    return session
+
+
+def use_pickle(file=None, **kwargs):
+    import pickle
+    if file is None:
+        from glob import glob
+        pickles = glob('*.pickle')
+
+        if pickles.__len__() == 0:
+            raise FileNotFoundError('Nie znaleziono zapisanych sesji')
+        if pickles.__len__() > 1:
+            raise FileExistsError('Zaleziono za dużo zapisanych sesji')
+
+        user = pickle.load(open(pickles[0], 'rb'))
+    else:
+        user = pickle.load(file)
+    session = SynergiaClient(user, **kwargs)
+    session.get('Me')
+    return session
