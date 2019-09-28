@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime, timedelta
 
 import requests
@@ -40,6 +41,7 @@ class SynergiaUser:
         """
         Aktualizuje token do Portalu Librus.
         """
+        logging.debug('Creating new temporary request session')
         auth_session = requests.session()
         new_tokens = auth_session.post(
             OAUTHURL,
@@ -49,6 +51,7 @@ class SynergiaUser:
                 'client_id': CLIENTID
             }
         )
+        logging.debug(f'HTTP payload is {new_tokens.json()}')
         self.root_token = new_tokens.json()['access_token']
         self.refresh_token = new_tokens.json()['refresh_token']
 
@@ -56,11 +59,13 @@ class SynergiaUser:
         """
         Aktualizuje token dostępu do Synergii, który wygasa po 24h.
         """
+        logging.debug('Creating new temporary request session')
         auth_session = requests.session()
         new_token = auth_session.get(
             FRESHURL.format(login=self.login),
             headers={'Authorization': f'Bearer {self.root_token}'}
         )
+        logging.debug(f'HTTP payload is {new_token.json()}')
         self.token = new_token.json()['accessToken']
 
     def check_is_expired(self, use_clock=True, use_query=True):
