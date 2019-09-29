@@ -25,7 +25,7 @@ class SynergiaUser:
         self.token = user_dict['accessToken']
         self.refresh_token = revalidation_token
         self.root_token = root_token
-        self.name, self.last_name = user_dict['studentName'].split(' ')
+        self.name, self.last_name = user_dict['studentName'].split(' ', maxsplit=1)
         self.login = user_dict['login']
         self.uid = user_dict['id']
         self.expires_in = datetime.now() + timedelta(seconds=exp_in)
