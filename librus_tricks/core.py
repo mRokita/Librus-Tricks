@@ -165,6 +165,7 @@ class SynergiaClient:
             self.cache.add_query(uri, http_response, self.user.uid)
             return http_response
 
+        logging.debug('Response found!')
         age = datetime.now() - response_cached.last_load
 
         if age > max_lifetime:
@@ -193,6 +194,7 @@ class SynergiaClient:
             self.cache.add_object(uid, cls, requested_object._json_resource)
             return requested_object
 
+        logging.debug('Object found!')
         age = datetime.now() - requested_object.last_load
 
         if age > max_lifetime:
