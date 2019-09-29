@@ -15,7 +15,7 @@
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="index" title="Indeks" href="genindex.html" />
     <link rel="search" title="Szukaj" href="search.html" />
-    <link rel="next" title="Uwierzytelnienie" href="auth.html" />
+    <link rel="next" title="Dobre praktyki" href="good-practices.html" />
      
     
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -34,7 +34,7 @@
           <a href="py-modindex.html" title="Indeks modułów Pythona"
              >moduły</a> |</li>
         <li class="right" >
-          <a href="auth.html" title="Uwierzytelnienie"
+          <a href="good-practices.html" title="Dobre praktyki"
              accesskey="N">dalej</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">Librus-Tricks 0.7.2 - dokumentacja</a> &#187;</li> 
       </ul>
@@ -47,10 +47,20 @@
             
   <div class="section" id="dokumentacja-librus-tricks">
 <h1>Dokumentacja Librus Tricks<a class="headerlink" href="#dokumentacja-librus-tricks" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<p>Z góry przepraszam za niedokończoną dokumentację 😢.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="auth.html">Uwierzytelnienie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="good-practices.html">Dobre praktyki</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="good-practices.html#przywracanie-wczesniej-utworzonej-sesji">Przywracanie wcześniej utworzonej sesji</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Uwierzytelnianie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#jak-wyglada-logowanie">Jak wygląda logowanie?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#podtrzymywanie-sesji">Podtrzymywanie sesji</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#module-librus_tricks.auth">Dokumentacja modułu</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="core.html"><code class="docutils literal notranslate"><span class="pre">core.py</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="classes.html"><code class="docutils literal notranslate"><span class="pre">classes.py</span></code></a></li>
 </ul>
@@ -64,9 +74,9 @@
 </div>
 <div class="section" id="quick-start">
 <h1>Quick start<a class="headerlink" href="#quick-start" title="Stały odnośnik do tego nagłówka">¶</a></h1>
-<p>Stwórzmy sobie sesję</p>
+<p>Stwórzmy sobie sesję, podaj dane do logowania do Portal Librus (to czym logujesz się do aplikacji)</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">librus_tricks</span> <span class="kn">import</span> <span class="n">create_session</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">create_session</span><span class="p">(</span><span class="s1">&#39;kocham@librus.pl&#39;</span><span class="p">,</span> <span class="s1">&#39;SynergiaJestSuper&#39;</span><span class="p">)</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">create_session</span><span class="p">(</span><span class="s1">&#39;kocham@librus.pl&#39;</span><span class="p">,</span> <span class="s1">&#39;ApkaLibrusaJestSuper(SzczególnieNaIOS)&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To wszystko!</p>
@@ -78,6 +88,11 @@
 <p>Sprawdźmy teraz kiedy nie było ciebie w szkole</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">session</span><span class="o">.</span><span class="n">all_absences</span>
 <span class="go">(&lt;SynergiaAttendance at 2019-09-05 08:14:51 (1615317)&gt;, &lt;SynergiaAttendance at 2019-09-05 09:58:28 (1795174)&gt;, &lt;SynergiaAttendance at 2019-09-05 10:21:47 (1838202)&gt;, &lt;SynergiaAttendance at 2019-09-05 11:23:10 (1953054)&gt;, &lt;SynergiaAttendance at 2019-09-05 11:54:54 (2015674)&gt;, &lt;SynergiaAttendance at 2019-09-05 13:00:22 (2130346)&gt;, &lt;SynergiaAttendance at 2019-09-09 08:21:46 (3591701)&gt;, &lt;SynergiaAttendance at 2019-09-20 13:37:29 (14515355)&gt;, &lt;SynergiaAttendance at 2019-09-20 13:38:06 (14516604)&gt;)</span>
+</pre></div>
+</div>
+<p>Co powinieneś spakować na jutro do szkoły?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">session</span><span class="o">.</span><span class="n">tomorrow_timetable</span><span class="o">.</span><span class="n">lessons</span>
+<span class="go">(&lt;SynergiaTimetableEvent Język niemiecki 08:55:00 09:40:00 with Elżbieta ...&gt;, &lt;SynergiaTimetableEvent Wychowanie fizyczne 09:50:00 10:35:00 with Paweł ...&gt;, &lt;SynergiaTimetableEvent Język polski 10:50:00 11:35:00 with Aleksandra ...&gt;, &lt;SynergiaTimetableEvent Język polski 11:45:00 12:30:00 with Aleksandra ...&gt;, &lt;SynergiaTimetableEvent Historia i społeczeństwo 12:50:00 13:35:00 with Tadeusz ...&gt;, &lt;SynergiaTimetableEvent Historia i społeczeństwo 13:50:00 14:35:00 with Tadeusz ...&gt;, &lt;SynergiaTimetableEvent Wychowanie fizyczne 14:40:00 15:25:00 with Arkadiusz ...&gt;, &lt;SynergiaTimetableEvent Wychowanie fizyczne 15:30:00 16:15:00 with Arkadiusz ...&gt;)</span>
 </pre></div>
 </div>
 </div>
@@ -106,7 +121,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="auth.html" title="następny rozdział">Uwierzytelnienie</a></li>
+      <li>Next: <a href="good-practices.html" title="następny rozdział">Dobre praktyki</a></li>
   </ul></li>
 </ul>
   <div role="note" aria-label="source link">

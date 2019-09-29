@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
   <head>
     <meta charset="utf-8" />
-    <title>Uwierzytelnienie &#8212; Librus-Tricks 0.7.2 - dokumentacja</title>
+    <title>Uwierzytelnianie &#8212; Librus-Tricks 0.7.2 - dokumentacja</title>
     <link rel="stylesheet" href="_static/flasky.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -16,7 +16,7 @@
     <link rel="index" title="Indeks" href="genindex.html" />
     <link rel="search" title="Szukaj" href="search.html" />
     <link rel="next" title="core.py" href="core.html" />
-    <link rel="prev" title="Dokumentacja Librus Tricks" href="index.html" />
+    <link rel="prev" title="Dobre praktyki" href="good-practices.html" />
      
     
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -38,7 +38,7 @@
           <a href="core.html" title="core.py"
              accesskey="N">dalej</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Dokumentacja Librus Tricks"
+          <a href="good-practices.html" title="Dobre praktyki"
              accesskey="P">wstecz</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Librus-Tricks 0.7.2 - dokumentacja</a> &#187;</li> 
       </ul>
@@ -49,8 +49,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-librus_tricks.auth">
-<span id="uwierzytelnienie"></span><h1>Uwierzytelnienie<a class="headerlink" href="#module-librus_tricks.auth" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+  <div class="section" id="uwierzytelnianie">
+<h1>Uwierzytelnianie<a class="headerlink" href="#uwierzytelnianie" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<div class="section" id="jak-wyglada-logowanie">
+<h2>Jak wygląda logowanie?<a class="headerlink" href="#jak-wyglada-logowanie" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>Proces logowania się do API synergii jest trochę skomplikowany.
+Librus utrudnił logowanie się do API zamykając mechanizm OAuth. Tak, Librus Portal wykorzystuje OAuth.</p>
+<ol class="arabic simple">
+<li><p>Pozyskujemy token CSRF z strony Librus Portal</p></li>
+<li><p>Wysyłamy email, hasło i token CSRF do Librus Portal</p></li>
+<li><p>W odpowiedzi dostajemy redirection na <code class="docutils literal notranslate"><span class="pre">localhost/bar?code=fg234asd...</span></code> z naszym kodem do API Librus Portal</p></li>
+<li><p>Używamy kodu do otrzymania listy kont Synergii podłączonych do Librus Portal wraz z tokenami</p></li>
+<li><p>Tworzymy sesję i uwierzytelniamy się header’em <code class="docutils literal notranslate"><span class="pre">Authentication:</span> <span class="pre">Bearer</span> <span class="pre">fg234asd...</span></code></p></li>
+</ol>
+</div>
+<div class="section" id="podtrzymywanie-sesji">
+<h2>Podtrzymywanie sesji<a class="headerlink" href="#podtrzymywanie-sesji" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>Od wersji <code class="docutils literal notranslate"><span class="pre">0.7.4</span></code> librus-tricks automatycznie wykrywa utracenie sesji.
+Jednak <em>keep in mind</em>, że mechanizm ponownego uwierzytelniania w Synergii nie jest perfekcyjny i czasami zwraca śmieci,
+z którymi ta libka (jeszcze) sobie nie radzi. Mi przez ok 72h. sesja została utracona 3 razy i 2 razy udało się ją przywrócić.</p>
+<p>Więcej info znajdziesz <a class="reference external" href="https://github.com/Backdoorek/Librus-Tricks/issues/13">tutaj</a>.</p>
+</div>
+<div class="section" id="module-librus_tricks.auth">
+<span id="dokumentacja-modulu"></span><h2>Dokumentacja modułu<a class="headerlink" href="#module-librus_tricks.auth" title="Stały odnośnik do tego nagłówka">¶</a></h2>
 <dl class="class">
 <dt id="librus_tricks.auth.SynergiaUser">
 <em class="property">class </em><code class="sig-prename descclassname">librus_tricks.auth.</code><code class="sig-name descname">SynergiaUser</code><span class="sig-paren">(</span><em class="sig-param">user_dict</em>, <em class="sig-param">root_token</em>, <em class="sig-param">revalidation_token</em>, <em class="sig-param">exp_in</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser" title="Stały odnośnik do tej definicji">¶</a></dt>
@@ -106,7 +127,27 @@
 </dl>
 </dd></dl>
 
+<dl class="method">
+<dt id="librus_tricks.auth.SynergiaUser.dump_credentials">
+<code class="sig-name descname">dump_credentials</code><span class="sig-paren">(</span><em class="sig-param">cred_file=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.dump_credentials" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="librus_tricks.auth.SynergiaUser.pickle_credentials">
+<code class="sig-name descname">pickle_credentials</code><span class="sig-paren">(</span><em class="sig-param">pickle_file=None</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.SynergiaUser.pickle_credentials" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
+
+<dl class="function">
+<dt id="librus_tricks.auth.load_pickle">
+<code class="sig-prename descclassname">librus_tricks.auth.</code><code class="sig-name descname">load_pickle</code><span class="sig-paren">(</span><em class="sig-param">pickle_file</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.load_pickle" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="librus_tricks.auth.load_json">
+<code class="sig-prename descclassname">librus_tricks.auth.</code><code class="sig-name descname">load_json</code><span class="sig-paren">(</span><em class="sig-param">cred_file</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.auth.load_json" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
 <dt id="librus_tricks.auth.authorizer">
@@ -129,16 +170,27 @@
 </dd></dl>
 
 </div>
+</div>
 
 
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Spis treści</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Uwierzytelnianie</a><ul>
+<li><a class="reference internal" href="#jak-wyglada-logowanie">Jak wygląda logowanie?</a></li>
+<li><a class="reference internal" href="#podtrzymywanie-sesji">Podtrzymywanie sesji</a></li>
+<li><a class="reference internal" href="#module-librus_tricks.auth">Dokumentacja modułu</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="poprzedni rozdział">Dokumentacja Librus Tricks</a></li>
+      <li>Previous: <a href="good-practices.html" title="poprzedni rozdział">Dobre praktyki</a></li>
       <li>Next: <a href="core.html" title="następny rozdział"><code class="docutils literal notranslate"><span class="pre">core.py</span></code></a></li>
   </ul></li>
 </ul>

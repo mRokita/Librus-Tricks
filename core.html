@@ -16,7 +16,7 @@
     <link rel="index" title="Indeks" href="genindex.html" />
     <link rel="search" title="Szukaj" href="search.html" />
     <link rel="next" title="classes.py" href="classes.html" />
-    <link rel="prev" title="Uwierzytelnienie" href="auth.html" />
+    <link rel="prev" title="Uwierzytelnianie" href="auth.html" />
      
     
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -38,7 +38,7 @@
           <a href="classes.html" title="classes.py"
              accesskey="N">dalej</a> |</li>
         <li class="right" >
-          <a href="auth.html" title="Uwierzytelnienie"
+          <a href="auth.html" title="Uwierzytelnianie"
              accesskey="P">wstecz</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Librus-Tricks 0.7.2 - dokumentacja</a> &#187;</li> 
       </ul>
@@ -108,7 +108,7 @@
 
 <dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.dispatch_http_code">
-<em class="property">static </em><code class="sig-name descname">dispatch_http_code</code><span class="sig-paren">(</span><em class="sig-param">response: requests.models.Response</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.dispatch_http_code" title="Stały odnośnik do tej definicji">¶</a></dt>
+<code class="sig-name descname">dispatch_http_code</code><span class="sig-paren">(</span><em class="sig-param">response: requests.models.Response</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">callback_args=()</em>, <em class="sig-param">callback_kwargs={}</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.dispatch_http_code" title="Stały odnośnik do tej definicji">¶</a></dt>
 <dd><p>Sprawdza czy serwer zgłasza błąd poprzez podanie kodu http, w przypadku błędu, rzuca wyjątkiem.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
@@ -121,6 +121,12 @@
 <li><p><strong>librus_tricks.exceptions.SynergiaAccessDenied</strong> – 401</p></li>
 <li><p><strong>librus_tricks.exceptions.SynergiaInvalidRequest</strong> – 401</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Typ zwracany</dt>
+<dd class="field-odd"><p>requests.Response</p>
+</dd>
+<dt class="field-even">Zwraca</dt>
+<dd class="field-even"><p>sprawdzona odpowiedź http</p>
 </dd>
 </dl>
 </dd></dl>
@@ -296,7 +302,7 @@ automatyczną próbę zczytania danych</p></li>
 <dd><p>Zwraca dane przedmioty.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
-<dd class="field-odd"><p><strong>subject</strong> (<em>int</em>) – </p>
+<dd class="field-odd"><p><strong>days_ids</strong> (<em>int</em>) – Id zwolnień</p>
 </dd>
 <dt class="field-even">Typ zwracany</dt>
 <dd class="field-even"><p>tuple[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTeacherFreeDays" title="librus_tricks.classes.SynergiaTeacherFreeDays">librus_tricks.classes.SynergiaTeacherFreeDays</a>]</p>
@@ -306,7 +312,7 @@ automatyczną próbę zczytania danych</p></li>
 
 <dl class="method">
 <dt id="librus_tricks.core.SynergiaClient.timetable">
-<code class="sig-name descname">timetable</code><span class="sig-paren">(</span><em class="sig-param">for_date=datetime.datetime(2019</em>, <em class="sig-param">9</em>, <em class="sig-param">21</em>, <em class="sig-param">13</em>, <em class="sig-param">55</em>, <em class="sig-param">46</em>, <em class="sig-param">65483)</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.timetable" title="Stały odnośnik do tej definicji">¶</a></dt>
+<code class="sig-name descname">timetable</code><span class="sig-paren">(</span><em class="sig-param">for_date=datetime.datetime(2019</em>, <em class="sig-param">9</em>, <em class="sig-param">29</em>, <em class="sig-param">16</em>, <em class="sig-param">30</em>, <em class="sig-param">41</em>, <em class="sig-param">32510)</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.core.SynergiaClient.timetable" title="Stały odnośnik do tej definicji">¶</a></dt>
 <dd><p>Plan lekcji na cały tydzień.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parametry</dt>
@@ -379,7 +385,7 @@ automatyczną próbę zczytania danych</p></li>
 <dd><p>Plan lekcji na dzisiejszy dzień.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Typ zwracany</dt>
-<dd class="field-odd"><p>list[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTimetableDay" title="librus_tricks.classes.SynergiaTimetableDay">librus_tricks.classes.SynergiaTimetableDay</a>]</p>
+<dd class="field-odd"><p><a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTimetableDay" title="librus_tricks.classes.SynergiaTimetableDay">librus_tricks.classes.SynergiaTimetableDay</a></p>
 </dd>
 <dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>Plan lekcji na dziś</p>
@@ -393,7 +399,7 @@ automatyczną próbę zczytania danych</p></li>
 <dd><p>Plan lekcji na kolejny dzień.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Typ zwracany</dt>
-<dd class="field-odd"><p>list[<a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTimetableDay" title="librus_tricks.classes.SynergiaTimetableDay">librus_tricks.classes.SynergiaTimetableDay</a>]</p>
+<dd class="field-odd"><p><a class="reference internal" href="classes.html#librus_tricks.classes.SynergiaTimetableDay" title="librus_tricks.classes.SynergiaTimetableDay">librus_tricks.classes.SynergiaTimetableDay</a></p>
 </dd>
 <dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>Plan lekcji na jutro</p>
@@ -413,7 +419,7 @@ automatyczną próbę zczytania danych</p></li>
         <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="auth.html" title="poprzedni rozdział">Uwierzytelnienie</a></li>
+      <li>Previous: <a href="auth.html" title="poprzedni rozdział">Uwierzytelnianie</a></li>
       <li>Next: <a href="classes.html" title="następny rozdział"><code class="docutils literal notranslate"><span class="pre">classes.py</span></code></a></li>
   </ul></li>
 </ul>
