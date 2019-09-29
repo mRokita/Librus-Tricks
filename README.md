@@ -24,16 +24,12 @@ Fast and powerful Synergia Librus API wrapper
 # Windows
 # Latest stable
 pip install librus-tricks
-# Libs for examples
-pip install librus-tricks[examples]
 # Dev channel
 pip install git+https://github.com/Backdoorek/Librus-Tricks.git@prototype
 
 # Linux
 # Latest stable
 sudo -H pip3 install librus-tricks
-# Libs for examples
-sudo -H pip3 install librus-tricks[examples]
 # Dev channel
 sudo -H pip3 install git+https://github.com/Backdoorek/Librus-Tricks.git@prototype
 ```
@@ -60,7 +56,7 @@ print(*exams)
 
 # Get timetable
 timetable = session.today_timetable
-print(*timetable)
+print(*timetable.lessons)
 # {} {} {} Język angielski Język angielski Matematyka Matematyka Informatyka Informatyka {} {}
 
 # Get messages
