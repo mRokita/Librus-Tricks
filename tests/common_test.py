@@ -3,7 +3,7 @@ import sys
 
 sys.path.extend(['./'])
 
-from librus_tricks import create_session, cache
+from librus_tricks import create_session, cache, use_json
 
 
 def ensure_session():
@@ -11,9 +11,12 @@ def ensure_session():
         global EMAIL
         global PASSWORD
         global session
-        EMAIL = os.environ['librus_email']
-        PASSWORD = os.environ['librus_password']
-        session = create_session(EMAIL, PASSWORD, cache=cache.AlchemyCache(engine_uri='sqlite:///:memory:'))
+        try:
+            session = use_json()
+        except Exception:
+            EMAIL = os.environ['librus_email']
+            PASSWORD = os.environ['librus_password']
+            session = create_session(EMAIL, PASSWORD, cache=cache.AlchemyCache(engine_uri='sqlite:///:memory:'))
 
 
 def test_auth():

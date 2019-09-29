@@ -24,3 +24,7 @@ librus_tricks/cache\.sqlite
 /examples/cache.sqlite
 
 *.sqlite
+
+6379114u.json
+
+6379114u.pickle

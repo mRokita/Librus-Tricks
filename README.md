@@ -24,16 +24,12 @@ Fast and powerful Synergia Librus API wrapper
 # Windows
 # Latest stable
 pip install librus-tricks
-# Libs for examples
-pip install librus-tricks[examples]
 # Dev channel
 pip install git+https://github.com/Backdoorek/Librus-Tricks.git@prototype
 
 # Linux
 # Latest stable
 sudo -H pip3 install librus-tricks
-# Libs for examples
-sudo -H pip3 install librus-tricks[examples]
 # Dev channel
 sudo -H pip3 install git+https://github.com/Backdoorek/Librus-Tricks.git@prototype
 ```
@@ -60,14 +56,14 @@ print(*exams)
 
 # Get timetable
 timetable = session.today_timetable
-print(*timetable)
+print(*timetable.lessons)
 # {} {} {} Język angielski Język angielski Matematyka Matematyka Informatyka Informatyka {} {}
 
 # Get messages
 messages = session.messages() # Requires mobilne dodatki
 print(*messages)
 # <SynergiaNativeMessage 417629 at 0x1f644ddd548> <SynergiaNativeMessage 390558 at 0x1f643148488> <SynergiaNativeMessage 286746 at 0x1f643da28c8>
-messages = session.message_reader.read_messages() # Use html scrapper to read messages, doesn't require mobilne dodatki 
+messages = session.message_reader.read_messages() # Uses html scrapper to read messages, doesn't require mobilne dodatki 
 print(*messages)
 # <Message from ... Artur (... Artur) into /wiadomosci/1/5/417629/f0> <Message from ... Marzenna (... Marzenna) into /wiadomosci/1/5/390558/f0> <Message from SuperAdministrator into /wiadomosci/1/5/286746/f0>
 ```
@@ -76,4 +72,4 @@ print(*messages)
 
 > Written with ❤ from a scratch by Krystian _`Backdoorek`_ Postek
 >
-> Wanna chat? You can find me on [discord](https://discord.gg/WHY87GR)
+> Wanna chat? You can find me on [discord](https://discord.gg/WHY87GR) and [telegram](https://t.me/Backdoorek)

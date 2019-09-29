@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime, timedelta
 
 import requests
@@ -19,11 +20,12 @@ class SynergiaUser:
     """
     Obiekt zawierający dane do tworzenia sesji
     """
+
     def __init__(self, user_dict, root_token, revalidation_token, exp_in):
         self.token = user_dict['accessToken']
         self.refresh_token = revalidation_token
         self.root_token = root_token
-        self.name, self.last_name = user_dict['studentName'].split(' ')
+        self.name, self.last_name = user_dict['studentName'].split(' ', maxsplit=1)
         self.login = user_dict['login']
         self.uid = user_dict['id']
         self.expires_in = datetime.now() + timedelta(seconds=exp_in)
@@ -39,6 +41,7 @@ class SynergiaUser:
         """
         Aktualizuje token do Portalu Librus.
         """
+        logging.debug('Creating new temporary request session')
         auth_session = requests.session()
         new_tokens = auth_session.post(
             OAUTHURL,
@@ -48,6 +51,7 @@ class SynergiaUser:
                 'client_id': CLIENTID
             }
         )
+        logging.debug(f'HTTP payload is {new_tokens.json()}')
         self.root_token = new_tokens.json()['access_token']
         self.refresh_token = new_tokens.json()['refresh_token']
 
@@ -55,11 +59,13 @@ class SynergiaUser:
         """
         Aktualizuje token dostępu do Synergii, który wygasa po 24h.
         """
+        logging.debug('Creating new temporary request session')
         auth_session = requests.session()
         new_token = auth_session.get(
             FRESHURL.format(login=self.login),
             headers={'Authorization': f'Bearer {self.root_token}'}
         )
+        logging.debug(f'HTTP payload is {new_token.json()}')
         self.token = new_token.json()['accessToken']
 
     def check_is_expired(self, use_clock=True, use_query=True):
@@ -96,6 +102,39 @@ class SynergiaUser:
         """
         return self.check_is_expired(use_clock=False)[1]
 
+    def dump_credentials(self, cred_file=None):
+        import json
+        if cred_file is None:
+            cred_file = open(f'{self.login}.json', 'w')
+        json.dump({
+            'user_dict': {
+                'accessToken': self.token,
+                'studentName': f'{self.name} {self.last_name}',
+                'id': self.uid,
+                'login': self.login,
+            },
+            'root_token': self.root_token,
+            'revalidation_token': self.refresh_token,
+            'exp_in': int(self.expires_in.timestamp())
+        }, cred_file)
+
+    def pickle_credentials(self, pickle_file=None):
+        import pickle
+        if pickle_file is None:
+            pickle_file = open(f'{self.login}.pickle', 'wb')
+        pickle.dump(self, pickle_file)
+
+
+def load_pickle(pickle_file):
+    import pickle
+    logging.warning('LOADING PICKLE IS NOT SAFE, BE CAREFUL WITH THIS, USE JSON NEXT TIME!')
+    return pickle.load(pickle_file)
+
+
+def load_json(cred_file):
+    import json
+    return SynergiaUser(**json.load(cred_file))
+
 
 def authorizer(email, password):
     """
@@ -120,7 +159,7 @@ def authorizer(email, password):
         if login_response_redirection.status_code == 403:
             if 'g-recaptcha-response' in login_response_redirection.json()['errors']:
                 raise CaptchaRequired(login_response_redirection.json())
-            raise LibrusInvalidPasswordError(login_response_redirection.json())
+            raise LibrusPortalInvalidPasswordError(login_response_redirection.json())
         raise LibrusLoginError(login_response_redirection.text)
 
     redirection_addr = login_response_redirection.json()['redirect']

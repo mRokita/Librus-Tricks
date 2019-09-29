@@ -1,4 +1,6 @@
-from datetime import datetime, date, time, timedelta
+from datetime import datetime, timedelta
+
+from librus_tricks.exceptions import SessionRequired
 
 
 def _try_to_extract(payload, extraction_key, false_return=None):
@@ -9,7 +11,7 @@ def _try_to_extract(payload, extraction_key, false_return=None):
 
 class _RemoteObjectsUIDManager:
     """
-    Menadżer obiektów, które dopiero zostaną uwtorzone.
+    Menadżer obiektów, które dopiero zostaną utworzone.
     """
     def __init__(self, session, parent):
         """
@@ -111,7 +113,7 @@ class SynergiaGenericClass:
         :return: Pobrany obiekt
         """
         if uid is None or session is None:
-            raise Exception()  # TODO: specify exception
+            raise SessionRequired()
 
         response = session.get_cached_response(*path, uid, max_lifetime=expire)
 
@@ -528,18 +530,6 @@ class SynergiaExam(SynergiaGenericClass):
 
         super().__init__(uid, resource, session)
 
-        def _define_group_and_type(exam_payload):
-            """
-
-            :param dict exam_payload:
-            :return:
-            """
-            if 'VirtualClass' in exam_payload.keys():
-                return {'Id': exam_payload['VirtualClass']['Id'], 'type': SynergiaVirtualClass}
-            if 'Class' in exam_payload.keys():
-                return {'Id': exam_payload['Class']['Id'], 'type': SynergiaGlobalClass}
-            raise AttributeError('Wrong object type')
-
         self.add_date = datetime.strptime(self._json_resource['AddDate'], '%Y-%m-%d %H:%M:%S')
         self.content = self._json_resource['Content']
         self.date = datetime.strptime(self._json_resource['Date'], '%Y-%m-%d').date()
@@ -644,8 +634,8 @@ class SynergiaTeacherFreeDays(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
 
-        self.starts = datetime.fromisoformat(self._json_resource['DateFrom']).date()
-        self.ends = datetime.fromisoformat(self._json_resource['DateTo']).date()
+        self.starts = datetime.strptime(self._json_resource['DateFrom'], '%Y-%m-%d').date()
+        self.ends = datetime.strptime(self._json_resource['DateTo'], '%Y-%m-%d').date()
         self.objects.set_object(
             'teacher', self._json_resource['Teacher']['Id'], SynergiaTeacher
         )
@@ -683,8 +673,8 @@ class SynergiaSchoolFreeDays(SynergiaGenericClass):
 class SynergiaTimetableEntry(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
-        self.available = datetime.fromisoformat(resource['DateFrom']).date(), \
-                         datetime.fromisoformat(resource['DateTo']).date()
+        self.available = datetime.strptime(resource['DateFrom'], '%Y-%m-%d').date(), \
+                         datetime.strptime(resource['DateTo'], '%Y-%m-%d').date()
 
     @classmethod
     def create(cls, uid=None, path=('TimetableEntries',), session=None, extraction_key='TimetableEntry', expire=timedelta(seconds=15)):
@@ -694,8 +684,8 @@ class SynergiaTimetableEntry(SynergiaGenericClass):
 class SynergiaTimetableEvent:
     def __init__(self, resource, session):
         self.lesson_no = resource['LessonNo']
-        self.start = time.fromisoformat(resource['HourFrom'])
-        self.end = time.fromisoformat(resource['HourTo'])
+        self.start = datetime.strptime(resource['HourFrom'], '%H:%M').time()
+        self.end = datetime.strptime(resource['HourTo'], '%H:%M').time()
         self.is_cancelled = resource['IsCanceled']
         self.is_sub = resource['IsSubstitutionClass']
         self.preloaded = {
@@ -795,7 +785,7 @@ class SynergiaTimetable(SynergiaGenericClass):
         root = {}
 
         for day in resource.keys():
-            day_date = date.fromisoformat(day)
+            day_date = datetime.strptime(day, '%Y-%m-%d').date()
             root[day_date] = []
             for period in resource[day]:
                 if period.__len__() != 0:

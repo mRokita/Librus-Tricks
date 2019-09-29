@@ -1,3 +1,4 @@
+import logging
 from datetime import timedelta
 
 import requests
@@ -43,6 +44,10 @@ class SynergiaClient:
     def __repr__(self):
         return f'<Synergia session for {self.user}>'
 
+    def __update_auth_header(self):
+        self.__auth_headers = {'Authorization': f'Bearer {self.user.token}'}
+        logging.debug(f'Updated headers to {self.__auth_headers}')
+
     @staticmethod
     def assembly_path(*elements, prefix='', suffix='', sep='/'):
         """
@@ -61,8 +66,7 @@ class SynergiaClient:
 
     # HTTP part
 
-    @staticmethod
-    def dispatch_http_code(response: requests.Response):
+    def dispatch_http_code(self, response: requests.Response, callback=None, callback_args=tuple(), callback_kwargs=dict()):
         """
         Sprawdza czy serwer zgłasza błąd poprzez podanie kodu http, w przypadku błędu, rzuca wyjątkiem.
 
@@ -71,15 +75,28 @@ class SynergiaClient:
         :raises librus_tricks.exceptions.SynergiaForbidden: 403
         :raises librus_tricks.exceptions.SynergiaAccessDenied: 401
         :raises librus_tricks.exceptions.SynergiaInvalidRequest: 401
+        :rtype: requests.Response
+        :return: sprawdzona odpowiedź http
         """
+        logging.debug('Checking token...')
+        if response.json().get('Code') == 'TokenIsExpired':
+            logging.debug('Token is expired, revalidation!')
+            self.user.revalidate_user()
+            self.__update_auth_header()
+            logging.debug('Redo callback')
+            return callback(*callback_args, **callback_kwargs)
+
+        logging.debug('Dispatching code')
         if response.status_code >= 400:
             raise {
-                500: Exception('Server error'),
-                404: exceptions.SynergiaNotFound(response.url),
-                403: exceptions.SynergiaForbidden(response.json()),
-                401: exceptions.SynergiaAccessDenied(response.json()),
-                400: exceptions.SynergiaInvalidRequest(response.json()),
+                500: exceptions.SynergiaServerError(response.url, response.json()),
+                404: exceptions.SynergiaAPIEndpointNotFound(response.url),
+                403: exceptions.SynergiaForbidden(response.url, response.json()),
+                401: exceptions.SynergiaAccessDenied(response.url, response.json()),
+                400: exceptions.SynergiaAPIInvalidRequest(response.url, response.json()),
             }[response.status_code]
+
+        return response.json()
 
     def get(self, *path, request_params=None):
         """
@@ -99,9 +116,9 @@ class SynergiaClient:
             path_str, headers=self.__auth_headers, params=request_params
         )
 
-        self.dispatch_http_code(response)
+        response = self.dispatch_http_code(response, callback=self.get, callback_args=path, callback_kwargs=request_params)
 
-        return response.json()
+        return response
 
     def post(self, *path, request_params=None):
         """
@@ -121,9 +138,9 @@ class SynergiaClient:
             path_str, headers=self.__auth_headers, params=request_params
         )
 
-        self.dispatch_http_code(response)
+        response = self.dispatch_http_code(response, callback=self.post, callback_args=path, callback_kwargs=request_params)
 
-        return response.json()
+        return response
 
     # Cache
 
@@ -139,16 +156,20 @@ class SynergiaClient:
         :rtype: dict
         """
         uri = self.assembly_path(*path, prefix=self.__api_url)
+        logging.debug('Looking for response in cache...')
         response_cached = self.cache.get_query(uri, self.user.uid)
 
         if response_cached is None:
+            logging.debug('No response found!')
             http_response = self.get(*path, request_params=http_params)
             self.cache.add_query(uri, http_response, self.user.uid)
             return http_response
 
+        logging.debug('Response found!')
         age = datetime.now() - response_cached.last_load
 
         if age > max_lifetime:
+            logging.debug('Cache is outdated!')
             http_response = self.get(*path, request_params=http_params)
             self.cache.del_query(uri, self.user.uid)
             self.cache.add_query(uri, http_response, self.user.uid)
@@ -165,15 +186,19 @@ class SynergiaClient:
         :return: Żądany obiekt
         """
         requested_object = self.cache.get_object(uid, cls)
+        logging.debug('Looking for object in cache...')
 
         if requested_object is None:
+            logging.debug('No object found!')
             requested_object = cls.create(uid=uid, session=self)
             self.cache.add_object(uid, cls, requested_object._json_resource)
             return requested_object
 
+        logging.debug('Object found!')
         age = datetime.now() - requested_object.last_load
 
         if age > max_lifetime:
+            logging.debug('Cache is outdated!')
             requested_object = cls.create(uid=uid, session=self)
             self.cache.del_object(uid)
             self.cache.add_object(uid, cls, requested_object._json_resource)
@@ -317,7 +342,7 @@ class SynergiaClient:
         """
         Plan lekcji na dzisiejszy dzień.
 
-        :rtype: list[librus_tricks.classes.SynergiaTimetableDay]
+        :rtype: librus_tricks.classes.SynergiaTimetableDay
         :return: Plan lekcji na dziś
         """
         return self.timetable().days[datetime.now().date()]
@@ -327,7 +352,7 @@ class SynergiaClient:
         """
         Plan lekcji na kolejny dzień.
 
-        :rtype: list[librus_tricks.classes.SynergiaTimetableDay]
+        :rtype: librus_tricks.classes.SynergiaTimetableDay
         :return: Plan lekcji na jutro
         """
         return self.timetable(datetime.now() + timedelta(days=1)).days[(datetime.now() + timedelta(days=1)).date()]
@@ -378,7 +403,7 @@ class SynergiaClient:
         """
         Zwraca dane przedmioty.
 
-        :param int subject:
+        :param int days_ids: Id zwolnień
         :rtype: tuple[librus_tricks.classes.SynergiaTeacherFreeDays]
         """
         if days_ids.__len__() == 0:
