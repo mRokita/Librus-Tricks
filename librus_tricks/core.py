@@ -166,7 +166,10 @@ class SynergiaClient:
             return http_response
 
         logging.debug('Response found!')
-        age = datetime.now() - response_cached.last_load
+        try:
+            age = datetime.now() - response_cached.last_load
+        except:
+            age = datetime.now() - response_cached.last_load.replace(tzinfo=None)
 
         if age > max_lifetime:
             logging.debug('Cache is outdated!')
@@ -195,7 +198,10 @@ class SynergiaClient:
             return requested_object
 
         logging.debug('Object found!')
-        age = datetime.now() - requested_object.last_load
+        try:
+            age = datetime.now() - requested_object.last_load
+        except:
+            age = datetime.now() - requested_object.last_load.replace(tzinfo=None)
 
         if age > max_lifetime:
             logging.debug('Cache is outdated!')
