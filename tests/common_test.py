@@ -17,6 +17,7 @@ def ensure_session():
             EMAIL = os.environ['librus_email']
             PASSWORD = os.environ['librus_password']
             session = create_session(EMAIL, PASSWORD, cache=cache.AlchemyCache(engine_uri='sqlite:///:memory:'))
+            session.user.dump_credentials()
 
 
 def test_auth():
@@ -53,7 +54,7 @@ def test_newsfeed():
 
 def test_messages():
     ensure_session()
-    return session.message_reader.read_messages()
+    return session.messages()
 
 
 def test_colors():
