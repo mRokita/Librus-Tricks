@@ -1,5 +1,5 @@
-``classes.py``
-***************
+Dokumentacja modułu ``classes.py``
+=====================================
 
 .. automodule:: librus_tricks.classes
     :members:
