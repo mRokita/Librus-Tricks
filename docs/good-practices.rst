@@ -28,4 +28,4 @@ Proponuję używać czegoś takiego.
         session = create_session('kocham@librus.pl', 'ApkaLibrusaJestSuper(SzczególnieNaIOS)')
         session.user.dump_credentials()
 
-Uwaga! Biblioteka pozwala na TYLKO JEDNEGO JSONA.
+Uwaga! Biblioteka pozwala na TYLKO JEDNEGO JSONA. Więcej niż jeden json spowoduje error.

@@ -16,6 +16,7 @@ Z góry przepraszam za niedokończoną dokumentację 😢.
    auth
    core
    classes
+   cache
 
 Instalacja
 ===========

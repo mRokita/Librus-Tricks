@@ -20,8 +20,13 @@ z którymi ta libka (jeszcze) sobie nie radzi. Mi przez ok 72h. sesja została u
 
 Więcej info znajdziesz `tutaj <https://github.com/Backdoorek/Librus-Tricks/issues/13>`_.
 
-Dokumentacja modułu
-=====================
+Problemy z captcha
+===================
+Możliwe, że podczas pracy z librus-tricks pojawi się żądanie captchy od strony serwera.
+Polecam wtedy w trybie incognito się zalogować na portal.librus.pl
+
+Dokumentacja modułu ``auth.py``
+=====================================
 .. automodule:: librus_tricks.auth
     :members:
     :undoc-members:
