@@ -1,6 +1,8 @@
-``core.py``
-*************
+Dokumentacja modułu ``core.py``
+=====================================
 
 .. automodule:: librus_tricks.core
     :members:
-    :member-order: groupwise
+    :undoc-members:
+    :special-members: __init__
+    :member-order: bysource

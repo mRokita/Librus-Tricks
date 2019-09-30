@@ -376,6 +376,10 @@ class SynergiaClient:
         return self.return_objects('Messages', ids_computed, cls=SynergiaNativeMessage, extraction_key='Messages')
 
     def news_feed(self):
+        """
+        :return: Wszystkie ogłoszenia szkolne
+        :rtype: tuple[librus_tricks.classes.SynergiaNews]
+        """
         return self.return_objects('SchoolNotices', cls=SynergiaNews, extraction_key='SchoolNotices')
 
     def subjects(self, *subject):
