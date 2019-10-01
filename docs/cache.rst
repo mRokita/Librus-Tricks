@@ -3,16 +3,22 @@ Mechanizmy cache
 
 Podłączanie innej bazy danych niż domyślny SQLite
 ==================================================
-Domyślny mechanizm cache bazuje na bibliotece SQLAlchemy. Zmiana bazy danych jest ez.
+Domyślny mechanizm cache bazuje na bibliotece SQLAlchemy. Zmiana bazy danych jest dość prosta.
 
-`przykładowe uri do baz danych <https://docs.sqlalchemy.org/en/13/core/engines.html#database-urls>`_
+`Przykładowe uri do baz danych <https://docs.sqlalchemy.org/en/13/core/engines.html#database-urls>`_
 
-Przykład z połączeniem z podłączeniem do MS SQL.
->>> new_cache = cache.AlchemyCache(engine_uri='mssql+pymssql://krystian:librek@db.um.warszawa.pl:1433/dev129')
+Przykład z podłączeniem do PostgreSQL.
+
+>>> new_cache = cache.AlchemyCache(engine_uri='postgresql+psycopg2://krystian:librek@db.um.warszawa.pl:5432/dev129')
+<librus_tricks.cache.AlchemyCache object at 0x000001F0BF4ED548>
 
 .. warning::
-    W obecnej chwili nie jest wspierane używanie innych baz danych niż SQLite ponieważ nie ma ustawionego limitu znaków.
-    W 0.7.5 zostanie to naprawione.
+    Ze względu na kolumnę JSON można jedynie używać tych wybranych baz danych
+
+    - PostgreSQL (9.4 lub nowsza)
+    - MySQL (5.7 lub nowsza)
+    - MariaDB (10.2.7 lub nowsza)
+    - SQLite (3.9 lub nowsza)
 
 Tworzenie własnego obiektu cache
 ==================================
