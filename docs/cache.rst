@@ -10,7 +10,7 @@ Domyślny mechanizm cache bazuje na bibliotece SQLAlchemy. Zmiana bazy danych je
 Przykład z podłączeniem do PostgreSQL.
 
 >>> new_cache = cache.AlchemyCache(engine_uri='postgresql+psycopg2://krystian:librek@db.um.warszawa.pl:5432/dev129')
-<librus_tricks.cache.AlchemyCache object at 0x000001F0BF4ED548>
+<AlchemyCache with postgresql backend using psycopg2 driver (postgresql+psycopg2://krystian:librek@db.um.warszawa.pl:5432/dev129)>
 
 .. warning::
     Ze względu na kolumnę JSON można jedynie używać tych wybranych baz danych

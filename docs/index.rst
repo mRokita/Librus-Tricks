@@ -15,6 +15,7 @@ Z góry przepraszam za niedokończoną dokumentację 😢.
    good-practices
    auth
    core
+   messages
    classes
    cache
 
