@@ -60,7 +60,6 @@ class SynergiaUser:
         Aktualizuje token dostępu do Synergii, który wygasa po 24h.
         """
         def do_revalidation():
-            global new_token
             logging.debug('Creating new temporary request session')
             auth_session = requests.session()
             new_token = auth_session.get(

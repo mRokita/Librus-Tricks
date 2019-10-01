@@ -421,8 +421,7 @@ class SynergiaGrade(SynergiaGenericClass):
         if 'Comments' in self._json_resource.keys():
             return [SynergiaGradeComment.create(i["Id"], self._session) for i in
                     _try_to_extract(self._json_resource, 'Comments', false_return=[])]
-        else:
-            return []
+        return []
 
     @property
     def real_value(self):

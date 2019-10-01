@@ -37,25 +37,6 @@ def create_session(email, password, fetch_first=True, pickle=False, **kwargs):
     return session
 
 
-def use_pickle(file=None, **kwargs):
-    import pickle
-    if file is None:
-        from glob import glob
-        pickles = glob('*.pickle')
-
-        if pickles.__len__() == 0:
-            raise FileNotFoundError('Nie znaleziono zapisanych sesji')
-        if pickles.__len__() > 1:
-            raise FileExistsError('Zaleziono za dużo zapisanych sesji')
-
-        user = pickle.load(open(pickles[0], 'rb'))
-    else:
-        user = pickle.load(file)
-    session = SynergiaClient(user, **kwargs)
-    session.get('Me')
-    return session
-
-
 def use_json(file=None, **kwargs):
     if file is None:
         from glob import glob
