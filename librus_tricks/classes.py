@@ -849,6 +849,13 @@ class SynergiaNews(SynergiaGenericClass):
         self.was_read = self._json_resource['WasRead'] #: bool: status odczytania?
         self.starts = datetime.strptime(self._json_resource['StartDate'], '%Y-%m-%d') #: date: ??
         self.ends = datetime.strptime(self._json_resource['EndDate'], '%Y-%m-%d') #: date: ??
+        self.objects.set_object(
+            'teacher', self._json_resource['AddedBy']['Id'], SynergiaTeacher
+        )
+
+    @property
+    def teacher(self) -> SynergiaTeacher:
+        return self.objects.assembly('teacher')
 
     @classmethod
     def create(cls, uid=None, path=('SchoolNotices',), session=None, extraction_key='SchoolNotices', expire=timedelta(days=31)):
