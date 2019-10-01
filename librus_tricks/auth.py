@@ -133,12 +133,6 @@ class SynergiaUser:
         pickle.dump(self, pickle_file)
 
 
-def load_pickle(pickle_file):
-    import pickle
-    logging.warning('LOADING PICKLE IS NOT SAFE, BE CAREFUL WITH THIS, USE JSON NEXT TIME!')
-    return pickle.load(pickle_file)
-
-
 def load_json(cred_file):
     import json
     return SynergiaUser(**json.load(cred_file))
