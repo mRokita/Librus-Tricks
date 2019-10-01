@@ -40,10 +40,6 @@ sudo -H pip3 install git+https://github.com/Backdoorek/Librus-Tricks.git@prototy
 from librus_tricks import create_session
 session = create_session('my@email.com', 'admin1')
 
-# If passwords are different
-from librus_tricks import SynergiaClient, authorizer
-session = SynergiaClient(authorizer('my@email.com', 'admin1')[0], synergia_user_passwd='admin2')
-
 # Get selected grades
 grades = session.grades()
 print(*grades)

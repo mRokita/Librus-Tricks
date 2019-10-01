@@ -22,14 +22,14 @@ def create_session(email, password, fetch_first=True, pickle=False, **kwargs):
     """
     if fetch_first is True:
         user = authorizer(email, password)[0]
-        session = SynergiaClient(user, synergia_user_passwd=password, **kwargs)
+        session = SynergiaClient(user, **kwargs)
     elif fetch_first is False:
         users = authorizer(email, password)
-        sessions = [SynergiaClient(user, synergia_user_passwd=password, **kwargs) for user in users]
+        sessions = [SynergiaClient(user, **kwargs) for user in users]
         return sessions
     else:
         user = authorizer(email, password)[fetch_first]
-        session = SynergiaClient(user, synergia_user_passwd=password, **kwargs)
+        session = SynergiaClient(user, **kwargs)
 
     if pickle:
         user.pickle_credentials()

@@ -13,7 +13,7 @@ class SynergiaClient:
     """Sesja z API Synergii"""
 
     def __init__(self, user, api_url='https://api.librus.pl/2.0', user_agent='LibrusMobileApp',
-                 cache=cache_lib.AlchemyCache(), synergia_user_passwd=None):
+                 cache=cache_lib.AlchemyCache()):
         """
         Tworzy sesję z API Synergii.
 
@@ -26,20 +26,23 @@ class SynergiaClient:
         self.user = user
         self.session = requests.session()
 
+        self.session.headers.update({'User-Agent': user_agent})
+        self.__auth_headers = {'Authorization': f'Bearer {user.token}'}
+        self.__api_url = api_url
+
         if cache_lib.CacheBase in cache.__class__.__bases__:
             self.cache = cache
             self.li_session = self
         else:
             raise exceptions.InvalidCacheManager(f'{cache} can not be a cache object!')
 
-        if synergia_user_passwd:
-            self.message_reader = MessageReader(self.user.login, synergia_user_passwd)
-        else:
-            self.message_reader = None
+        self.__message_reader = None
 
-        self.session.headers.update({'User-Agent': user_agent})
-        self.__auth_headers = {'Authorization': f'Bearer {user.token}'}
-        self.__api_url = api_url
+    @property
+    def message_reader(self):
+        if self.__message_reader is None:
+            self.__message_reader = MessageReader(self)
+        return self.__message_reader
 
     def __repr__(self):
         return f'<Synergia session for {self.user}>'
