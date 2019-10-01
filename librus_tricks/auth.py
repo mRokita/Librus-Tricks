@@ -41,7 +41,6 @@ class SynergiaUser:
         """
         Aktualizuje token do Portalu Librus.
         """
-        logging.debug('Creating new temporary request session')
         auth_session = requests.session()
         new_tokens = auth_session.post(
             OAUTHURL,
@@ -51,7 +50,7 @@ class SynergiaUser:
                 'client_id': CLIENTID
             }
         )
-        logging.debug(f'HTTP payload is {new_tokens.json()}')
+        logging.debug('%s response %s', new_tokens.status_code, new_tokens.json())
         self.root_token = new_tokens.json()['access_token']
         self.refresh_token = new_tokens.json()['refresh_token']
 
@@ -60,17 +59,17 @@ class SynergiaUser:
         Aktualizuje token dostępu do Synergii, który wygasa po 24h.
         """
         def do_revalidation():
-            logging.debug('Creating new temporary request session')
             auth_session = requests.session()
             new_token = auth_session.get(
                 FRESHURL.format(login=self.login),
                 headers={'Authorization': f'Bearer {self.root_token}'}
             )
-            logging.debug(f'HTTP payload is {new_token.json()}')
+            logging.debug('%s response %s', new_token.status_code, new_token.json())
             return new_token
 
         new_token = do_revalidation()
         if new_token.json()['error'] == 'access_denied':
+            logging.info('Obtaing new token failed! Refreshing root token')
             self.revalidate_root()
             new_token = do_revalidation() # again...
 

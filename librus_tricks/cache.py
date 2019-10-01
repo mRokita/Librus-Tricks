@@ -33,6 +33,9 @@ class DumbCache(CacheBase):
     def get_query(self, uri, user_id):
         return
 
+    def __repr__(self):
+        return f'<Just dumb cache>'
+
 
 class AlchemyCache(CacheBase):
     Base = declarative_base()
@@ -99,3 +102,6 @@ class AlchemyCache(CacheBase):
     def del_object(self, uid):
         self.session.query(self.ObjectLoadCache).filter_by(uid=uid).delete()
         self.session.commit()
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__} with {self.session.bind.dialect.name} backend using {self.session.bind.dialect.driver} driver ({self.session.bind.url})>'

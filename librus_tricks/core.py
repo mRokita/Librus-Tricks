@@ -49,7 +49,7 @@ class SynergiaClient:
 
     def __update_auth_header(self):
         self.__auth_headers = {'Authorization': f'Bearer {self.user.token}'}
-        logging.debug(f'Updated headers to {self.__auth_headers}')
+        logging.debug('Updating headers to %s', self.__auth_headers)
 
     @staticmethod
     def assembly_path(*elements, prefix='', suffix='', sep='/'):
@@ -81,15 +81,15 @@ class SynergiaClient:
         :rtype: requests.Response
         :return: sprawdzona odpowiedź http
         """
-        logging.debug('Checking token...')
+        logging.debug('Dispatching response status')
         if response.json().get('Code') == 'TokenIsExpired':
-            logging.debug('Token is expired, revalidation!')
+            logging.info('Server returned error code "TokenIsExpired", trying to obtain new token')
             self.user.revalidate_user()
             self.__update_auth_header()
-            logging.debug('Redo callback')
+            logging.debug('Repeating failed response')
             return callback(*callback_args, **callback_kwargs)
 
-        logging.debug('Dispatching code')
+        logging.debug('Dispatching http status code')
         if response.status_code >= 400:
             raise {
                 500: exceptions.SynergiaServerError(response.url, response.json()),
@@ -159,23 +159,21 @@ class SynergiaClient:
         :rtype: dict
         """
         uri = self.assembly_path(*path, prefix=self.__api_url)
-        logging.debug('Looking for response in cache...')
         response_cached = self.cache.get_query(uri, self.user.uid)
 
         if response_cached is None:
-            logging.debug('No response found!')
+            logging.debug('Response is not present in cache!')
             http_response = self.get(*path, request_params=http_params)
             self.cache.add_query(uri, http_response, self.user.uid)
             return http_response
 
-        logging.debug('Response found!')
         try:
             age = datetime.now() - response_cached.last_load
         except:
             age = datetime.now() - response_cached.last_load.replace(tzinfo=None)
 
         if age > max_lifetime:
-            logging.debug('Cache is outdated!')
+            logging.debug('Response is too old! Trying to get latest response from api')
             http_response = self.get(*path, request_params=http_params)
             self.cache.del_query(uri, self.user.uid)
             self.cache.add_query(uri, http_response, self.user.uid)
@@ -192,22 +190,20 @@ class SynergiaClient:
         :return: Żądany obiekt
         """
         requested_object = self.cache.get_object(uid, cls)
-        logging.debug('Looking for object in cache...')
 
         if requested_object is None:
-            logging.debug('No object found!')
+            logging.debug('Obejct is not present in cache!')
             requested_object = cls.create(uid=uid, session=self)
             self.cache.add_object(uid, cls, requested_object._json_resource)
             return requested_object
 
-        logging.debug('Object found!')
         try:
             age = datetime.now() - requested_object.last_load
         except Exception:
             age = datetime.now() - requested_object.last_load.replace(tzinfo=None)
 
         if age > max_lifetime:
-            logging.debug('Cache is outdated!')
+            logging.debug('Object is too old! Trying to get latest object from api')
             requested_object = cls.create(uid=uid, session=self)
             self.cache.del_object(uid)
             self.cache.add_object(uid, cls, requested_object._json_resource)
