@@ -200,7 +200,7 @@ class SynergiaClient:
         logging.debug('Object found!')
         try:
             age = datetime.now() - requested_object.last_load
-        except:
+        except Exception:
             age = datetime.now() - requested_object.last_load.replace(tzinfo=None)
 
         if age > max_lifetime:
@@ -417,18 +417,18 @@ class SynergiaClient:
         :rtype: tuple[librus_tricks.classes.SynergiaTeacherFreeDays]
         """
         if days_ids.__len__() == 0:
-            days =  self.return_objects('Calendars', 'TeacherFreeDays', cls=SynergiaTeacherFreeDays)
+            days = self.return_objects('Calendars', 'TeacherFreeDays', cls=SynergiaTeacherFreeDays)
         else:
             ids_computed = self.assembly_path(*days_ids, sep=',', suffix=days_ids[-1])[1:]
-            days =  self.return_objects('Calendars', 'TeacherFreeDays', ids_computed, cls=SynergiaTeacherFreeDays)
+            days = self.return_objects('Calendars', 'TeacherFreeDays', ids_computed, cls=SynergiaTeacherFreeDays)
 
-        def is_future(d):
+        def is_future(day):
             """
 
-            :type d: librus_tricks.classes.SynergiaTeacherFreeDays
+            :type day: librus_tricks.classes.SynergiaTeacherFreeDays
             :return:
             """
-            if d.ends > datetime.now().date():
+            if day.ends > datetime.now().date():
                 return True
             return False
 

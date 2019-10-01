@@ -6,7 +6,7 @@ from librus_tricks.core import SynergiaClient
 __name__ = 'librus_tricks'
 __title__ = 'librus_tricks'
 __author__ = 'Backdoorek'
-__version__ = '0.7.4'
+__version__ = '0.7.5-rc.1'
 
 
 def create_session(email, password, fetch_first=True, pickle=False, **kwargs):
@@ -37,25 +37,6 @@ def create_session(email, password, fetch_first=True, pickle=False, **kwargs):
     return session
 
 
-def use_pickle(file=None, **kwargs):
-    import pickle
-    if file is None:
-        from glob import glob
-        pickles = glob('*.pickle')
-
-        if pickles.__len__() == 0:
-            raise FileNotFoundError('Nie znaleziono zapisanych sesji')
-        if pickles.__len__() > 1:
-            raise FileExistsError('Zaleziono za dużo zapisanych sesji')
-
-        user = pickle.load(open(pickles[0], 'rb'))
-    else:
-        user = pickle.load(file)
-    session = SynergiaClient(user, **kwargs)
-    session.get('Me')
-    return session
-
-
 def use_json(file=None, **kwargs):
     if file is None:
         from glob import glob
@@ -71,4 +52,19 @@ def use_json(file=None, **kwargs):
         user = __load_json(file)
     session = SynergiaClient(user, **kwargs)
     session.get('Me')
+    return session
+
+
+def minified_login(email, password, **kwargs):
+    import logging
+    try:
+        logging.debug('Trying to use json file to create session')
+        session = use_json(**kwargs)
+        logging.debug('Created session using json file')
+    except Exception:
+        logging.debug('Switching to regular http auth')
+        session = create_session(email, password, **kwargs)
+        logging.debug('Created session using http auth')
+
+    session.user.dump_credentials()
     return session

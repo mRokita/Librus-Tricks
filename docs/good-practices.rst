@@ -26,6 +26,8 @@ Proponuję używać czegoś takiego.
         session = use_json()
     except Exception:
         session = create_session('kocham@librus.pl', 'ApkaLibrusaJestSuper(SzczególnieNaIOS)')
+    finally:
         session.user.dump_credentials()
 
-Uwaga! Biblioteka pozwala na TYLKO JEDNEGO JSONA. Więcej niż jeden json spowoduje error.
+.. warning::
+    Biblioteka pozwala na TYLKO JEDNEGO JSONA w swoim root directory. Więcej niż jeden json spowoduje error.

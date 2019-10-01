@@ -3,9 +3,8 @@ Dokumentacja modułu ``classes.py``
 
 .. automodule:: librus_tricks.classes
     :members:
-    :inherited-members:
     :undoc-members:
     :show-inheritance:
     :private-members:
-    :special-members: __init__
+    :exclude-members: create, assembly
     :member-order: bysource
