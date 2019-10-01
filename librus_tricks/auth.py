@@ -59,13 +59,22 @@ class SynergiaUser:
         """
         Aktualizuje token dostępu do Synergii, który wygasa po 24h.
         """
-        logging.debug('Creating new temporary request session')
-        auth_session = requests.session()
-        new_token = auth_session.get(
-            FRESHURL.format(login=self.login),
-            headers={'Authorization': f'Bearer {self.root_token}'}
-        )
-        logging.debug(f'HTTP payload is {new_token.json()}')
+        def do_revalidation():
+            global new_token
+            logging.debug('Creating new temporary request session')
+            auth_session = requests.session()
+            new_token = auth_session.get(
+                FRESHURL.format(login=self.login),
+                headers={'Authorization': f'Bearer {self.root_token}'}
+            )
+            logging.debug(f'HTTP payload is {new_token.json()}')
+            return new_token
+
+        new_token = do_revalidation()
+        if new_token.json()['error'] == 'access_denied':
+            self.revalidate_root()
+            new_token = do_revalidation() # again...
+
         self.token = new_token.json()['accessToken']
 
     def check_is_expired(self, use_clock=True, use_query=True):
