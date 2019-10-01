@@ -40,9 +40,9 @@ class AlchemyCache(CacheBase):
     def __init__(self, engine_uri='sqlite:///:memory:'):
         engine = create_engine(engine_uri, connect_args={'check_same_thread': False}, poolclass=StaticPool)
 
-        Session = sessionmaker(bind=engine)
-        Session.configure(bind=engine)
-        self.session = Session()
+        db_session = sessionmaker(bind=engine)
+        db_session.configure(bind=engine)
+        self.session = db_session()
         self.Base.metadata.create_all(engine)
         self.syn_session = None
 

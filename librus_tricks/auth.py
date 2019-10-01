@@ -126,12 +126,6 @@ class SynergiaUser:
             'exp_in': int(self.expires_in.timestamp())
         }, cred_file)
 
-    def pickle_credentials(self, pickle_file=None):
-        import pickle
-        if pickle_file is None:
-            pickle_file = open(f'{self.login}.pickle', 'wb')
-        pickle.dump(self, pickle_file)
-
 
 def load_json(cred_file):
     import json
