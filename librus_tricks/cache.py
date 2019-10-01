@@ -49,18 +49,19 @@ class AlchemyCache(CacheBase):
     class APIQueryCache(Base):
         __tablename__ = 'uri_cache'
 
-        uri = Column(String, primary_key=True)
-        owner = Column(String)
-        response = Column(JSON)
-        last_load = Column(DateTime)
+        pk = Column(Integer(), primary_key=True)
+        uri = Column(String(length=512))
+        owner = Column(String(length=16))
+        response = Column(JSON())
+        last_load = Column(DateTime())
 
     class ObjectLoadCache(Base):
         __tablename__ = 'object_cache'
 
-        uid = Column(Integer, primary_key=True)
-        name = Column(String)
-        resource = Column(JSON)
-        last_load = Column(DateTime)
+        uid = Column(Integer(), primary_key=True)
+        name = Column(String(length=64))
+        resource = Column(JSON())
+        last_load = Column(DateTime())
 
     def add_object(self, uid, cls, resource):
         self.session.add(
