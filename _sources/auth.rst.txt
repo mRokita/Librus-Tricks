@@ -16,7 +16,7 @@ Podtrzymywanie sesji
 =====================
 Od wersji ``0.7.4`` librus-tricks automatycznie wykrywa utracenie sesji.
 Jednak *keep in mind*, że mechanizm ponownego uwierzytelniania w Synergii nie jest perfekcyjny i czasami zwraca śmieci,
-z którymi ta libka (jeszcze) sobie nie radzi. Mi przez ok 72h. sesja została utracona 3 razy i 2 razy udało się ją przywrócić.
+z którymi librus-tricks (jeszcze) sobie nie radzi. Mi przez ok 72h. sesja została utracona 3 razy i 2 razy udało się ją przywrócić.
 
 Więcej info znajdziesz `tutaj <https://github.com/Backdoorek/Librus-Tricks/issues/13>`_.
 

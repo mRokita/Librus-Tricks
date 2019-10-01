@@ -49,14 +49,22 @@
 <h1>Mechanizmy cache<a class="headerlink" href="#mechanizmy-cache" title="Stały odnośnik do tego nagłówka">¶</a></h1>
 <div class="section" id="podlaczanie-innej-bazy-danych-niz-domyslny-sqlite">
 <h2>Podłączanie innej bazy danych niż domyślny SQLite<a class="headerlink" href="#podlaczanie-innej-bazy-danych-niz-domyslny-sqlite" title="Stały odnośnik do tego nagłówka">¶</a></h2>
-<p>Domyślny mechanizm cache bazuje na bibliotece SQLAlchemy. Zmiana bazy danych jest ez.</p>
-<p><a class="reference external" href="https://docs.sqlalchemy.org/en/13/core/engines.html#database-urls">przykładowe uri do baz danych</a></p>
-<p>Przykład z połączeniem z podłączeniem do MS SQL.
-&gt;&gt;&gt; new_cache = cache.AlchemyCache(engine_uri=»mssql+pymssql://krystian:librek&#64;db.um.warszawa.pl:1433/dev129»)</p>
+<p>Domyślny mechanizm cache bazuje na bibliotece SQLAlchemy. Zmiana bazy danych jest dość prosta.</p>
+<p><a class="reference external" href="https://docs.sqlalchemy.org/en/13/core/engines.html#database-urls">Przykładowe uri do baz danych</a></p>
+<p>Przykład z podłączeniem do PostgreSQL.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">new_cache</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">AlchemyCache</span><span class="p">(</span><span class="n">engine_uri</span><span class="o">=</span><span class="s1">&#39;postgresql+psycopg2://krystian:librek@db.um.warszawa.pl:5432/dev129&#39;</span><span class="p">)</span>
+<span class="go">&lt;librus_tricks.cache.AlchemyCache object at 0x000001F0BF4ED548&gt;</span>
+</pre></div>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Ostrzeżenie</p>
-<p>W obecnej chwili nie jest wspierane używanie innych baz danych niż SQLite ponieważ nie ma ustawionego limitu znaków.
-W 0.7.5 zostanie to naprawione.</p>
+<p>Ze względu na kolumnę JSON można jedynie używać tych wybranych baz danych</p>
+<ul class="simple">
+<li><p>PostgreSQL (9.4 lub nowsza)</p></li>
+<li><p>MySQL (5.7 lub nowsza)</p></li>
+<li><p>MariaDB (10.2.7 lub nowsza)</p></li>
+<li><p>SQLite (3.9 lub nowsza)</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="tworzenie-wlasnego-obiektu-cache">
@@ -221,6 +229,11 @@ for example, any mapped columns or relationships.</p>
 <dt id="librus_tricks.cache.AlchemyCache.APIQueryCache">
 <em class="property">class </em><code class="sig-name descname">APIQueryCache</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#librus_tricks.cache.AlchemyCache.APIQueryCache" title="Stały odnośnik do tej definicji">¶</a></dt>
 <dd><dl class="attribute">
+<dt id="librus_tricks.cache.AlchemyCache.APIQueryCache.pk">
+<code class="sig-name descname">pk</code><a class="headerlink" href="#librus_tricks.cache.AlchemyCache.APIQueryCache.pk" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="librus_tricks.cache.AlchemyCache.APIQueryCache.uri">
 <code class="sig-name descname">uri</code><a class="headerlink" href="#librus_tricks.cache.AlchemyCache.APIQueryCache.uri" title="Stały odnośnik do tej definicji">¶</a></dt>
 <dd></dd></dl>

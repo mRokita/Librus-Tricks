@@ -69,10 +69,14 @@ W tym celu dobrze by było zapisywać tokeny z takich sesji i nie powtarzać pro
     <span class="n">session</span> <span class="o">=</span> <span class="n">use_json</span><span class="p">()</span>
 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
     <span class="n">session</span> <span class="o">=</span> <span class="n">create_session</span><span class="p">(</span><span class="s1">&#39;kocham@librus.pl&#39;</span><span class="p">,</span> <span class="s1">&#39;ApkaLibrusaJestSuper(SzczególnieNaIOS)&#39;</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
     <span class="n">session</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">dump_credentials</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Uwaga! Biblioteka pozwala na TYLKO JEDNEGO JSONA. Więcej niż jeden json spowoduje error.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ostrzeżenie</p>
+<p>Biblioteka pozwala na TYLKO JEDNEGO JSONA w swoim root directory. Więcej niż jeden json spowoduje error.</p>
+</div>
 </div>
 </div>
 
