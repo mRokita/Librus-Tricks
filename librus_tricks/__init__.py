@@ -53,3 +53,18 @@ def use_json(file=None, **kwargs):
     session = SynergiaClient(user, **kwargs)
     session.get('Me')
     return session
+
+
+def minified_login(email, password, **kwargs):
+    import logging
+    try:
+        logging.debug('Trying to use json file to create session')
+        session = use_json(**kwargs)
+        logging.debug('Created session using json file')
+    except Exception:
+        logging.debug('Switching to regular http auth')
+        session = create_session(email, password, **kwargs)
+        logging.debug('Created session using http auth')
+
+    session.user.dump_credentials()
+    return session
