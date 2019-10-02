@@ -6,7 +6,7 @@ class LibrusTricksAuthException(LibrusTricksException):
     pass
 
 
-class LibrusTricksAPIException(LibrusTricksAuthException):
+class LibrusTricksWrapperException(LibrusTricksAuthException):
     pass
 
 
@@ -14,7 +14,7 @@ class LibrusLoginError(LibrusTricksAuthException):
     pass
 
 
-class SynergiaAPIEndpointNotFound(LibrusTricksAPIException):
+class SynergiaAPIEndpointNotFound(LibrusTricksWrapperException):
     pass
 
 
@@ -22,7 +22,7 @@ class LibrusPortalInvalidPasswordError(LibrusTricksAuthException):
     pass
 
 
-class SynergiaAccessDenied(LibrusTricksAPIException):
+class SynergiaAccessDenied(LibrusTricksWrapperException):
     pass
 
 
@@ -30,7 +30,7 @@ class WrongHTTPMethod(Exception):
     pass
 
 
-class SynergiaAPIInvalidRequest(LibrusTricksAPIException):
+class SynergiaAPIInvalidRequest(LibrusTricksWrapperException):
     pass
 
 
@@ -38,7 +38,7 @@ class TokenExpired(LibrusTricksException):
     pass
 
 
-class SynergiaForbidden(LibrusTricksAPIException):
+class SynergiaForbidden(LibrusTricksWrapperException):
     pass
 
 
@@ -50,9 +50,13 @@ class CaptchaRequired(LibrusTricksAuthException):
     pass
 
 
-class SynergiaServerError(LibrusTricksAPIException):
+class SynergiaServerError(LibrusTricksWrapperException):
     pass
 
 
-class SessionRequired(LibrusTricksAPIException):
+class SessionRequired(LibrusTricksWrapperException):
+    pass
+
+
+class APIPathIsEmpty(LibrusTricksWrapperException):
     pass
