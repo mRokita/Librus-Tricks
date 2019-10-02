@@ -857,6 +857,26 @@ class SynergiaTimetable(SynergiaGenericClass):
                     o_str += f'  {event.__str__()}\n'
         return o_str
 
+class SynergiaNativeMessageAuthor(SynergiaGenericClass):
+    def __init__(self, uid, resource, session):
+        super().__init__(uid, resource, session)
+        self.name = resource.get('Name')
+
+    @classmethod
+    def create(cls, uid=None, path=('Messages', 'User'), session=None, extraction_key='User', expire=timedelta(days=60)):
+        return super().create(uid, path, session, extraction_key, expire)
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__} {self.name}>'
+
+    @property
+    def matching_indentity(self):
+        teachers = self._session.return_objects('Users', cls=SynergiaTeacher, extraction_key='Users')
+        for teacher in teachers:
+            if str(teacher.name) in self.name and str(teacher.last_name) in self.name:
+                return teacher
+        return
+
 
 class SynergiaNativeMessage(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
@@ -864,11 +884,11 @@ class SynergiaNativeMessage(SynergiaGenericClass):
         self.body = self._json_resource['Body']  #: str: wiadomość
         self.topic = self._json_resource['Subject']  #: str: temat
         self.send_date = datetime.fromtimestamp(self._json_resource['SendDate'])  #: datetime: data wysłania
-        # self.objects.set_object('sender', self._json_resource['Sender']['Id'], SynergiaTeacher)
+        self.objects.set_object('sender', self._json_resource['Sender']['Id'], SynergiaNativeMessageAuthor)
 
-    # @property
-    # def sender(self) -> SynergiaTeacher:
-    #     return self.objects.assembly('sender')
+    @property
+    def sender(self) -> SynergiaNativeMessageAuthor:
+        return self.objects.assembly('sender')
 
     @classmethod
     def create(cls, uid=None, path=('Messages',), session=None, extraction_key='Message', expire=timedelta(days=31)):
