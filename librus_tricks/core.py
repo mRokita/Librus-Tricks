@@ -371,7 +371,7 @@ class SynergiaClient:
         Wymaga mobilnych dodatków.
 
         :param int messages: Id wiadomości
-        :rtype: tuple[librus_tricks.classes.SynergiaMessages]
+        :rtype: tuple[librus_tricks.classes.SynergiaNativeMessage]
         """
         if messages.__len__() == 0:
             return self.return_objects('Messages', cls=SynergiaNativeMessage, extraction_key='Messages')

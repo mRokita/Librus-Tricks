@@ -42,6 +42,7 @@ def test_timetable():
     for lesson in timetable:
         subjects.append(lesson.subject)
 
+
 def test_messages_scrapper():
     ensure_session()
     authors = []
@@ -56,3 +57,23 @@ def test_messages_scrapper():
         )
 
     return authors, bodies
+
+
+def test_native_message():
+    ensure_session()
+    topics = []
+    authors = []
+    content = []
+    messages = session.messages()
+    for message in messages:
+        topics.append(
+            message.topic
+        )
+        authors.append(
+            message.sender
+        )
+        content.append(
+            message.body
+        )
+
+    return topics, authors, content

@@ -54,7 +54,7 @@ def test_newsfeed():
 
 def test_messages():
     ensure_session()
-    return session.messages()
+    return session.messages(), session.message_reader.read_messages()
 
 
 def test_colors():
@@ -75,6 +75,7 @@ def test_school():
 def test_lucky():
     ensure_session()
     return session.lucky_number
+
 
 def test_teacher_free():
     ensure_session()
