@@ -427,7 +427,7 @@ class SynergiaClient:
             :type day: librus_tricks.classes.SynergiaTeacherFreeDays
             :return:
             """
-            if day.ends > datetime.now().date():
+            if day.ends >= datetime.now().date():
                 return True
             return False
 
