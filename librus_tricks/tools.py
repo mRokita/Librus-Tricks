@@ -6,6 +6,7 @@ def get_next_monday(now=datetime.now()):
         if now.weekday() == 0:
             return now.date()
         now = now + timedelta(days=1)
+    return
 
 
 def get_actual_monday(now=datetime.now()):
@@ -13,3 +14,4 @@ def get_actual_monday(now=datetime.now()):
         if now.weekday() == 0:
             return now.date()
         now = now - timedelta(days=1)
+    return
