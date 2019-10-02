@@ -41,3 +41,18 @@ def test_timetable():
     subjects = []
     for lesson in timetable:
         subjects.append(lesson.subject)
+
+def test_messages_scrapper():
+    ensure_session()
+    authors = []
+    bodies = []
+    messages = session.message_reader.read_messages()
+    for mess in messages:
+        authors.append(
+            mess.author
+        )
+        bodies.append(
+            mess.text
+        )
+
+    return authors, bodies
