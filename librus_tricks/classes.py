@@ -646,6 +646,17 @@ class SynergiaTeacherFreeDays(SynergiaGenericClass):
             'teacher', self._json_resource['Teacher']['Id'], SynergiaTeacher
         )
 
+        if self._json_resource.get('TimeTo') is not None:
+            self.time_begin = datetime.strptime(self._json_resource['TimeFrom'], '%H:%M:%S').time()
+            self.time_ends = datetime.strptime(self._json_resource['TimeTo'], '%H:%M:%S').time()
+        else:
+            self.time_begin = None
+            self.time_ends = None
+
+    @property
+    def period_length(self):
+        return self.ends - self.starts
+
     @property
     def teacher(self) -> SynergiaTeacher:
         """
