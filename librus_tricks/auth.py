@@ -68,7 +68,7 @@ class SynergiaUser:
             return new_token
 
         new_token = do_revalidation()
-        if new_token.json()['error'] == 'access_denied':
+        if new_token.json().get('error') == 'access_denied':
             logging.info('Obtaing new token failed! Refreshing root token')
             self.revalidate_root()
             new_token = do_revalidation() # again...
