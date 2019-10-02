@@ -77,6 +77,6 @@ def test_lucky():
     return session.lucky_number
 
 
-def test_teacher_free():
+def test_free_days():
     ensure_session()
-    return session.teacher_free_days()
+    return session.teacher_free_days(), session.school_free_days()

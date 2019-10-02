@@ -412,6 +412,17 @@ class SynergiaClient:
         """
         return self.get('LuckyNumbers')['LuckyNumber']['LuckyNumber']
 
+    @staticmethod
+    def __is_future(day):
+        """
+
+        :type day: librus_tricks.classes.SynergiaTeacherFreeDays
+        :return:
+        """
+        if day.ends >= datetime.now().date():
+            return True
+        return False
+
     def teacher_free_days(self, *days_ids, only_future=True):
         """
         Zwraca dane przedmioty.
@@ -425,18 +436,8 @@ class SynergiaClient:
             ids_computed = self.assembly_path(*days_ids, sep=',', suffix=days_ids[-1])[1:]
             days = self.return_objects('Calendars', 'TeacherFreeDays', ids_computed, cls=SynergiaTeacherFreeDays)
 
-        def is_future(day):
-            """
-
-            :type day: librus_tricks.classes.SynergiaTeacherFreeDays
-            :return:
-            """
-            if day.ends >= datetime.now().date():
-                return True
-            return False
-
         if only_future:
-            return tuple(filter(is_future, days))
+            return tuple(filter(self.__is_future, days))
         return days
 
     def school_free_days(self, *days_ids, only_future=True):
@@ -446,16 +447,6 @@ class SynergiaClient:
             ids_computed = self.assembly_path(*days_ids, sep=',', suffix=days_ids[-1])[1:]
             days = self.return_objects('Calendars', 'SchoolFreeDays', ids_computed, cls=SynergiaSchoolFreeDays)
 
-        def is_future(day):
-            """
-
-            :type day: librus_tricks.classes.SynergiaTeacherFreeDays
-            :return:
-            """
-            if day.ends >= datetime.now().date():
-                return True
-            return False
-
         if only_future:
-            return tuple(filter(is_future, days))
+            return tuple(filter(self.__is_future, days))
         return days
