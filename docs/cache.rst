@@ -19,6 +19,7 @@ Przykład z podłączeniem do PostgreSQL.
     - MySQL (5.7 lub nowsza)
     - MariaDB (10.2.7 lub nowsza)
     - SQLite (3.9 lub nowsza)
+    - Oracle Database (12.2 lub nowsza)
 
 Tworzenie własnego obiektu cache
 ==================================
