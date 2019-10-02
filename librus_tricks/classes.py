@@ -293,11 +293,15 @@ class SynergiaGradeCategory(SynergiaGenericClass):
 
     @classmethod
     def create(cls, uid=None, path=('Grades', 'Categories'), session=None, extraction_key='Category', expire=timedelta(days=31)):
+               expire=timedelta(days=31)):
         return super().create(uid, path, session, extraction_key, expire)
 
     @property
-    def teacher(self) -> SynergiaTeacher:
-        return self.objects.assembly('teacher')
+    def teacher(self):
+        try:
+            return self.objects.assembly('teacher')
+        except KeyError:
+            return
 
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.name}>'
