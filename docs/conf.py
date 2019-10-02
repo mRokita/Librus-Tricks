@@ -13,7 +13,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+from librus_tricks import __version__
 
 # -- Project information -----------------------------------------------------
 
@@ -22,7 +22,7 @@ copyright = '2019, Krystian Postek'
 author = 'Krystian Postek'
 
 # The full version, including alpha/beta/rc tags
-release = '0.7.2'
+release = __version__
 
 
 # -- General configuration ---------------------------------------------------
