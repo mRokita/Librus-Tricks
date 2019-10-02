@@ -434,3 +434,24 @@ class SynergiaClient:
         if only_future:
             return tuple(filter(is_future, days))
         return days
+
+    def school_free_days(self, *days_ids, only_future=True):
+        if days_ids.__len__() == 0:
+            days = self.return_objects('Calendars', 'SchoolFreeDays', cls=SynergiaSchoolFreeDays)
+        else:
+            ids_computed = self.assembly_path(*days_ids, sep=',', suffix=days_ids[-1])[1:]
+            days = self.return_objects('Calendars', 'SchoolFreeDays', ids_computed, cls=SynergiaSchoolFreeDays)
+
+        def is_future(day):
+            """
+
+            :type day: librus_tricks.classes.SynergiaTeacherFreeDays
+            :return:
+            """
+            if day.ends >= datetime.now().date():
+                return True
+            return False
+
+        if only_future:
+            return tuple(filter(is_future, days))
+        return days

@@ -674,18 +674,16 @@ class SynergiaTeacherFreeDays(SynergiaGenericClass):
 
 
 class SynergiaSchoolFreeDays(SynergiaGenericClass):
-    def __init__(self, uid, resource, session, from_origin=False):
+    def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
-        if from_origin:
-            self._json_payload = self._json_payload[0]
-        self.starts = datetime.strptime(self._json_payload['DateFrom'], '%Y-%m-%d').date()
-        self.ends = datetime.strptime(self._json_payload['DateTo'], '%Y-%m-%d').date()
-        self.name = self._json_payload['Name']  # TODO: Dodać Units
+        self.starts = datetime.strptime(self._json_resource['DateFrom'], '%Y-%m-%d').date()
+        self.ends = datetime.strptime(self._json_resource['DateTo'], '%Y-%m-%d').date()
+        self.name = self._json_resource['Name']
 
     @classmethod
-    def create(cls, uid=None, path=('Calendars', 'TeacherFreeDays'), session=None, extraction_key=None, expire=timedelta(minutes=5)):
+    def create(cls, uid=None, path=('Calendars', 'SchoolFreeDays'), session=None, extraction_key='SchoolFreeDays',
+               expire=timedelta(minutes=5)):
         return super().create(uid, path, session, extraction_key, expire)
-    # TODO: Wymagany debug oraz test
 
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.starts.isoformat()} - {self.ends.isoformat()}>'
