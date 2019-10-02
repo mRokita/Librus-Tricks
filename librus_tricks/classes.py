@@ -13,6 +13,7 @@ class _RemoteObjectsUIDManager:
     """
     Menadżer obiektów, które dopiero zostaną utworzone.
     """
+
     def __init__(self, session, parent):
         """
 
@@ -69,6 +70,7 @@ class SynergiaGenericClass:
     """
     Klasa macierzysta dla obiektów dziennika Synergia.
     """
+
     def __init__(self, uid, resource, session):
         """
 
@@ -292,7 +294,7 @@ class SynergiaGradeCategory(SynergiaGenericClass):
             )
 
     @classmethod
-    def create(cls, uid=None, path=('Grades', 'Categories'), session=None, extraction_key='Category', expire=timedelta(days=31)):
+    def create(cls, uid=None, path=('Grades', 'Categories'), session=None, extraction_key='Category',
                expire=timedelta(days=31)):
         return super().create(uid, path, session, extraction_key, expire)
 
@@ -321,6 +323,11 @@ class SynergiaGradeComment(SynergiaGenericClass):
     def __str__(self):
         return self.text
 
+    @classmethod
+    def create(cls, uid=None, path=('Grades', 'Comments'), session=None, extraction_key='Comment',
+               expire=timedelta(days=31)):
+        return super().create(uid, path, session, extraction_key, expire)
+
     @property
     def teacher(self) -> SynergiaTeacher:
         return self.objects.assembly('teacher')
@@ -328,6 +335,9 @@ class SynergiaGradeComment(SynergiaGenericClass):
     @property
     def grade_bind(self):
         return self.objects.assembly('bind')
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__} {self.text}>'
 
 
 class SynergiaBaseTextGrade(SynergiaGenericClass):
@@ -348,7 +358,8 @@ class SynergiaBaseTextGrade(SynergiaGenericClass):
         )
 
     @classmethod
-    def create(cls, uid=None, path=('BaseTextGrades',), session=None, extraction_key='BaseTextGrades', expire=timedelta(minutes=5)):
+    def create(cls, uid=None, path=('BaseTextGrades',), session=None, extraction_key='BaseTextGrades',
+               expire=timedelta(minutes=5)):
         return super().create(uid, path, session, extraction_key, expire)
 
     @property
@@ -468,7 +479,8 @@ class SynergiaAttendanceType(SynergiaGenericClass):
         self.short_name = self._json_resource['Short']
 
     @classmethod
-    def create(cls, uid=None, path=('Attendances', 'Types'), session=None, extraction_key='Type', expire=timedelta(days=31)):
+    def create(cls, uid=None, path=('Attendances', 'Types'), session=None, extraction_key='Type',
+               expire=timedelta(days=31)):
         return super().create(uid, path, session, extraction_key, expire)
 
     def __repr__(self):
@@ -490,7 +502,8 @@ class SynergiaAttendance(SynergiaGenericClass):
         )
 
     @classmethod
-    def create(cls, uid=None, path=('Attendances',), session=None, extraction_key='Attendance', expire=timedelta(minutes=10)):
+    def create(cls, uid=None, path=('Attendances',), session=None, extraction_key='Attendance',
+               expire=timedelta(minutes=10)):
         return super().create(uid, path, session, extraction_key, expire)
 
     @property
@@ -520,7 +533,8 @@ class SynergiaExamCategory(SynergiaGenericClass):
         self.objects.set_object('color', self._json_resource['Color']['Id'], SynergiaColor)
 
     @classmethod
-    def create(cls, uid=None, path=('HomeWorks', 'Categories'), session=None, extraction_key='Category', expire=timedelta(days=31)):
+    def create(cls, uid=None, path=('HomeWorks', 'Categories'), session=None, extraction_key='Category',
+               expire=timedelta(days=31)):
         return super().create(uid, path, session, extraction_key, expire)
 
     @property
@@ -589,7 +603,7 @@ class SynergiaExam(SynergiaGenericClass):
     #        return SynergiaVirtualClass(self.objects_ids.group, self._session)
 
     @property
-    def subject(self) -> SynergiaSubject:
+    def subject(self):
         if self.__subject_present:
             return self.objects.assembly('subject')
         else:
@@ -670,7 +684,7 @@ class SynergiaTeacherFreeDays(SynergiaGenericClass):
         return self.objects.assembly('teacher')
 
     def __repr__(self):
-        return f'<SynergiaTeacherFreeDays {self.starts.isoformat()} - {self.ends.isoformat()} ({(self.ends-self.starts).days} days) for {self.objects.return_id("teacher")}>'
+        return f'<SynergiaTeacherFreeDays {self.starts.isoformat()} - {self.ends.isoformat()} ({(self.ends - self.starts).days} days) for {self.objects.return_id("teacher")}>'
 
 
 class SynergiaSchoolFreeDays(SynergiaGenericClass):
@@ -696,17 +710,18 @@ class SynergiaTimetableEntry(SynergiaGenericClass):
                          datetime.strptime(resource['DateTo'], '%Y-%m-%d').date()
 
     @classmethod
-    def create(cls, uid=None, path=('TimetableEntries',), session=None, extraction_key='TimetableEntry', expire=timedelta(seconds=15)):
+    def create(cls, uid=None, path=('TimetableEntries',), session=None, extraction_key='TimetableEntry',
+               expire=timedelta(seconds=15)):
         return super().create(uid, path, session, extraction_key, expire)
 
 
 class SynergiaTimetableEvent:
     def __init__(self, resource, session):
-        self.lesson_no = resource['LessonNo'] #: int: numer lekcji
-        self.start = datetime.strptime(resource['HourFrom'], '%H:%M').time() #: time: początek lekcji
-        self.end = datetime.strptime(resource['HourTo'], '%H:%M').time() #: time: koniec lekcji
-        self.is_cancelled = resource['IsCanceled'] #: bool: czy lekcja jest odwołana
-        self.is_sub = resource['IsSubstitutionClass'] #: bool: czy lekcja jest zastępstwem
+        self.lesson_no = resource['LessonNo']  #: int: numer lekcji
+        self.start = datetime.strptime(resource['HourFrom'], '%H:%M').time()  #: time: początek lekcji
+        self.end = datetime.strptime(resource['HourTo'], '%H:%M').time()  #: time: koniec lekcji
+        self.is_cancelled = resource['IsCanceled']  #: bool: czy lekcja jest odwołana
+        self.is_sub = resource['IsSubstitutionClass']  #: bool: czy lekcja jest zastępstwem
         self.preloaded = {
             'subject_title': resource['Subject']['Name'],
             'teacher': f'{resource["Teacher"]["FirstName"]} {resource["Teacher"]["LastName"]}'
@@ -758,7 +773,7 @@ class SynergiaTimetableEvent:
 
 class SynergiaTimetableDay:
     def __init__(self, lessons):
-        self.lessons = tuple(lessons) #: tuple[SynergiaTimetableEvent]: krotka z lekcjami
+        self.lessons = tuple(lessons)  #: tuple[SynergiaTimetableEvent]: krotka z lekcjami
         if self.lessons.__len__() != 0:
             self.day_start = self.lessons[0].start
             self.day_end = self.lessons[-1].end
@@ -766,16 +781,20 @@ class SynergiaTimetableDay:
             self.day_start = None
             self.day_end = None
 
+    def __repr__(self):
+        return f'<{self.__class__.__name__} with {self.lessons.__len__()} lessons between {self.day_start} and {self.day_end}>'
+
 
 class SynergiaTimetable(SynergiaGenericClass):
     """
     Obiekt zawierający cały tydzień w planie lekcji
     """
+
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
         self.days = self.convert_parsed_timetable(
             self.parse_timetable(resource)
-        ) #: list[SynergiaTimetableDay]: lista z dniami tygodnia
+        )  #: list[SynergiaTimetableDay]: lista z dniami tygodnia
 
     @property
     def today_timetable(self):
@@ -792,7 +811,8 @@ class SynergiaTimetable(SynergiaGenericClass):
         return self
 
     @classmethod
-    def create(cls, uid=None, path=('Timetables',), session=None, extraction_key='Timetable', expire=timedelta(seconds=15)):
+    def create(cls, uid=None, path=('Timetables',), session=None, extraction_key='Timetable',
+               expire=timedelta(seconds=15)):
         response = session.get_cached_response(*path)
 
         if extraction_key is None:
@@ -838,13 +858,12 @@ class SynergiaTimetable(SynergiaGenericClass):
         return o_str
 
 
-
 class SynergiaNativeMessage(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
-        self.body = self._json_resource['Body'] #: str: wiadomość
-        self.topic = self._json_resource['Subject'] #: str: temat
-        self.send_date = datetime.fromtimestamp(self._json_resource['SendDate']) #: datetime: data wysłania
+        self.body = self._json_resource['Body']  #: str: wiadomość
+        self.topic = self._json_resource['Subject']  #: str: temat
+        self.send_date = datetime.fromtimestamp(self._json_resource['SendDate'])  #: datetime: data wysłania
         # self.objects.set_object('sender', self._json_resource['Sender']['Id'], SynergiaTeacher)
 
     # @property
@@ -860,15 +879,17 @@ class SynergiaNews(SynergiaGenericClass):
     """
     Obiekt reprezentujący ogłoszenie szkolne
     """
+
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
-        self.content = self._json_resource['Content'] #: str: wiadomość ogłoszenia
-        self.created = datetime.strptime(self._json_resource['CreationDate'], '%Y-%m-%d %H:%M:%S') #: datetime: data utworzenia
-        self.unique_id = self._json_resource['Id'] #: int: id ogłoszenia
-        self.topic = self._json_resource['Subject'] #: str: temat
-        self.was_read = self._json_resource['WasRead'] #: bool: status odczytania?
-        self.starts = datetime.strptime(self._json_resource['StartDate'], '%Y-%m-%d') #: date: ??
-        self.ends = datetime.strptime(self._json_resource['EndDate'], '%Y-%m-%d') #: date: ??
+        self.content = self._json_resource['Content']  #: str: wiadomość ogłoszenia
+        self.created = datetime.strptime(self._json_resource['CreationDate'],
+                                         '%Y-%m-%d %H:%M:%S')  #: datetime: data utworzenia
+        self.unique_id = self._json_resource['Id']  #: int: id ogłoszenia
+        self.topic = self._json_resource['Subject']  #: str: temat
+        self.was_read = self._json_resource['WasRead']  #: bool: status odczytania?
+        self.starts = datetime.strptime(self._json_resource['StartDate'], '%Y-%m-%d')  #: date: ??
+        self.ends = datetime.strptime(self._json_resource['EndDate'], '%Y-%m-%d')  #: date: ??
         self.objects.set_object(
             'teacher', self._json_resource['AddedBy']['Id'], SynergiaTeacher
         )
@@ -878,20 +899,23 @@ class SynergiaNews(SynergiaGenericClass):
         return self.objects.assembly('teacher')
 
     @classmethod
-    def create(cls, uid=None, path=('SchoolNotices',), session=None, extraction_key='SchoolNotices', expire=timedelta(days=31)):
+    def create(cls, uid=None, path=('SchoolNotices',), session=None, extraction_key='SchoolNotices',
+               expire=timedelta(days=31)):
         return super().create(uid, path, session, extraction_key, expire)
 
     def __repr__(self):
-        return f'<SynergiaNews {self.topic}>'
+        return f'<SynergiaNews {self.topic} posted {self.created}>'
+
 
 class SynergiaSchool(SynergiaGenericClass):
     """
     Obiekt zawierający informacje o szkole
     """
+
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
-        self.name = resource['Name'] #: str: nazwa szkoły
-        self.location = f'{resource["Town"]} {resource["Street"]} {resource["BuildingNumber"]}' #: str: adres szkoły
+        self.name = resource['Name']  #: str: nazwa szkoły
+        self.location = f'{resource["Town"]} {resource["Street"]} {resource["BuildingNumber"]}'  #: str: adres szkoły
 
     @classmethod
     def create(cls, uid=None, path=('Schools',), session=None, extraction_key='School', expire=timedelta(seconds=1)):

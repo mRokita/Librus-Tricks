@@ -69,7 +69,8 @@ class SynergiaClient:
 
     # HTTP part
 
-    def dispatch_http_code(self, response: requests.Response, callback=None, callback_args=tuple(), callback_kwargs=dict()):
+    def dispatch_http_code(self, response: requests.Response, callback=None, callback_args=tuple(),
+                           callback_kwargs=dict()):
         """
         Sprawdza czy serwer zgłasza błąd poprzez podanie kodu http, w przypadku błędu, rzuca wyjątkiem.
 
@@ -119,7 +120,8 @@ class SynergiaClient:
             path_str, headers=self.__auth_headers, params=request_params
         )
 
-        response = self.dispatch_http_code(response, callback=self.get, callback_args=path, callback_kwargs=request_params)
+        response = self.dispatch_http_code(response, callback=self.get, callback_args=path,
+                                           callback_kwargs=request_params)
 
         return response
 
@@ -141,7 +143,8 @@ class SynergiaClient:
             path_str, headers=self.__auth_headers, params=request_params
         )
 
-        response = self.dispatch_http_code(response, callback=self.post, callback_args=path, callback_kwargs=request_params)
+        response = self.dispatch_http_code(response, callback=self.post, callback_args=path,
+                                           callback_kwargs=request_params)
 
         return response
 
@@ -269,7 +272,7 @@ class SynergiaClient:
 
         for subjects in grades_categorized.copy().keys():
             if grades_categorized[subjects].__len__() == 0:
-                del(grades_categorized[subjects])
+                del (grades_categorized[subjects])
 
         return grades_categorized
 
@@ -290,6 +293,7 @@ class SynergiaClient:
         :rtype: tuple[librus_tricks.classes.SynergiaAttendance]
         :return: krotka z nieusprawiedliwionymi nieobecnościami
         """
+
         def is_absence(k):
             if k.type.uid == '1':
                 return True
