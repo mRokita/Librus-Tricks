@@ -421,34 +421,38 @@ class SynergiaGrade(SynergiaGenericClass):
 
         :rtype: list of SynergiaGradeComment
         """
-        if 'Comments' in self._json_resource.keys():
-            return [SynergiaGradeComment.create(i["Id"], self._session) for i in
-                    _try_to_extract(self._json_resource, 'Comments', false_return=[])]
-        return []
+        if self._json_resource.get('Comments') is not None:
+            return [
+                SynergiaGradeComment.create(
+                    uid=com.get('Id'), session=self._session
+                ) for com in self._json_resource.get('Comments')
+            ]
+        return tuple()
 
     @property
     def real_value(self):
-        try:
-            return {
-                '1': 1,
-                '1+': 1.25,
-                '2-': 1.75,
-                '2': 2,
-                '2+': 2.25,
-                '3-': 2.75,
-                '3': 3,
-                '3+': 3.25,
-                '4-': 4.75,
-                '4': 4,
-                '4+': 4.25,
-                '5-': 4.75,
-                '5': 5,
-                '5+': 5.25,
-                '6-': 5.75,
-                '6': 6
-            }[self.grade]
-        except KeyError:
-            return None
+        return {
+            '1': 1,
+            '1+': 1.25,
+            '2-': 1.75,
+            '2': 2,
+            '2+': 2.25,
+            '3-': 2.75,
+            '3': 3,
+            '3+': 3.25,
+            '4-': 4.75,
+            '4': 4,
+            '4+': 4.25,
+            '5-': 4.75,
+            '5': 5,
+            '5+': 5.25,
+            '6-': 5.75,
+            '6': 6
+        }.get(self.grade)
+
+    @classmethod
+    def create(cls, uid=None, path=('Grades',), session=None, extraction_key='Grade', expire=timedelta(minutes=45)):
+        return super().create(uid, path, session, extraction_key, expire)
 
 
 class SynergiaAttendanceType(SynergiaGenericClass):
