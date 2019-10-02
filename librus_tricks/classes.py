@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from librus_tricks.exceptions import SessionRequired
+from librus_tricks.exceptions import SessionRequired, APIPathIsEmpty
 
 
 def _try_to_extract(payload, extraction_key, false_return=None):
@@ -114,6 +114,9 @@ class SynergiaGenericClass:
         """
         if uid is None or session is None:
             raise SessionRequired()
+
+        if path == ('',):
+            raise APIPathIsEmpty(f'Path for {cls.__name__} class is empty!')
 
         response = session.get_cached_response(*path, uid, max_lifetime=expire)
 
