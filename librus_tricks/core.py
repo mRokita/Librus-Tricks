@@ -70,7 +70,7 @@ class SynergiaClient:
     # HTTP part
 
     def dispatch_http_code(self, response: requests.Response, callback=None, callback_args=tuple(),
-                           callback_kwargs=dict()):
+                           callback_kwargs=None):
         """
         Sprawdza czy serwer zgłasza błąd poprzez podanie kodu http, w przypadku błędu, rzuca wyjątkiem.
 
@@ -82,6 +82,9 @@ class SynergiaClient:
         :rtype: requests.Response
         :return: sprawdzona odpowiedź http
         """
+        if callback_kwargs is None:
+            callback_kwargs = dict()
+
         logging.debug('Dispatching response status')
         if response.json().get('Code') == 'TokenIsExpired':
             logging.info('Server returned error code "TokenIsExpired", trying to obtain new token')
@@ -156,7 +159,7 @@ class SynergiaClient:
 
         :param path: Niezłożona ścieżka do węzła API
         :param request_params: dict zawierający kwargs dla zapytania http
-        :type request_params: dict
+        :type http_params: dict
         :param timedelta max_lifetime: Maksymalny czas ważności cache dla tego zapytania http
         :return: dict zawierający odpowiedź zapytania
         :rtype: dict
@@ -197,7 +200,7 @@ class SynergiaClient:
         if requested_object is None:
             logging.debug('Obejct is not present in cache!')
             requested_object = cls.create(uid=uid, session=self)
-            self.cache.add_object(uid, cls, requested_object._json_resource)
+            self.cache.add_object(uid, cls, requested_object.export_resource())
             return requested_object
 
         try:
