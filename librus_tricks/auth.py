@@ -14,7 +14,10 @@ SYNERGIAAUTHURL = 'https://portal.librus.pl/api/v2/SynergiaAccounts'
 FRESHURL = 'https://portal.librus.pl/api/v2/SynergiaAccounts/fresh/{login}'
 CLIENTID = 'wmSyUMo8llDAs4y9tJVYY92oyZ6h4lAt7KCuy0Gv'
 LIBRUSLOGINURL = f'https://portal.librus.pl/oauth2/authorize?client_id={CLIENTID}&redirect_uri={REDIRURL}&response_type=code'
-
+# User agents
+XIAOMI_USERAGENT = 'Mozilla/5.0 (Linux; Android 9; Mi A1 Build/PQ3B.190801.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/79.0.3921.2 Mobile Safari/537.36LibrusMobileApp'
+IPHONE_USERAGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/77.0.3865.103 Mobile/15E148 Safari/605.1LibrusMobileApp'
+GOOGLEBOT_USERAGENT = 'Googlebot/2.1 (+http://www.google.com/bot.html)LibrusMobileApp'
 
 class SynergiaUser:
     """
@@ -131,7 +134,7 @@ def load_json(cred_file):
     return SynergiaUser(**json.load(cred_file))
 
 
-def authorizer(email, password):
+def authorizer(email, password, user_agent=None):
     """
     Zwraca listę użytkowników dostępnych dla danego konta Librus Portal
 
@@ -140,8 +143,13 @@ def authorizer(email, password):
     :return: Listę z użytkownikami połączonymi do konta Librus Synergia
     :rtype: list[librus_tricks.auth.SynergiaUser]
     """
+    if user_agent is None:
+        from random import choice
+        user_agent = choice([XIAOMI_USERAGENT, IPHONE_USERAGENT])
+        logging.debug('No user-agent specified, using %s', user_agent)
+
     auth_session = requests.session()
-    auth_session.headers.update({'User-Agent': 'LibrusMobileApp'})
+    auth_session.headers.update({'User-Agent': user_agent})
     site = auth_session.get(LIBRUSLOGINURL)
     soup = BeautifulSoup(site.text, 'html.parser')
     csrf = soup.find('meta', attrs={'name': 'csrf-token'})['content']
