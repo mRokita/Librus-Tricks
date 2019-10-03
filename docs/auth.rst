@@ -23,7 +23,8 @@ Więcej info znajdziesz `tutaj <https://github.com/Backdoorek/Librus-Tricks/issu
 Problemy z captcha
 ===================
 Możliwe, że podczas pracy z librus-tricks pojawi się żądanie captchy od strony serwera.
-Polecam wtedy w trybie incognito się zalogować na portal.librus.pl
+Polecam wtedy w trybie incognito się zalogować na `portal.librus.pl <https://portal.librus.pl/rodzina>`_.
+W kolejnych wersjach spróbuję dodać opcję wyświetlania captchy.
 
 Dokumentacja modułu ``auth.py``
 =====================================
