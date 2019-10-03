@@ -492,7 +492,7 @@ class SynergiaAttendance(SynergiaGenericClass):
         super().__init__(uid, resource, session)
         self.add_date = datetime.strptime(self._json_resource['AddDate'], '%Y-%m-%d %H:%M:%S')
         self.date = datetime.strptime(self._json_resource['Date'], '%Y-%m-%d').date()
-        self.lesson_no = self._json_resource['LessonNo']
+        self.lesson_no = int(self._json_resource['LessonNo'])
         self.objects.set_object(
             'teacher', self._json_resource['AddedBy']['Id'], SynergiaTeacher
         ).set_object(
@@ -717,7 +717,7 @@ class SynergiaTimetableEntry(SynergiaGenericClass):
 
 class SynergiaTimetableEvent:
     def __init__(self, resource, session):
-        self.lesson_no = resource['LessonNo']  #: int: numer lekcji
+        self.lesson_no = int(resource['LessonNo'])  #: int: numer lekcji
         self.start = datetime.strptime(resource['HourFrom'], '%H:%M').time()  #: time: początek lekcji
         self.end = datetime.strptime(resource['HourTo'], '%H:%M').time()  #: time: koniec lekcji
         self.is_cancelled = resource['IsCanceled']  #: bool: czy lekcja jest odwołana
