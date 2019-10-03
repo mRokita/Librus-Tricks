@@ -743,25 +743,42 @@ class SynergiaTimetableEvent:
         """
         if 'Classroom' in resource.keys():
             self.objects.set_object(
-                'classroom', resource['Classroom']['Id'], SynergiaTimetable
+                'classroom', resource['Classroom']['Id'], SynergiaClassroom
             )
         elif 'OrgClassroom' in resource.keys():
             self.objects.set_object(
-                'classroom', resource['OrgClassroom']['Id'], SynergiaTimetable
+                'classroom', resource['OrgClassroom']['Id'], SynergiaClassroom
             )
         else:
             self.objects.set_value('classroom', None)
 
     @property
+    def lesson_status(self):
+        if self.is_cancelled:
+            return 'Cancelled'
+        elif self.is_sub:
+            return 'Changed'
+        return 'Planned'
+
+    @property
     def subject(self):
+        """
+        :rtype: librus_tricks.classes.SynergiaSubject
+        """
         return self.objects.assembly('subject')
 
     @property
     def teacher(self):
+        """
+        :rtype: librus_tricks.classes.SynergiaTeacher
+        """
         return self.objects.assembly('teacher')
 
     @property
     def classroom(self):
+        """
+        :rtype: librus_tricks.classes.SynergiaClassroom
+        """
         return self.objects.assembly('classroom')
 
     def __repr__(self):
