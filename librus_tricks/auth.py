@@ -149,7 +149,7 @@ def authorizer(email, password, user_agent=None):
         logging.debug('No user-agent specified, using %s', user_agent)
 
     auth_session = requests.session()
-    auth_session.headers.update({'User-Agent': user_agent})
+    auth_session.headers.update({'User-Agent': user_agent, 'X-Requested-With': 'pl.librus.synergiaDru2'})
     site = auth_session.get(LIBRUSLOGINURL)
     soup = BeautifulSoup(site.text, 'html.parser')
     csrf = soup.find('meta', attrs={'name': 'csrf-token'})['content']
