@@ -16,6 +16,12 @@ class CacheBase:
     def del_object(self, uid):
         raise NotImplementedError('del_object require implementation')
 
+    def clear_objects(self):
+        raise NotImplementedError('clear_objects require implementation')
+
+    def count_object(self):
+        raise NotImplementedError('count_object require implementation')
+
     def add_query(self, uri, response, user_id):
         pass
 
@@ -24,6 +30,12 @@ class CacheBase:
 
     def del_query(self, uri, user_id):
         raise NotImplementedError('del_query require implementation')
+
+    def clear_queries(self):
+        raise NotImplementedError('clear_queries require implementation')
+
+    def count_queries(self):
+        raise NotImplementedError('count_queries require implementation')
 
 
 class DumbCache(CacheBase):
@@ -102,6 +114,16 @@ class AlchemyCache(CacheBase):
     def del_object(self, uid):
         self.session.query(self.ObjectLoadCache).filter_by(uid=uid).delete()
         self.session.commit()
+
+    def clear_queries(self):
+        self.session.query(self.APIQueryCache).delete()
+
+    def clear_objects(self):
+        self.session.query(self.ObjectLoadCache).delete()
+
+    def count_object(self):
+        return self.session.query(self.ObjectLoadCache).count()
+
 
     def __repr__(self):
         return f'<{self.__class__.__name__} with {self.session.bind.dialect.name} backend using {self.session.bind.dialect.driver} driver ({self.session.bind.url})>'

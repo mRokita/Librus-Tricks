@@ -453,3 +453,17 @@ class SynergiaClient:
         if only_future:
             return tuple(filter(self.__is_future, days))
         return days
+
+    def preload_cache(self):
+        self.cache.clear_objects()
+
+        for thing in (
+            *self.attendances(),
+            *self.grades(),
+            *self.subjects(),
+            *self.school_free_days(only_future=False),
+            *self.teacher_free_days(only_future=False)
+        ):
+            self.cache.add_object(thing.uid, thing.__class__, thing.export_resource())
+
+        logging.info('Loaded %s objects into cache', self.cache.count_object())

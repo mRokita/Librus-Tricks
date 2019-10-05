@@ -114,13 +114,21 @@ class SynergiaGenericClass:
         :param str extraction_key: Klucz do wyciągnięcia danych
         :return: Pobrany obiekt
         """
+        import logging
+
         if uid is None or session is None:
             raise SessionRequired()
+
+        maybe_response = session.cache.get_object(uid, cls)
+        if not maybe_response is None:
+            logging.debug('Returning %s from object cache', maybe_response)
+            return maybe_response
 
         if path == ('',):
             raise APIPathIsEmpty(f'Path for {cls.__name__} class is empty!')
 
         response = session.get_cached_response(*path, uid, max_lifetime=expire)
+        logging.debug('Returning %s object from response cache', cls.__name__)
 
         if extraction_key is None:
             extraction_key = SynergiaGenericClass.auto_extract(response)
