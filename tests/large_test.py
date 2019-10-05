@@ -1,9 +1,14 @@
+import logging
 import os
 import sys
 
 sys.path.extend(['./'])
 
 from librus_tricks import create_session, cache, use_json
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(module)s:%(lineno)d - %(funcName)s - %(message)s',
+                    filename='pytest.log')
 
 
 def ensure_session():
