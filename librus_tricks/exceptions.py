@@ -60,3 +60,7 @@ class SessionRequired(LibrusTricksWrapperException):
 
 class APIPathIsEmpty(LibrusTricksWrapperException):
     pass
+
+
+class OtherHTTPResponse(LibrusTricksWrapperException):
+    pass

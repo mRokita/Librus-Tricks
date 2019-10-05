@@ -95,13 +95,16 @@ class SynergiaClient:
 
         logging.debug('Dispatching http status code')
         if response.status_code >= 400:
-            raise {
-                500: exceptions.SynergiaServerError(response.url, response.json()),
-                404: exceptions.SynergiaAPIEndpointNotFound(response.url),
-                403: exceptions.SynergiaForbidden(response.url, response.json()),
-                401: exceptions.SynergiaAccessDenied(response.url, response.json()),
-                400: exceptions.SynergiaAPIInvalidRequest(response.url, response.json()),
-            }[response.status_code]
+            try:
+                raise {
+                    500: exceptions.SynergiaServerError(response.url, response.json()),
+                    404: exceptions.SynergiaAPIEndpointNotFound(response.url),
+                    403: exceptions.SynergiaForbidden(response.url, response.json()),
+                    401: exceptions.SynergiaAccessDenied(response.url, response.json()),
+                    400: exceptions.SynergiaAPIInvalidRequest(response.url, response.json()),
+                }[response.status_code]
+            except KeyError:
+                raise exceptions.OtherHTTPResponse('Not excepted HTTP error code!', response.status_code)
 
         return response.json()
 
@@ -175,7 +178,7 @@ class SynergiaClient:
 
         try:
             age = datetime.now() - response_cached.last_load
-        except:
+        except TypeError:
             age = datetime.now() - response_cached.last_load.replace(tzinfo=None)
 
         if age > max_lifetime:
@@ -205,14 +208,14 @@ class SynergiaClient:
 
         try:
             age = datetime.now() - requested_object.last_load
-        except Exception:
+        except TypeError:
             age = datetime.now() - requested_object.last_load.replace(tzinfo=None)
 
         if age > max_lifetime:
             logging.debug('Object is too old! Trying to get latest object from api')
             requested_object = cls.create(uid=uid, session=self)
             self.cache.del_object(uid)
-            self.cache.add_object(uid, cls, requested_object._json_resource)
+            self.cache.add_object(uid, cls, requested_object.export_resource())
 
         return requested_object
 
