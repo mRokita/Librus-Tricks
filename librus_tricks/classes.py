@@ -494,6 +494,9 @@ class SynergiaAttendanceType(SynergiaGenericClass):
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.short_name}>'
 
+    def __str__(self):
+        return self.name
+
 
 class SynergiaAttendance(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
@@ -515,22 +518,31 @@ class SynergiaAttendance(SynergiaGenericClass):
         return super().create(uid, path, session, extraction_key, expire)
 
     @property
-    def teacher(self) -> SynergiaTeacher:
+    def teacher(self):
+        """
+        :rtype: SynergiaTeacher
+        """
         return self.objects.assembly('teacher')
 
     @property
     def student(self):
+        """
+        :rtype: SynergiaStudent
+        """
         return self.objects.assembly('student')
 
     @property
     def type(self):
+        """
+        :rtype: SynergiaAttendanceType
+        """
         return self.objects.assembly('type')
 
     def __repr__(self):
-        return f'<SynergiaAttendance at {self.add_date.strftime("%Y-%m-%d %H:%M:%S")} ({self.uid})>'
+        return f'<SynergiaAttendance at {self.date.isoformat()} lesson {self.lesson_no}>'
 
     def __str__(self):
-        return self.type
+        return self.type.__str__()
 
 
 class SynergiaExamCategory(SynergiaGenericClass):
