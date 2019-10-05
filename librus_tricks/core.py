@@ -21,7 +21,6 @@ class SynergiaClient:
         :param str api_url: Bazowy url api, zmieniaj jeżeli chcesz używać proxy typu beeceptor
         :param str user_agent: User-agent klienta http, domyślnie się podszywa pod aplikację
         :param librus_tricks.cache.CacheBase cache: Obiekt, który zarządza cache
-        :param str synergia_user_passwd: Hasło do dziennika Synergia
         """
         self.user = user
         self.session = requests.session()
@@ -161,7 +160,7 @@ class SynergiaClient:
         Wykonuje zapytanie http GET z poprzednim sprawdzeniem cache.
 
         :param path: Niezłożona ścieżka do węzła API
-        :param request_params: dict zawierający kwargs dla zapytania http
+        :param http_params: dict zawierający kwargs dla zapytania http
         :type http_params: dict
         :param timedelta max_lifetime: Maksymalny czas ważności cache dla tego zapytania http
         :return: dict zawierający odpowiedź zapytania
@@ -314,7 +313,7 @@ class SynergiaClient:
         :rtype: tuple[librus_tricks.classes.SynergiaAttendance]
         :return: krotka z wszystkimi nieobecnościami
         """
-        return tuple(filter(lambda k: k.type.is_presence_kind == False, self.attendances()))
+        return tuple(filter(lambda k: not k.type.is_presence_kind, self.attendances()))
 
     def exams(self, *exams):
         """
@@ -346,8 +345,8 @@ class SynergiaClient:
         :return: obiekt tygodniowego planu lekcji
         """
         monday = tools.get_actual_monday(for_date).isoformat()
-        rosseta = self.get('Timetables', request_params={'weekStart': monday})
-        return SynergiaTimetable.assembly(rosseta['Timetable'], self)
+        matrix = self.get('Timetables', request_params={'weekStart': monday})
+        return SynergiaTimetable.assembly(matrix['Timetable'], self)
 
     def timetable_day(self, for_date: datetime):
         return self.timetable(for_date).days[for_date.date()]
