@@ -128,6 +128,19 @@ class SynergiaUser:
             'exp_in': int(self.expires_in.timestamp())
         }, cred_file)
 
+    def dict_credentials(self):
+        return {
+            'user_dict': {
+                'accessToken': self.token,
+                'studentName': f'{self.name} {self.last_name}',
+                'id': self.uid,
+                'login': self.login,
+            },
+            'root_token': self.root_token,
+            'revalidation_token': self.refresh_token,
+            'exp_in': int(self.expires_in.timestamp())
+        }
+
 
 def load_json(cred_file):
     import json
