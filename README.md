@@ -1,9 +1,7 @@
 <div align="center">
     <h1>Librus Tricks</h1>
 
-[![Tests](https://img.shields.io/travis/Backdoorek/Librus-Tricks.svg?logo=travis&style=for-the-badge)](https://travis-ci.org/Backdoorek/Librus-Tricks)[![Codacy grade](https://img.shields.io/codacy/grade/afcbb085b8a746db8795c3a5a13054e6.svg?logo=codacy&style=for-the-badge)](https://app.codacy.com/project/Backdoorek/Librus-Tricks/dashboard)
-
-[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Backdoorek/Librus-Tricks.svg?color=gray&logo=github&style=for-the-badge)![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Backdoorek/Librus-Tricks.svg?style=for-the-badge)](https://github.com/Backdoorek/Librus-Tricks)
+[![Codacy grade](https://img.shields.io/codacy/grade/afcbb085b8a746db8795c3a5a13054e6.svg?logo=codacy&style=for-the-badge)](https://app.codacy.com/project/Backdoorek/Librus-Tricks/dashboard)[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Backdoorek/Librus-Tricks.svg?color=gray&logo=github&style=for-the-badge)![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Backdoorek/Librus-Tricks.svg?style=for-the-badge)](https://github.com/Backdoorek/Librus-Tricks)
 
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/librus-tricks.svg?style=for-the-badge)![PyPI - Version](https://img.shields.io/pypi/v/librus-tricks.svg?style=for-the-badge)![PyPI - Python Version](https://img.shields.io/pypi/pyversions/librus-tricks.svg?style=for-the-badge)](https://pypi.org/project/librus-tricks/)
 
@@ -64,7 +62,9 @@ print(*messages)
 # <Message from ... Artur (... Artur) into /wiadomosci/1/5/417629/f0> <Message from ... Marzenna (... Marzenna) into /wiadomosci/1/5/390558/f0> <Message from SuperAdministrator into /wiadomosci/1/5/286746/f0>
 ```
 
-
+### Why I disabled Travis CI?
+![Damn captcha](https://raw.githubusercontent.com/Backdoorek/public-files/master/Z270-HD3P_2019-10-10_07'17'59.png)
+Using Travis CI triggers captcha. It's useless now.
 
 > Written with ❤ from a scratch by Krystian _`Backdoorek`_ Postek
 >
