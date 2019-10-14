@@ -3,12 +3,6 @@ from datetime import datetime, timedelta
 from librus_tricks.exceptions import SessionRequired, APIPathIsEmpty
 
 
-def _try_to_extract(payload, extraction_key, false_return=None):
-    if extraction_key in payload.keys():
-        return payload[extraction_key]
-    return false_return
-
-
 class _RemoteObjectsUIDManager:
     """
     Menadżer obiektów, które dopiero zostaną utworzone.
@@ -290,11 +284,17 @@ class SynergiaLesson(SynergiaGenericClass):
 class SynergiaGradeCategory(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
+
+        def __try_to_extract(payload, extraction_key, false_return=None):
+            if extraction_key in payload.keys():
+                return payload[extraction_key]
+            return false_return
+
         self.count_to_the_average = self._json_resource['CountToTheAverage']
         self.name = self._json_resource['Name']
         self.obligation_to_perform = self._json_resource['ObligationToPerform']
         self.standard = self._json_resource['Standard']
-        self.weight = _try_to_extract(self._json_resource, 'Weight', false_return=0)
+        self.weight = __try_to_extract(self._json_resource, 'Weight', false_return=0)
 
         if 'Teacher' in self._json_resource.keys():
             self.objects.set_object(
