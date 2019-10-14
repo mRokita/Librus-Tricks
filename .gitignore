@@ -29,3 +29,4 @@ librus_tricks/cache\.sqlite
 
 6379114u.pickle
 /pytest.log
+/console.log
