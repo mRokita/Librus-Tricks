@@ -456,6 +456,9 @@ class SynergiaClient:
             return tuple(filter(self.__is_future, days))
         return days
 
+    def substitutions(self):
+        pass
+
     def preload_cache(self):
         self.cache.clear_objects()
 

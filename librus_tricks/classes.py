@@ -980,3 +980,12 @@ class SynergiaSchool(SynergiaGenericClass):
 
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.name}>'
+
+
+class SynergiaSubstitution(SynergiaGenericClass):
+    def __init__(self, uid, resource, session):
+        super().__init__(uid, resource, session)
+
+    @classmethod
+    def create(cls, uid=None, path=('Calendars', 'Substitutions'), session=None, extraction_key='Substitution', expire=timedelta(days=7)):
+        return super().create(uid, path, session, extraction_key, expire)
