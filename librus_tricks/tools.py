@@ -25,7 +25,7 @@ def extract_percentage(grade):
     :return:
     """
     for comment in grade.comments:
-        matches = re.findall('(\d+)%', comment.text)
+        matches = re.findall(r'(\d+)%', comment.text)
         if matches.__len__() > 0:
             return float(matches[0])
     return
