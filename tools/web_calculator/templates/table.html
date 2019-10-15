@@ -1,0 +1,32 @@
+{% if percentages.__len__() > 0 %}
+    <h2>Średnie procentów</h2>
+    <table class="table table-striped">
+        <tbody>
+        {% for subject in percentages %}
+            <tr>
+                <th>
+                    {{ subject }}
+                </th>
+                <td>
+                    {{ percentages.get(subject) }} %
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+<h2>Średnie ocen</h2>
+<table class="table table-striped">
+    <tbody>
+    {% for subject in averages %}
+        <tr>
+            <th>
+                {{ subject }}
+            </th>
+            <td>
+                {{ averages.get(subject) }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
