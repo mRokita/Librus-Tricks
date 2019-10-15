@@ -1,5 +1,4 @@
 import setuptools
-from librus_tricks import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -7,7 +6,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="librus_tricks",
     python_requires='>3.6.0',
-    version=__version__,
+    version='0.7.7',
     author="Krystian Postek",
     author_email="krystian@postek.eu",
     description="A python wrapper of Synergia Librus API",
