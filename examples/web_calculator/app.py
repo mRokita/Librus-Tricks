@@ -22,14 +22,5 @@ def count_averages():
                            averages=subjects_averages(session.grades_categorized),
                            percentages=percentage_average(session.grades()))
 
-
-@app.route('/dev')
-def dev_count_averages():
-    session = minified_login('krystian@postek.eu', 'cgAarXFV3xTmXQWvT7a78DEm')
-    return render_template('table.html',
-                           averages=subjects_averages(session.grades_categorized),
-                           percentages=percentage_average(session.grades()))
-
-
 if __name__ == '__main__':
     app.run()
