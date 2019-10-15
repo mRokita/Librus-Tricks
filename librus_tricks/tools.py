@@ -31,7 +31,18 @@ def extract_percentage(grade):
     return
 
 
-def return_extract_percentages(grades):
+def weighted_average(*grades_and_weights):
+    values = 0
+    count = 0
+    for grade_weight in grades_and_weights:
+        count += grade_weight[1]
+        for _ in range(grade_weight[1]):
+            values += grade_weight[0]
+
+    return values / count
+
+
+def extracted_percentages(grades):
     grades = [grade for grade in grades if extract_percentage(grade) is not None]
     subjects = set([grade.subject.name for grade in grades])
     categorized = {}
@@ -47,3 +58,25 @@ def no_cache(func):
         return func(*args, **{**kwargs, 'expire': 0})
 
     return wrapper
+
+
+def percentage_average(grades):
+    percentages = extracted_percentages(grades)
+    averages = {}
+    for subject_name in percentages:
+        averages[subject_name] = weighted_average(
+            *[(grade_percent[1], grade_percent[0].category.weight) for grade_percent in percentages[subject_name]]
+        )
+
+    return averages
+
+
+def subjects_averages(subject_keyed_grades):
+    averages = {}
+    for subject in subject_keyed_grades:
+        averages[subject] = weighted_average(
+            *[(grade.real_value, grade.category.weight) for grade in subject_keyed_grades[subject] if
+              grade.real_value is not None]
+        )
+
+    return averages

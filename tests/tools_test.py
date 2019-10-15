@@ -27,5 +27,5 @@ def ensure_session():
 
 def test_percentages():
     ensure_session()
-    from librus_tricks.tools import return_extract_percentages
-    return return_extract_percentages(session.grades())
+    from librus_tricks.tools import extracted_percentages
+    return extracted_percentages(session.grades())
