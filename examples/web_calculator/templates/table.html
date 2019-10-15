@@ -1,0 +1,30 @@
+<h2>Średnie procentów</h2>
+<table>
+    <tbody>
+    {% for subject in percentages %}
+        <tr>
+        <th>
+            {{ subject }}
+        </th>
+        <td>
+            {{ percentages.get(subject) }} %
+        </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<h2>Średnie ocen</h2>
+<table>
+    <tbody>
+    {% for subject in averages %}
+        <tr>
+        <th>
+            {{ subject }}
+        </th>
+        <td>
+            {{ averages.get(subject) }}
+        </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
