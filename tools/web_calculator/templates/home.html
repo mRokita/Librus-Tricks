@@ -45,10 +45,14 @@
     </style>
     <script>
         function im_feeling_lucky() {
+            const email_field = document.getElementById('email');
+            const password_field = document.getElementById('password');
             var output_div = document.getElementById('request_output');
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const email = email_field.value;
+            const password = password_field.value;
+
             document.querySelector('.loading').style.visibility = 'visible';
+
             fetch('{{ url_for('count_averages') }}', {
                 method: 'POST',
                 body: JSON.stringify({'email': email, 'password': password}),
@@ -59,6 +63,24 @@
                     output_div.innerHTML = response;
                     document.querySelector('.loading').style.visibility = 'hidden';
                 });
+        }
+
+        function load_credentials() {
+            const email_field = document.getElementById('email');
+            const password_field = document.getElementById('password');
+
+            if (localStorage.password != null && localStorage.email != null) {
+                email_field.value = localStorage.email;
+                password_field.value = localStorage.password;
+            }
+        }
+
+        function save_credentials() {
+            const email_field = document.getElementById('email');
+            const password_field = document.getElementById('password');
+
+            localStorage.setItem('password', password_field.value);
+            localStorage.setItem('email', email_field.value);
         }
     </script>
 </head>
@@ -79,12 +101,20 @@
                 <input id="password" type="password" name="password" class="form-control">
             </label>
         </p>
-        <button type="button" onclick="im_feeling_lucky()" class="btn btn-primary">wylicz średnie</button>
+        <button id="triggerer" type="button" class="btn btn-primary">wylicz średnie</button>
     </div>
     <div id="request_output">
 
     </div>
     <p class="loading">Pobieranie danych...</p>
+    <script>
+        load_credentials();
+            document.getElementById('triggerer').addEventListener('click', function (e) {
+                console.log(e);
+                save_credentials();
+                im_feeling_lucky();
+            });
+    </script>
 </div>
 </body>
 </html>
