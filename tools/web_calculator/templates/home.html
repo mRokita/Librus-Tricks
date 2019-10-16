@@ -15,9 +15,17 @@
                 letter-spacing: 0;
                 color: blueviolet
             }
+            20% {
+                letter-spacing: 9px;
+                color: crimson;
+            }
             50% {
-                letter-spacing: 15px;
-                color: aquamarine
+                letter-spacing: 5px;
+                transform: scale(1, 15);
+            }
+            80% {
+                letter-spacing: 7px;
+                color: pink;
             }
             100% {
                 letter-spacing: 0;
@@ -29,7 +37,7 @@
             animation-name: loading;
             animation-duration: 0.5s;
             animation-iteration-count: infinite;
-            visibility: hidden;
+            display: none;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -51,7 +59,7 @@
             const email = email_field.value;
             const password = password_field.value;
 
-            document.querySelector('.loading').style.visibility = 'visible';
+            document.querySelector('.loading').style.display = 'block';
 
             fetch('{{ url_for('count_averages') }}', {
                 method: 'POST',
@@ -61,7 +69,7 @@
                 .then(response => response.text())
                 .then(response => {
                     output_div.innerHTML = response;
-                    document.querySelector('.loading').style.visibility = 'hidden';
+                    document.querySelector('.loading').style.display = 'none';
                 });
         }
 
@@ -101,7 +109,7 @@
                 <input id="password" type="password" name="password" class="form-control">
             </label>
         </p>
-        <button id="triggerer" type="button" class="btn btn-primary">wylicz średnie</button>
+        <button id="triggerer" type="button" class="btn btn-outline-primary">Wylicz średnie</button>
     </div>
     <div id="request_output">
 
