@@ -26,7 +26,7 @@ def count_averages():
     except exceptions.CaptchaRequired:
         logging.info('Captcha')
         return render_template('damn_captcha.html')
-    return render_template('table.html',
+    return render_template('averages.html',
                            averages=subjects_averages(session.grades_categorized),
                            percentages=percentage_average(session.grades()))
 
