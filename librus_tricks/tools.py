@@ -80,3 +80,23 @@ def subjects_averages(subject_keyed_grades):
         )
 
     return averages
+
+
+def count_attendances(attendances):
+    """
+
+    :param iterable[librus_tricks.classes.SynergiaAttendance] attendances:
+    :return:
+    """
+    categories = set()
+    for attendance in attendances:
+        categories.add(attendance.type.name)
+
+    results = {}
+    for cat in categories:
+        results[cat] = 0
+
+    for attendance in attendances:
+        results[attendance.type.name] += 1
+
+    return results
