@@ -67,7 +67,7 @@ def percentage_average(grades):
         averages[subject_name] = weighted_average(
             *[(grade_percent[1], grade_percent[0].category.weight) for grade_percent in percentages[subject_name]]
         )
-
+    # TODO: grades without % are counted as grade_value/max_grade_value * 100%
     return averages
 
 

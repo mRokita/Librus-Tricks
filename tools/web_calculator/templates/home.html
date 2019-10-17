@@ -52,7 +52,7 @@
         }
     </style>
     <script>
-        function im_feeling_lucky() {
+        function do_html_query(url) {
             const email_field = document.getElementById('email');
             const password_field = document.getElementById('password');
             var output_div = document.getElementById('request_output');
@@ -61,7 +61,7 @@
 
             document.querySelector('.loading').style.display = 'block';
 
-            fetch('{{ url_for('count_averages') }}', {
+            fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({'email': email, 'password': password}),
                 headers: {'Content-Type': 'application/json'}
@@ -71,6 +71,14 @@
                     output_div.innerHTML = response;
                     document.querySelector('.loading').style.display = 'none';
                 });
+        }
+
+        function im_feeling_lucky() {
+            do_html_query('{{ url_for('count_averages') }}');
+        }
+
+        function i_know_what_im_doing() {
+            do_html_query('{{ url_for('count_user_attendances') }}');
         }
 
         function load_credentials() {
@@ -109,19 +117,25 @@
                 <input id="password" type="password" name="password" class="form-control">
             </label>
         </p>
-        <button id="triggerer" type="button" class="btn btn-outline-primary">Wylicz średnie</button>
+        <div class="btn-group">
+            <button id="triggerer" type="button" class="btn btn-outline-primary">Wylicz średnie</button>
+            <button id="attendacer" type="button" class="btn btn-outline-primary">Policz frekwencje</button>
+        </div>
     </div>
+    <p class="loading">Pobieranie danych...</p>
     <div id="request_output">
 
     </div>
-    <p class="loading">Pobieranie danych...</p>
     <script>
         load_credentials();
-            document.getElementById('triggerer').addEventListener('click', function (e) {
-                console.log(e);
-                save_credentials();
-                im_feeling_lucky();
-            });
+        document.getElementById('triggerer').addEventListener('click', function (e) {
+            save_credentials();
+            im_feeling_lucky();
+        });
+        document.getElementById('attendacer').addEventListener('click', function (e) {
+            save_credentials();
+            i_know_what_im_doing();
+        });
     </script>
 </div>
 </body>

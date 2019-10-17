@@ -1,0 +1,14 @@
+<table class="table table-striped">
+    <tbody>
+    {% for attendace in attendances %}
+        <tr>
+            <th>
+                {{ attendace }}
+            </th>
+            <td style="width: 15%">
+                {{ attendances.get(attendace) }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
