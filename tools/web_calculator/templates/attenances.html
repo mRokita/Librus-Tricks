@@ -1,12 +1,13 @@
+<h3>{{ '{0:.2f}'.format(present) }}% obecności</h3>
 <table class="table table-striped">
     <tbody>
     {% for attendace in attendances %}
-        <tr>
+        <tr style="{% if attendace == 'Nieobecność' %}background-color: rgba(162,25,41,0.4){% endif %}">
             <th>
                 {{ attendace }}
             </th>
             <td style="width: 15%">
-                {{ attendances.get(attendace) }}
+                {{ attendances.get(attendace) }} <small style="font-style: italic">({{ '{0:.2f}'.format(percentages.get(attendace)) }}%)</small>
             </td>
         </tr>
     {% endfor %}
