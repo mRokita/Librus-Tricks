@@ -2,7 +2,7 @@
   
  ![https://repository-images.githubusercontent.com/163409116/67555000-f0b2-11e9-97fc-ae6a01fae40c](https://repository-images.githubusercontent.com/163409116/67555000-f0b2-11e9-97fc-ae6a01fae40c)     <h2>Librus Tricks</h2>  
   
-![Travis (.org) branch](https://img.shields.io/travis/Backdoorek/Librus-Tricks/prototype?logo=travis&style=for-the-badge)[![Codacy grade](https://img.shields.io/codacy/grade/afcbb085b8a746db8795c3a5a13054e6.svg?logo=codacy&style=for-the-badge)](https://app.codacy.com/project/Backdoorek/Librus-Tricks/dashboard)  
+[![Codacy grade](https://img.shields.io/codacy/grade/afcbb085b8a746db8795c3a5a13054e6.svg?logo=codacy&style=for-the-badge)](https://app.codacy.com/project/Backdoorek/Librus-Tricks/dashboard)  
   
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Backdoorek/Librus-Tricks.svg?color=gray&logo=github&style=for-the-badge)![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Backdoorek/Librus-Tricks.svg?style=for-the-badge)](https://github.com/Backdoorek/Librus-Tricks)  
   
