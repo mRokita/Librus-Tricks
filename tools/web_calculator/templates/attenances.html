@@ -6,9 +6,9 @@
             <th>
                 {{ attendace }}
             </th>
-            <td style="width: 15%">
-                {{ attendances.get(attendace) }} <small
-                    style="font-style: italic">({{ '{0:.2f}'.format(percentages.get(attendace)) }}%)</small>
+            <td style="width: 17.5%">
+                {{ attendances.get(attendace) }}
+                <small style="font-style: italic">({{ '{0:.2f}'.format(percentages.get(attendace)) }}%)</small>
             </td>
         </tr>
     {% endfor %}
@@ -22,7 +22,7 @@
                 <th>Data</th>
                 <th>Lekcja</th>
                 <th>Rodzaj</th>
-                <th>Nauczyciel</th>
+                <th style="width: 17.5%">Nauczyciel</th>
             </tr>
         </thead>
         <tbody>
