@@ -108,3 +108,33 @@ def count_attendances(attendances):
         results[attendance.type.name] += 1
 
     return results
+
+
+def present_percentage(attendances):
+    """
+
+    :param list[librus_tricks.classes.SynergiaAttendance] attendances:
+    :return:
+    """
+    present = 0
+    absent = 0
+    for attendance in attendances:
+        if attendance.type.is_presence_kind:
+            present += 1
+        else:
+            absent += 1
+
+    return present / attendances.__len__() * 100
+
+
+def percentages_of_attendances(attendances):
+    """
+
+    :param list[librus_tricks.classes.SynergiaAttendance] attendances:
+    :return:
+    """
+    results = count_attendances(attendances)
+    for category in results:
+        results[category] = results[category] / attendances.__len__() * 100
+
+    return results
