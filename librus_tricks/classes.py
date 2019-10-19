@@ -151,6 +151,11 @@ class SynergiaGenericClass:
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.uid} at {hex(id(self))}>'
 
+    def _is_compatible(self, other):
+        if not isinstance(other, self.__class__):
+            raise TypeError()
+        return True
+
 
 class SynergiaTeacher(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
@@ -473,6 +478,26 @@ class SynergiaGrade(SynergiaGenericClass):
     @classmethod
     def create(cls, uid=None, path=('Grades',), session=None, extraction_key='Grade', expire=timedelta(minutes=45)):
         return super().create(uid, path, session, extraction_key, expire)
+
+    def __eq__(self, other):
+        self._is_compatible(other)
+        return self.real_value == other.real_value and self.category.weight
+
+    def __gt__(self, other):
+        self._is_compatible(other)
+        return self.real_value > other.real_value and self.category.weight >= other.category.weight
+
+    def __ge__(self, other):
+        self._is_compatible(other)
+        return self.real_value >= other.real_value and self.category.weight >= other.category.weight
+
+    def __lt__(self, other):
+        self._is_compatible(other)
+        return self.real_value < other.real_value and self.category.weight <= other.category.weight
+
+    def __le__(self, other):
+        self._is_compatible(other)
+        return self.real_value <= other.real_value and self.category.weight <= other.category.weight
 
 
 class SynergiaAttendanceType(SynergiaGenericClass):
