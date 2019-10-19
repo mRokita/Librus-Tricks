@@ -64,3 +64,15 @@ class APIPathIsEmpty(LibrusTricksWrapperException):
 
 class OtherHTTPResponse(LibrusTricksWrapperException):
     pass
+
+
+class SecurityWarning(Warning):
+    pass
+
+
+class PerformanceWarning(Warning):
+    pass
+
+
+class GoodPracticeWarning(Warning):
+    pass

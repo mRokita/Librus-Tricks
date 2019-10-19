@@ -56,7 +56,9 @@ def use_json(file=None, **kwargs):
 
 
 def minified_login(email, password, **kwargs):
-    import logging
+    import logging, warnings
+
+    warnings.warn(exceptions.SecurityWarning('Using minified_login in production environment is REAL SECURITY ISSUE!'))
     try:
         logging.debug('Trying to use json file to create session')
         session = use_json(**kwargs)
