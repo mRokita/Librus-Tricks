@@ -12,30 +12,28 @@
     <style>
         @keyframes loading {
             0% {
-                letter-spacing: 0;
-                color: blueviolet
+                color: blueviolet;
             }
             20% {
-                letter-spacing: 9px;
                 color: crimson;
             }
-            50% {
-                letter-spacing: 5px;
-                transform: scale(1, 15);
+            40% {
+                color: dodgerblue;
+            }
+            60% {
+                color: aquamarine;
             }
             80% {
-                letter-spacing: 7px;
                 color: pink;
             }
             100% {
-                letter-spacing: 0;
                 color: blueviolet
             }
         }
 
         .loading {
             animation-name: loading;
-            animation-duration: 0.5s;
+            animation-duration: 1.5s;
             animation-iteration-count: infinite;
             display: none;
         }
