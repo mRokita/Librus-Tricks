@@ -18,7 +18,7 @@ setuptools.setup(
         'requests', 'beautifulsoup4', 'SQLAlchemy'
     ],
     extras_require={
-        'examples': ['colorama', 'matplotlib', 'PrettyTable']
+        'tools': ['Flask', 'PrettyTable']
     },
     classifiers=[
         "Programming Language :: Python :: 3.6",

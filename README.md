@@ -22,17 +22,12 @@ Fast and powerful Synergia Librus API wrapper
   
 ## Install  
 ```text  
-# Windows  
 # Latest stable  
-pip install librus-tricks  
-# Dev channel  
-pip install git+https://github.com/Backdoorek/Librus-Tricks.git@prototype  
-  
-# Linux  
-# Latest stable  
-sudo -H pip3 install librus-tricks  
-# Dev channel  
-sudo -H pip3 install git+https://github.com/Backdoorek/Librus-Tricks.git@prototype  
+pip3 install librus-tricks  
+# Nighly
+pip3 install git+https://github.com/Backdoorek/Librus-Tricks.git@prototype  
+# Tools
+pip3 install librus-tricks[tools]
 ```  
   
 ## Examples  
@@ -63,6 +58,8 @@ print(*messages)
 messages = session.message_reader.read_messages() # Uses html scrapper to read messages, doesn't require mobilne dodatki print(*messages)  
 # <Message from ... Artur (... Artur) into /wiadomosci/1/5/417629/f0> <Message from ... Marzenna (... Marzenna) into /wiadomosci/1/5/390558/f0> <Message from SuperAdministrator into /wiadomosci/1/5/286746/f0>  
 ```  
+
+[Calculator from examples](https://calc.kpostek.pl/)
   
 > Written with ❤ from a scratch by Krystian _`Backdoorek`_ Postek  
 >  
