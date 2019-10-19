@@ -916,13 +916,15 @@ class SynergiaTimetable(SynergiaGenericClass):
                     o_str += f'  {event.__str__()}\n'
         return o_str
 
+
 class SynergiaNativeMessageAuthor(SynergiaGenericClass):
     def __init__(self, uid, resource, session):
         super().__init__(uid, resource, session)
         self.name = resource.get('Name')
 
     @classmethod
-    def create(cls, uid=None, path=('Messages', 'User'), session=None, extraction_key='User', expire=timedelta(days=60)):
+    def create(cls, uid=None, path=('Messages', 'User'), session=None, extraction_key='User',
+               expire=timedelta(days=60)):
         return super().create(uid, path, session, extraction_key, expire)
 
     def __repr__(self):
@@ -1009,5 +1011,6 @@ class SynergiaSubstitution(SynergiaGenericClass):
         super().__init__(uid, resource, session)
 
     @classmethod
-    def create(cls, uid=None, path=('Calendars', 'Substitutions'), session=None, extraction_key='Substitution', expire=timedelta(days=7)):
+    def create(cls, uid=None, path=('Calendars', 'Substitutions'), session=None, extraction_key='Substitution',
+               expire=timedelta(days=7)):
         return super().create(uid, path, session, extraction_key, expire)

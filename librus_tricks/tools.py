@@ -74,7 +74,9 @@ def percentage_average(grades, count_generics=5):
     for subject_name in percentages:
         averages[subject_name] = weighted_average(
             *[(grade_percent[1], grade_percent[0].category.weight) for grade_percent in percentages[subject_name]],
-            *[((generic.real_value/count_generics)*100, generic.category.weight) for generic in generics if count_generics is not None or not False if generic.real_value is not None if generic.subject.name == subject_name]
+            *[((generic.real_value / count_generics) * 100, generic.category.weight) for generic in generics if
+              count_generics is not None or not False if generic.real_value is not None if
+              generic.subject.name == subject_name]
         )
     return averages
 
