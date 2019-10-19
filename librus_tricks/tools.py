@@ -60,14 +60,22 @@ def no_cache(func):
     return wrapper
 
 
-def percentage_average(grades):
+def percentage_average(grades, count_generics=5):
+    def compare_lists(list_a, list_b):
+        result = []
+        for item in list_a:
+            if item not in list_b:
+                result.append(item)
+        return result
+
     percentages = extracted_percentages(grades)
+    generics = compare_lists(grades, [grade_weight_tuple[0] for grade_weight_tuple in tuple(percentages.values())[0]])
     averages = {}
     for subject_name in percentages:
         averages[subject_name] = weighted_average(
-            *[(grade_percent[1], grade_percent[0].category.weight) for grade_percent in percentages[subject_name]]
+            *[(grade_percent[1], grade_percent[0].category.weight) for grade_percent in percentages[subject_name]],
+            *[((generic.real_value/count_generics)*100, generic.category.weight) for generic in generics if count_generics is not None or not False if generic.real_value is not None if generic.subject.name == subject_name]
         )
-    # TODO: grades without % are counted as grade_value/max_grade_value * 100%
     return averages
 
 
