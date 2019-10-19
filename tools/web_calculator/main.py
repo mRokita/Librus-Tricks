@@ -5,7 +5,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 from flask import Flask, render_template, request
 from librus_tricks import create_session, exceptions, cache
-from librus_tricks.tools import subjects_averages, percentage_average, count_attendances
+from librus_tricks.tools import *
 
 app = Flask(__name__)
 my_cache = cache.AlchemyCache()
@@ -45,7 +45,7 @@ def count_user_attendances():
     except exceptions.CaptchaRequired:
         logging.info('Captcha')
         return render_template('damn_captcha.html')
-    return render_template('attenances.html', attendances=count_attendances(session.attendances()))
+    return render_template('attenances.html', attendances=count_attendances(session.attendances()), percentages=percentages_of_attendances(session.attendances()), present=present_percentage(session.attendances()))
 
 
 if __name__ == '__main__':
