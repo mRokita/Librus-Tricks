@@ -45,7 +45,10 @@ def count_user_attendances():
     except exceptions.CaptchaRequired:
         logging.info('Captcha')
         return render_template('damn_captcha.html')
-    return render_template('attenances.html', attendances=count_attendances(session.attendances()), percentages=percentages_of_attendances(session.attendances()), present=present_percentage(session.attendances()))
+    return render_template('attenances.html', attendances=count_attendances(session.attendances()),
+                           percentages=percentages_of_attendances(session.attendances()),
+                           present=present_percentage(session.attendances()),
+                           absences=session.all_absences)
 
 
 if __name__ == '__main__':
