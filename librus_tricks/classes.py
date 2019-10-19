@@ -374,9 +374,6 @@ class SynergiaBaseTextGrade(SynergiaGenericClass):
     def teacher(self) -> SynergiaTeacher:
         return self.objects.assembly('teacher')
 
-    # TODO: add category prop
-    # TODO: add lesson prop
-
     @property
     def subject(self) -> SynergiaSubject:
         return self.objects.assembly('subject')
@@ -456,19 +453,19 @@ class SynergiaGrade(SynergiaGenericClass):
     def real_value(self):
         return {
             '1': 1,
-            '1+': 1.25,
+            '1+': 1.5,
             '2-': 1.75,
             '2': 2,
-            '2+': 2.25,
+            '2+': 2.5,
             '3-': 2.75,
             '3': 3,
-            '3+': 3.25,
+            '3+': 3.5,
             '4-': 3.75,
             '4': 4,
-            '4+': 4.25,
+            '4+': 4.5,
             '5-': 4.75,
             '5': 5,
-            '5+': 5.25,
+            '5+': 5.5,
             '6-': 5.75,
             '6': 6
         }.get(self.grade)
