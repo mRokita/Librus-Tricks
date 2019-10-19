@@ -1,13 +1,15 @@
 import logging
+
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(module)s:%(lineno)d - %(funcName)s - %(message)s')
 
 from flask import Flask, render_template, request
-from librus_tricks import minified_login, create_session, exceptions, cache
+from librus_tricks import create_session, exceptions, cache
 from librus_tricks.tools import subjects_averages, percentage_average, count_attendances
 
 app = Flask(__name__)
 my_cache = cache.AlchemyCache()
+
 
 @app.route('/')
 def home_view():
@@ -29,6 +31,7 @@ def count_averages():
     return render_template('averages.html',
                            averages=subjects_averages(session.grades_categorized),
                            percentages=percentage_average(session.grades()))
+
 
 @app.route('/attendance', methods=['POST'])
 def count_user_attendances():
