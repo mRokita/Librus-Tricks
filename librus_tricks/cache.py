@@ -37,6 +37,9 @@ class CacheBase:
     def count_queries(self):
         raise NotImplementedError('count_queries require implementation')
 
+    def about_backend(self):
+        raise NotImplementedError('required providing info about cache provider')
+
 
 class DumbCache(CacheBase):
     def get_object(self, uid, cls):
@@ -124,6 +127,8 @@ class AlchemyCache(CacheBase):
     def count_object(self):
         return self.session.query(self.ObjectLoadCache).count()
 
+    def about_backend(self):
+        return f'SQLAlchemy ORM {self.session.bind.dialect.name} {self.session.bind.dialect.driver}'
 
     def __repr__(self):
         return f'<{self.__class__.__name__} with {self.session.bind.dialect.name} backend using {self.session.bind.dialect.driver} driver ({self.session.bind.url})>'
