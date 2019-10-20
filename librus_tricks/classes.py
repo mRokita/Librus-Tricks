@@ -823,6 +823,10 @@ class SynergiaTimetableEvent:
         """
         return self.objects.assembly('classroom')
 
+    @property
+    def human_readable_time_range(self):
+        return f'{self.start.strftime("%H:%M")} - {self.end.strftime("%H:%M")}'
+
     def __repr__(self):
         return f'<SynergiaTimetableEvent {self.preloaded["subject_title"]} {self.start} {self.end} with {self.preloaded["teacher"]}>'
 
