@@ -1,3 +1,3 @@
-git+https://github.com/Backdoorek/Librus-Tricks.git@346fa8597ad7fe6c59f9b6fec21f037a5aac9a78
+git+https://github.com/Backdoorek/Librus-Tricks.git@9e75909b8834373b1cce4fdde99c9e0ad79ba1d2
 Flask
 google-cloud-logging

@@ -61,6 +61,6 @@ messages = session.message_reader.read_messages() # Uses html scrapper to read m
 
 [Calculator from examples](https://calc.kpostek.pl/)
   
-> Written with ❤ from a scratch by Krystian _`Backdoorek`_ Postek  
+> Written from a scratch by Krystian _`Backdoorek`_ Postek  
 >  
 > Wanna chat? You can find me on [discord](https://discord.gg/WHY87GR) and [telegram](https://t.me/Backdoorek)
