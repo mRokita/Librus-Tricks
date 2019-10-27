@@ -39,7 +39,7 @@ def weighted_average(*grades_and_weights):
         for _ in range(grade_weight[1]):
             values += grade_weight[0]
     if count == 0:
-        return None
+        return 0
     return values / count
 
 
