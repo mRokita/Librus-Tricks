@@ -2,8 +2,10 @@ from librus_tricks import exceptions
 from librus_tricks.auth import authorizer, load_json as __load_json
 from librus_tricks.classes import *
 from librus_tricks.core import SynergiaClient
-from librus_tricks.metadata import __version__, __name__, __author__, __title__
-
+__name__ = 'librus_tricks'
+__title__ = 'librus_tricks'
+__author__ = 'Backdoorek'
+__version__ = '0.9.0'
 
 def create_session(email, password, fetch_first=True, pickle=False, **kwargs):
     """

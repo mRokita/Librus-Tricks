@@ -1,5 +1,8 @@
 import setuptools
-from librus_tricks.metadata import __version__
+__name__ = 'librus_tricks'
+__title__ = 'librus_tricks'
+__author__ = 'Backdoorek'
+__version__ = '0.9.0'
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
