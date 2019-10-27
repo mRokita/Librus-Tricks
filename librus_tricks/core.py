@@ -441,6 +441,7 @@ class SynergiaClient:
             ids_computed = self.assembly_path(*days_ids, sep=',', suffix=days_ids[-1])[1:]
             days = self.return_objects('Calendars', 'TeacherFreeDays', ids_computed, cls=SynergiaTeacherFreeDays)
 
+        days = tuple(sorted(days, key=lambda x: x.starts))
         if only_future:
             return tuple(filter(self.__is_future, days))
         return days
@@ -452,6 +453,7 @@ class SynergiaClient:
             ids_computed = self.assembly_path(*days_ids, sep=',', suffix=days_ids[-1])[1:]
             days = self.return_objects('Calendars', 'SchoolFreeDays', ids_computed, cls=SynergiaSchoolFreeDays)
 
+        days = tuple(sorted(days, key=lambda x: x.starts))
         if only_future:
             return tuple(filter(self.__is_future, days))
         return days
