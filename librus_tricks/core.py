@@ -261,7 +261,7 @@ class SynergiaClient:
         """
         if grades.__len__() == 0:
             return self.return_objects('Grades', cls=SynergiaGrade, extraction_key='Grades')
-        ids_computed = self.assembly_path(*grades, sep=',', suffix=grades[-1])[1:]
+        ids_computed = self.assembly_path(*grades, sep=',', suffix=',')[1:]
         return self.return_objects('Grades', ids_computed, cls=SynergiaGrade, extraction_key='Grades')
 
     @property
@@ -289,7 +289,7 @@ class SynergiaClient:
         """
         if attendances.__len__() == 0:
             return self.return_objects('Attendances', cls=SynergiaAttendance, extraction_key='Attendances')
-        ids_computed = self.assembly_path(*attendances, sep=',', suffix=attendances[-1])[1:]
+        ids_computed = self.assembly_path(*attendances, sep=',', suffix=',')[1:]
         return self.return_objects('Attendances', ids_computed, cls=SynergiaGrade, extraction_key='Attendances')
 
     @property
@@ -323,7 +323,7 @@ class SynergiaClient:
         """
         if exams.__len__() == 0:
             return self.return_objects('HomeWorks', cls=SynergiaExam, extraction_key='HomeWorks')
-        ids_computed = self.assembly_path(*exams, sep=',', suffix=exams[-1])[1:]
+        ids_computed = self.assembly_path(*exams, sep=',', suffix=',')[1:]
         return self.return_objects('HomeWorks', ids_computed, cls=SynergiaExam, extraction_key='HomeWorks')
 
     def colors(self, *colors):
@@ -333,7 +333,7 @@ class SynergiaClient:
         """
         if colors.__len__() == 0:
             return self.return_objects('Colors', cls=SynergiaColor, extraction_key='Colors')
-        ids_computed = self.assembly_path(*colors, sep=',', suffix=colors[-1])
+        ids_computed = self.assembly_path(*colors, sep=',', suffix=',')
         return self.return_objects('Colors', ids_computed, cls=SynergiaColor, extraction_key='Colors')
 
     def timetable(self, for_date=datetime.now()):
@@ -380,7 +380,7 @@ class SynergiaClient:
         """
         if messages.__len__() == 0:
             return self.return_objects('Messages', cls=SynergiaNativeMessage, extraction_key='Messages')
-        ids_computed = self.assembly_path(*messages, sep=',', suffix=messages[-1])[1:]
+        ids_computed = self.assembly_path(*messages, sep=',', suffix=',')[1:]
         return self.return_objects('Messages', ids_computed, cls=SynergiaNativeMessage, extraction_key='Messages')
 
     def news_feed(self):
@@ -398,7 +398,7 @@ class SynergiaClient:
         """
         if subject.__len__() == 0:
             return self.return_objects('Subjects', cls=SynergiaSubject, extraction_key='Subjects')
-        ids_computed = self.assembly_path(*subject, sep=',', suffix=subject[-1])[1:]
+        ids_computed = self.assembly_path(*subject, sep=',', suffix=',')[1:]
         return self.return_objects('Subjects', ids_computed, cls=SynergiaSubject, extraction_key='Subjects')
 
     @property
@@ -438,7 +438,7 @@ class SynergiaClient:
         if days_ids.__len__() == 0:
             days = self.return_objects('Calendars', 'TeacherFreeDays', cls=SynergiaTeacherFreeDays)
         else:
-            ids_computed = self.assembly_path(*days_ids, sep=',', suffix=days_ids[-1])[1:]
+            ids_computed = self.assembly_path(*days_ids, sep=',', suffix=',')[1:]
             days = self.return_objects('Calendars', 'TeacherFreeDays', ids_computed, cls=SynergiaTeacherFreeDays)
 
         days = tuple(sorted(days, key=lambda x: x.starts))
@@ -450,7 +450,7 @@ class SynergiaClient:
         if days_ids.__len__() == 0:
             days = self.return_objects('Calendars', 'SchoolFreeDays', cls=SynergiaSchoolFreeDays)
         else:
-            ids_computed = self.assembly_path(*days_ids, sep=',', suffix=days_ids[-1])[1:]
+            ids_computed = self.assembly_path(*days_ids, sep=',', suffix=',')[1:]
             days = self.return_objects('Calendars', 'SchoolFreeDays', ids_computed, cls=SynergiaSchoolFreeDays)
 
         days = tuple(sorted(days, key=lambda x: x.starts))
