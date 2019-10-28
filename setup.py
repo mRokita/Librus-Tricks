@@ -2,16 +2,16 @@ import setuptools
 __name__ = 'librus_tricks'
 __title__ = 'librus_tricks'
 __author__ = 'Backdoorek'
-__version__ = '0.9.0'
+__version__ = '0.8.0'
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="librus_tricks",
+    name=__name__,
     python_requires='>3.6.0',
     version=__version__,
-    author="Krystian Postek",
+    author=__author__,
     author_email="krystian@postek.eu",
     description="A python wrapper of Synergia Librus API",
     long_description=long_description,
