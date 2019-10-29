@@ -54,8 +54,11 @@ class SynergiaUser:
             }
         )
         logging.debug('%s response %s', new_tokens.status_code, new_tokens.json())
-        self.root_token = new_tokens.json()['access_token']
-        self.refresh_token = new_tokens.json()['refresh_token']
+        try:
+            self.root_token = new_tokens.json()['access_token']
+            self.refresh_token = new_tokens.json()['refresh_token']
+        except KeyError:
+            raise LibrusTricksAuthException('Invalid payload recived', new_tokens.json())
 
     def revalidate_user(self):
         """
