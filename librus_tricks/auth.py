@@ -82,9 +82,7 @@ class SynergiaUser:
         try:
             self.token = new_token.json()['accessToken']
         except KeyError:
-            if new_token.json().get('hint') == 'Token has been revoked':
-                raise LibrusTricksAuthException('Token główny wygasł, wyloguj i zaloguj się ponownie ')
-            raise LibrusTricksAuthException('Nieznany błąd przy ratowaniu tokenów')
+            raise LibrusTricksAuthException('Invalid response received', new_token.json())
 
     def check_is_expired(self, use_clock=True, use_query=True):
         """
