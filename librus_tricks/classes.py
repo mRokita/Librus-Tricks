@@ -264,9 +264,6 @@ class SynergiaLesson(SynergiaGenericClass):
         """
         super().__init__(uid, resource, session)
 
-        if 'Class' in self._json_resource.keys():
-            self.objects.set_object('group', self._json_resource['Class']['Id'], SynergiaGlobalClass)
-
         self.objects.set_object(
             'teacher', self._json_resource['Teacher']['Id'], SynergiaTeacher
         ).set_object(
@@ -648,8 +645,7 @@ class SynergiaExam(SynergiaGenericClass):
     def subject(self):
         if self.__subject_present:
             return self.objects.assembly('subject')
-        else:
-            return None
+        return None
 
     @property
     def category(self):
@@ -1048,6 +1044,7 @@ class SynergiaRealization(SynergiaGenericClass):
         """
         return self.objects.assembly('lesson')
 
+    @classmethod
     def create(cls, uid=None, path=('Realizations',), session=None, extraction_key='Realization',
                expire=timedelta(seconds=1)):
         return super().create(uid, path, session, extraction_key, expire)

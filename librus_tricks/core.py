@@ -302,8 +302,7 @@ class SynergiaClient:
         def is_absence(k):
             if k.type.uid == '1':
                 return True
-            else:
-                return False
+            return False
 
         return tuple(filter(is_absence, self.attendances()))
 
@@ -470,13 +469,8 @@ class SynergiaClient:
     def preload_cache(self):
         self.cache.clear_objects()
 
-        for thing in (
-            *self.attendances(),
-            *self.grades(),
-            *self.subjects(),
-            *self.school_free_days(only_future=False),
-            *self.teacher_free_days(only_future=False)
-        ):
+        for thing in (*self.attendances(), *self.grades(), *self.subjects(), *self.school_free_days(only_future=False),
+                      *self.teacher_free_days(only_future=False)):
             self.cache.add_object(thing.uid, thing.__class__, thing.export_resource())
 
         logging.info('Loaded %s objects into cache', self.cache.count_object())
