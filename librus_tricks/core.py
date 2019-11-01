@@ -458,6 +458,12 @@ class SynergiaClient:
             return tuple(filter(self.__is_future, days))
         return days
 
+    def realizations(self, *realizations_ids):
+        if realizations_ids.__len__() == 0:
+            return self.return_objects('Realizations', cls=SynergiaRealization, extraction_key='Realizations')
+        ids_computed = self.assembly_path(*realizations_ids, sep=',', suffix=',')[1:]
+        return self.return_objects('Realizations', ids_computed, cls=SynergiaRealization, extraction_key='Realizations')
+
     def substitutions(self):
         pass
 

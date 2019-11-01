@@ -1018,3 +1018,39 @@ class SynergiaSubstitution(SynergiaGenericClass):
     def create(cls, uid=None, path=('Calendars', 'Substitutions'), session=None, extraction_key='Substitution',
                expire=timedelta(days=7)):
         return super().create(uid, path, session, extraction_key, expire)
+
+
+class SynergiaRealization(SynergiaGenericClass):
+    def __init__(self, uid, resource, session):
+        super().__init__(uid, resource, session)
+        self.topic = resource['Topic']
+        self.date = datetime.strptime(resource['Date'], '%Y-%m-%d')
+        self.is_trip = resource['IsTrip']
+        self.teaching_program = resource.get('TeachingProgramTopic')
+        self.lesson_no = resource['LessonNo']
+        self.objects.set_object(
+            'teacher', self._json_resource['AddedBy']['Id'], SynergiaTeacher
+        ).set_object(
+            'lesson', resource['Lesson']['Id'], SynergiaLesson
+        )
+
+    @property
+    def teacher(self):
+        """
+        :rtype: librus_tricks.classes.SynergiaTeacher
+        """
+        return self.objects.assembly('teacher')
+
+    @property
+    def lesson(self):
+        """
+        :rtype: librus_tricks.classes.SynergiaLesson
+        """
+        return self.objects.assembly('lesson')
+
+    def create(cls, uid=None, path=('Realizations',), session=None, extraction_key='Realization',
+               expire=timedelta(seconds=1)):
+        return super().create(uid, path, session, extraction_key, expire)
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__} {self.topic}>'
