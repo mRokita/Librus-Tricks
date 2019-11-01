@@ -33,11 +33,25 @@ def test_grades():
     return teachers, subjects, cats
 
 
+def test_grades_gather():
+    ensure_session()
+    grades = session.grades()
+    for grade in grades:
+        assert grade.uid == session.grades(grade.uid)[0].uid
+
+
 def test_attendances():
     ensure_session()
     att = session.attendances()
     types = [x.type for x in att]
     return att, types
+
+
+def test_attendances_gather():
+    ensure_session()
+    att = session.attendances()
+    for at in att:
+        assert at.uid == session.attendances(at.uid)[0].uid
 
 
 def test_timetable():
@@ -46,6 +60,13 @@ def test_timetable():
     subjects = []
     for lesson in timetable:
         subjects.append(lesson.subject)
+
+
+def test_color_gather():
+    ensure_session()
+    colors = session.colors()
+    for color in colors:
+        assert color.uid == session.colors(color.uid)[0].uid
 
 
 def test_messages_scrapper():
@@ -82,3 +103,10 @@ def test_native_message():
         )
 
     return topics, authors, content
+
+
+def test_realizations_gather():
+    ensure_session()
+    realizations = session.realizations()
+    for rel in realizations:
+        assert rel.uid == session.realizations(rel.uid)[0].uid
