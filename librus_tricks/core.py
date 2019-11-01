@@ -290,7 +290,7 @@ class SynergiaClient:
         if attendances.__len__() == 0:
             return self.return_objects('Attendances', cls=SynergiaAttendance, extraction_key='Attendances')
         ids_computed = self.assembly_path(*attendances, sep=',', suffix=',')[1:]
-        return self.return_objects('Attendances', ids_computed, cls=SynergiaGrade, extraction_key='Attendances')
+        return self.return_objects('Attendances', ids_computed, cls=SynergiaAttendance, extraction_key='Attendances')
 
     @property
     def illegal_absences(self):
@@ -333,7 +333,7 @@ class SynergiaClient:
         """
         if colors.__len__() == 0:
             return self.return_objects('Colors', cls=SynergiaColor, extraction_key='Colors')
-        ids_computed = self.assembly_path(*colors, sep=',', suffix=',')
+        ids_computed = self.assembly_path(*colors, sep=',', suffix=',')[1:]
         return self.return_objects('Colors', ids_computed, cls=SynergiaColor, extraction_key='Colors')
 
     def timetable(self, for_date=datetime.now()):
