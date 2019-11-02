@@ -103,14 +103,14 @@ def count_attendances(attendances):
     """
     categories = set()
     for attendance in attendances:
-        categories.add(attendance.type.name)
+        categories.add(attendance.type)
 
     results = {}
     for cat in categories:
         results[cat] = 0
 
     for attendance in attendances:
-        results[attendance.type.name] += 1
+        results[attendance.type] += 1
 
     return results
 
