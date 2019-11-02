@@ -115,14 +115,14 @@ class SynergiaGenericClass:
 
         maybe_response = session.cache.get_object(uid, cls)
         if not maybe_response is None:
-            logging.debug('Returning %s from object cache', maybe_response)
+            logging.debug('Returning %s %s from object cache', maybe_response, uid)
             return maybe_response
 
         if path == ('',):
             raise APIPathIsEmpty(f'Path for {cls.__name__} class is empty!')
 
         response = session.get_cached_response(*path, uid, max_lifetime=expire)
-        logging.debug('Returning %s object from response cache', cls.__name__)
+        logging.debug('Returning %s %s object from response cache', cls.__name__, uid)
 
         if extraction_key is None:
             extraction_key = SynergiaGenericClass.auto_extract(response)
