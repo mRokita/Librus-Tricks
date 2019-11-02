@@ -19,14 +19,18 @@
 <table class="table table-striped">
     <tbody>
     {% for subject in averages %}
-        <tr{% if 1.75 < averages.get(subject) < 2.75 %} style="background-color: rgba(171,160,0,0.2)"{% elif 1.75 > averages.get(subject) %} style="background-color: rgba(162,25,41,0.4)"{% endif %}>
-            <th>
-                {{ subject }}
-            </th>
-            <td style="width: 15%">
-                {{ '{0:.2f}'.format(averages.get(subject)) }}
-            </td>
-        </tr>
+        {% if averages.get(subject) != 0 %}
+            <tr{% if 1.75 < averages.get(subject) < 2.75 %}
+                style="background-color: rgba(171,160,0,0.2)"{% elif 1.75 > averages.get(subject) %}
+                style="background-color: rgba(162,25,41,0.4)"{% endif %}>
+                <th>
+                    {{ subject }}
+                </th>
+                <td style="width: 15%">
+                    {{ '{0:.2f}'.format(averages.get(subject)) }}
+                </td>
+            </tr>
+        {% endif %}
     {% endfor %}
     </tbody>
 </table>
