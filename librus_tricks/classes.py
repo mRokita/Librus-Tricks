@@ -151,6 +151,17 @@ class SynergiaGenericClass:
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.uid} at {hex(id(self))}>'
 
+    def __hash__(self):
+        return hash(self.uid)
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.uid == other.uid
+        raise TypeError(f'Object is not instance of {self.__class__.__name__}')
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def _is_compatible(self, other):
         if not isinstance(other, self.__class__):
             raise TypeError()
