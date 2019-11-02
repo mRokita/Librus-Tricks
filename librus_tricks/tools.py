@@ -143,3 +143,43 @@ def percentages_of_attendances(attendances):
         results[category] = results[category] / attendances.__len__() * 100
 
     return results
+
+
+def attendance_per_subject(attendances):
+    """
+    :type attendances: list of librus_tricks.classes.SynergiaAttendance
+    """
+    subjects = set()
+    att_types = set()
+
+    for att in attendances:
+        subjects.add(
+            att.lesson.subject
+        )
+        att_types.add(
+            att.type
+        )
+
+    attendances_by_subject = dict()
+
+    for sub in subjects:
+        attendances_by_subject[sub] = dict()
+        for attyp in att_types:
+            attendances_by_subject[sub][attyp] = list()
+
+    for att in attendances:
+        attendances_by_subject[att.lesson.subject][att.type].append(
+            att
+        )
+
+    redundant = []
+
+    for subject in attendances_by_subject:
+        for at_type in attendances_by_subject[subject]:
+            if attendances_by_subject[subject][at_type].__len__() == 0:
+                redundant.append((subject, at_type))
+
+    for n in redundant:
+        del(attendances_by_subject[n[0]][n[1]])
+
+    return attendances_by_subject
