@@ -540,6 +540,8 @@ class SynergiaAttendance(SynergiaGenericClass):
             'student', self._json_resource['Student']['Id'], SynergiaStudent
         ).set_object(
             'type', self._json_resource['Type']['Id'], SynergiaAttendanceType
+        ).set_object(
+            'lesson', resource['Lesson']['Id'], SynergiaLesson
         )
 
     @classmethod
@@ -567,6 +569,13 @@ class SynergiaAttendance(SynergiaGenericClass):
         :rtype: SynergiaAttendanceType
         """
         return self.objects.assembly('type')
+
+    @property
+    def lesson(self):
+        """
+        :rtype: librus_tricks.classes.SynergiaLesson
+        """
+        return self.objects.assembly('lesson')
 
     def __repr__(self):
         return f'<SynergiaAttendance at {self.date.isoformat()} lesson {self.lesson_no}>'
