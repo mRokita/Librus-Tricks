@@ -1,6 +1,7 @@
 import logging
 from datetime import timedelta
 
+import aiohttp
 import requests
 
 from librus_tricks import cache as cache_lib
@@ -27,7 +28,7 @@ class SynergiaClient:
 
         self.session.headers.update({'User-Agent': user_agent})
         self.__auth_headers = {'Authorization': f'Bearer {user.token}'}
-        self.__api_url = api_url
+        self._api_url = api_url
 
         if cache_lib.CacheBase in cache.__class__.__bases__:
             self.cache = cache
@@ -120,7 +121,7 @@ class SynergiaClient:
         """
         if request_params is None:
             request_params = dict()
-        path_str = self.assembly_path(*path, prefix=self.__api_url)
+        path_str = self.assembly_path(*path, prefix=self._api_url)
         response = self.session.get(
             path_str, headers=self.__auth_headers, params=request_params
         )
@@ -143,7 +144,7 @@ class SynergiaClient:
         """
         if request_params is None:
             request_params = dict()
-        path_str = self.assembly_path(*path, prefix=self.__api_url)
+        path_str = self.assembly_path(*path, prefix=self._api_url)
         response = self.session.post(
             path_str, headers=self.__auth_headers, params=request_params
         )
@@ -166,7 +167,7 @@ class SynergiaClient:
         :return: dict zawierający odpowiedź zapytania
         :rtype: dict
         """
-        uri = self.assembly_path(*path, prefix=self.__api_url)
+        uri = self.assembly_path(*path, prefix=self._api_url)
         response_cached = self.cache.get_query(uri, self.user.uid)
 
         if response_cached is None:
@@ -474,3 +475,17 @@ class SynergiaClient:
             self.cache.add_object(thing.uid, thing.__class__, thing.export_resource())
 
         logging.info('Loaded %s objects into cache', self.cache.count_object())
+
+
+class SynergiaClientAsync(SynergiaClient):
+    def __init__(self, user, api_url='https://api.librus.pl/2.0', user_agent='LibrusMobileApp',
+                 cache=cache_lib.AlchemyCache()):
+        super().__init__(user, api_url, user_agent, cache)
+        self._heads = {'Authorization': f'Bearer {user.token}', 'User-Agent': user_agent}
+        # self.session = aiohttp.ClientSession(headers={'Authorization': f'Bearer {user.token}', 'User-Agent': user_agent})
+
+    async def get(self, *path, request_params=None):
+        async with aiohttp.ClientSession(headers=self._heads) as session:
+            path_str = self.assembly_path(*path, prefix=self._api_url)
+            async with session.get(path_str) as response:
+                return await response.json()
