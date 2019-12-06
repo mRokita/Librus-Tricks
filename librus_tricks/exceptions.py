@@ -76,3 +76,7 @@ class PerformanceWarning(Warning):
 
 class GoodPracticeWarning(Warning):
     pass
+
+
+class SynergiaMaintenanceError(SynergiaServerError):
+    pass
