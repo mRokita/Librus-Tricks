@@ -359,7 +359,10 @@ class SynergiaClient:
         :rtype: librus_tricks.classes.SynergiaTimetableDay
         :return: Plan lekcji na dziś
         """
-        return self.timetable().days[datetime.now().date()]
+        try:
+            return self.timetable().days[datetime.now().date()]
+        except KeyError:
+            return None
 
     @property
     def tomorrow_timetable(self):
@@ -369,7 +372,10 @@ class SynergiaClient:
         :rtype: librus_tricks.classes.SynergiaTimetableDay
         :return: Plan lekcji na jutro
         """
-        return self.timetable(datetime.now() + timedelta(days=1)).days[(datetime.now() + timedelta(days=1)).date()]
+        try:
+            return self.timetable(datetime.now() + timedelta(days=1)).days[(datetime.now() + timedelta(days=1)).date()]
+        except KeyError:
+            return None
 
     def messages(self, *messages):
         """
