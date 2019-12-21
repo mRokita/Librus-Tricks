@@ -429,6 +429,13 @@ class SynergiaGrade(SynergiaGenericClass):
             'category', self._json_resource['Category']['Id'], SynergiaGradeCategory
         )
 
+    @property
+    def is_special(self):
+        m = self.metadata
+        if m.is_final_grade or m.is_final_grade_proposition or m.is_semester_grade or m.is_semester_grade_proposition:
+            return True
+        return False
+
     def __repr__(self):
         return f'<{self.__class__.__name__} {self.grade} from SynergiaSubject with id {self.objects.return_id("subject")} ' \
                f'added {self.add_date.strftime("%Y-%m-%d %H:%M:%S")}>'
